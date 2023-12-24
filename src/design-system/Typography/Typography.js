@@ -4,14 +4,14 @@
 
 import {
     variantClassNames,
-    weightClassName,
-    alignClassName
+    weightClassNames,
+    alignClassNames
 } from "./classnames";
 
 export const Typography = ({ variant, weight, align, className, children }) => {
-    const variantClassName = variantClassName[variant];
-    const weightClassName = weightClassName[weight] || "";
-    const alignClassName = alignClassName[align] || "";
+    const variantClassName = variantClassNames[variant];
+    const weightClassName = weightClassNames[weight] || "";
+    const alignClassName = alignClassNames[align] || "";
 
     const finalClassName =
         `${variantClassName} ${weightClassName} ${alignClassName} ${
@@ -44,5 +44,6 @@ export const Typography = ({ variant, weight, align, className, children }) => {
     ) {
         return <p className={finalClassName}>{children}</p>;
     }
+
     return <h1>{children}</h1>;
 };

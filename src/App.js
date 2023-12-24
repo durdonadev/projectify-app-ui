@@ -1,5 +1,7 @@
+import { Typography } from "./design-system";
+
 function App() {
-    return <h1>Projectify App</h1>;
+    return <Typography variant="h1">Test</Typography>;
 }
 
 export default App;
