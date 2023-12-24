@@ -17,14 +17,14 @@ export const variantClassNames = {
     subtitleSM: "subtitle-sm"
 };
 
-export const weightClassName = {
+export const weightClassNames = {
     normal: "font-weight-normal",
     medium: "font-weight-medium",
     semibold: "font-weight-semibold",
     bold: "font-weight-bold"
 };
 
-export const alignClassName = {
+export const alignClassNames = {
     center: "text-align-center",
     left: "text-align-left",
     right: "text-align-right",
