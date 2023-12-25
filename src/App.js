@@ -1,7 +1,14 @@
-import { Typography } from "./design-system";
+import { Typography, TypographyProps } from "./design-system";
 
-function App() {
-    return <Typography variant="h1">Test</Typography>;
-}
+const App = () => {
+    return (
+        <>
+            <Typography variant={TypographyProps.variant.h2}>Hello</Typography>;
+            <Typography variant={TypographyProps.variant.subtitleLG}>
+                Hello
+            </Typography>
+        </>
+    );
+};
 
 export default App;
