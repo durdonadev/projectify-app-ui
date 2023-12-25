@@ -1,6 +1,4 @@
-/* Variant: h1, h2, h3, h4, h5, h6, p-sm, p-md, p-lg */
-/* Weight: normal, medium, semibold, bold */
-/* Align: "center" | "left" | "right" | "justify" | "inherit";*/
+import React from "react";
 
 import {
     variantClassNames,
@@ -8,10 +6,39 @@ import {
     alignClassNames
 } from "./classnames";
 
-export const Typography = ({ variant, weight, align, className, children }) => {
+type TypographyVariant =
+    | "displayLG"
+    | "displaySM"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6";
+
+type TypographyWeight = "normal" | "medium" | "semibold" | "bold";
+
+type TypographyAlign = "center" | "left" | "right" | "justify" | "inherit";
+
+type TypographyProps = {
+    variant: TypographyVariant;
+    weight?: TypographyWeight;
+    align?: TypographyAlign;
+    className?: string;
+    children: React.ReactNode;
+};
+
+export const Typography: React.FC<TypographyProps> = ({
+    variant,
+    weight,
+    align,
+    className,
+    children
+}) => {
     const variantClassName = variantClassNames[variant];
-    const weightClassName = weightClassNames[weight] || "";
-    const alignClassName = alignClassNames[align] || "";
+    const weightClassName =
+        weight !== undefined ? weightClassNames[weight] : "";
+    const alignClassName = align !== undefined ? alignClassNames[align] : "";
 
     const finalClassName =
         `${variantClassName} ${weightClassName} ${alignClassName} ${
