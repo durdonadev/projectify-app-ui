@@ -1,24 +1,17 @@
-import React from "react";
-
-import { useEffect } from "react";
-import { admin } from "./api";
-import { Typography } from "./design-system";
+import { Button, Typography } from "./design-system";
 
 const App = () => {
-    // useEffect(() => {
-    //     admin
-    //         .forgotPassword("zubairsobirov@gmail.com")
-    //         .then((response) => {
-    //             console.log(response);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
     return (
-        <>
-            <Typography variant="h5">Hello</Typography>;
-        </>
+        <div style={{ padding: "100px" }}>
+            <Typography variant="h5">Hello</Typography>
+            <Button>Test</Button>
+            <Button size="md" color="primary">
+                Test
+            </Button>
+            <Button size="lg" color="primary">
+                Test
+            </Button>
+        </div>
     );
 };
 
