@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { admin } from "./api";
 import { Typography, TypographyProps } from "./design-system";
 
 const App = () => {
