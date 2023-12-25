@@ -1,8 +1,25 @@
+type SignUpInput = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    company: {
+        name: string;
+        position: string;
+    };
+};
+
+type SignInInput = {
+    email: string;
+    password: string;
+};
+
 class Admin {
+    url: string;
     constructor() {
         this.url = `${process.env.REACT_APP_PROJECTIFY_API_URL}/admins`;
     }
-    async signUp(input) {
+    async signUp(input: SignUpInput) {
         try {
             const response = await fetch(`${this.url}/sign-up`, {
                 method: "POST",
@@ -15,13 +32,12 @@ class Admin {
                 const data = await response.json();
                 throw new Error(data.message);
             }
-            console.log(response);
         } catch (error) {
             throw error;
         }
     }
 
-    async signIn(input) {
+    async signIn(input: SignInInput) {
         try {
             const response = await fetch(`${this.url}/login`, {
                 method: "POST",
@@ -39,7 +55,7 @@ class Admin {
         }
     }
 
-    async forgotPassword(email) {
+    async forgotPassword(email: string) {
         try {
             const response = await fetch(`${this.url}/forgot-password`, {
                 method: "PATCH",
