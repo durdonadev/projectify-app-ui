@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import "./Button.css";
+import { trimWhiteSpaces } from "../utils";
 
 type ButtonSize = "sm" | "md" | "lg";
 type ButtonShape = "rounded" | "circle";
@@ -68,7 +69,7 @@ const Button: FC<ButtonProps> = (props) => {
 
     return (
         <button
-            className={finalClassNames}
+            className={trimWhiteSpaces(finalClassNames)}
             disabled={disabled}
             onClick={onClick}
         >
