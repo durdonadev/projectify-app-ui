@@ -14,6 +14,7 @@ type ButtonProps = {
     disabled?: boolean;
     className?: string;
     children: React.ReactNode;
+    onClick?: () => void;
 };
 
 const sizeClassNames = {
@@ -41,8 +42,16 @@ const variantClassNames = {
 };
 
 const Button: FC<ButtonProps> = (props) => {
-    const { size, shape, color, variant, disabled, className, children } =
-        props;
+    const {
+        size,
+        shape,
+        color,
+        variant,
+        disabled,
+        className,
+        children,
+        onClick
+    } = props;
 
     const sizeClassName = size !== undefined ? sizeClassNames[size] : "";
 
@@ -61,7 +70,7 @@ const Button: FC<ButtonProps> = (props) => {
         <button
             className={finalClassNames}
             disabled={disabled}
-            onClick={() => alert("Hello")}
+            onClick={onClick}
         >
             {children}
         </button>
