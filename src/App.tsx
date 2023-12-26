@@ -105,6 +105,32 @@ const App = () => {
                     Button
                 </Button>
             </div>
+
+            <div className="buttons">
+                <Button color="success" shape="rounded">
+                    Button
+                </Button>
+                <Button color="success" disabled shape="rounded">
+                    Button
+                </Button>
+                <Button color="success" variant="outlined" shape="rounded">
+                    Button
+                </Button>
+                <Button
+                    color="success"
+                    variant="outlined"
+                    disabled
+                    shape="rounded"
+                >
+                    Button
+                </Button>
+                <Button color="success" variant="text" shape="rounded">
+                    Button
+                </Button>
+                <Button color="success" variant="text" disabled shape="rounded">
+                    Button
+                </Button>
+            </div>
         </div>
     );
 };
