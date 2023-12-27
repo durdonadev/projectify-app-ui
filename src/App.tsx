@@ -2,38 +2,46 @@ import { useState, useId } from "react";
 import { Button, Typography, Input, Label } from "./design-system";
 
 const App = () => {
-    const [show, setShow] = useState(false);
-    const emailId = useId();
+    const [value, setValue] = useState<string>("");
+    const [text, setText] = useState<string>("");
+
+    const handleOnChange = (value: string) => {
+        setValue(value);
+    };
+
+    const handleOnChangeTextarea = (value: string) => {
+        setText(value);
+    };
 
     return (
         <div style={{ padding: "100px" }}>
             <Typography variant="h5">Hello</Typography>
 
-            <form onSubmit={() => alert("Submitted")}>
+            <form onSubmit={() => alert(`${value} ${text}`)} noValidate>
                 <Input
                     type="email"
                     placeholder="Email"
                     size="md"
                     shape="rounded"
                     labelText="Email"
-                    error={true}
-                    hintMessage="This is for your password"
+                    onChange={handleOnChange}
+                    value={value}
                 />
 
                 <Input
-                    placeholder="About You"
-                    size="md"
                     type="textarea"
+                    placeholder="About Me"
+                    size="md"
                     shape="rounded"
-                    labelText="Tell us about yourself"
+                    labelText="About Me"
+                    onChange={handleOnChangeTextarea}
+                    value={text}
                 />
 
-                <Button size="md" shape="rounded" fullWidth color="primary">
+                <Button size="md" shape="rounded" color="primary">
                     Sign Up
                 </Button>
             </form>
-
-            {show && <p>Helllo</p>}
         </div>
     );
 };
