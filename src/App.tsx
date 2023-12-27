@@ -2,45 +2,46 @@ import { useState, useId } from "react";
 import { Button, Typography, Input, Label } from "./design-system";
 
 const App = () => {
-    const [show, setShow] = useState(false);
-    const emailId = useId();
+    const [value, setValue] = useState<string>("");
+    const [text, setText] = useState<string>("");
+
+    const handleOnChange = (value: string) => {
+        setValue(value);
+    };
+
+    const handleOnChangeTextarea = (value: string) => {
+        setText(value);
+    };
 
     return (
         <div style={{ padding: "100px" }}>
             <Typography variant="h5">Hello</Typography>
 
-            <form onSubmit={() => alert("Submitted")}>
+            <form onSubmit={() => alert(`${value} ${text}`)} noValidate>
                 <Input
                     type="email"
                     placeholder="Email"
                     size="md"
                     shape="rounded"
                     labelText="Email"
+                    onChange={handleOnChange}
+                    value={value}
                 />
-                <Input
-                    placeholder="First Name"
-                    size="md"
-                    shape="rounded"
-                    labelText="First Name"
-                />
-                <Input
-                    placeholder="Last Name"
-                    size="md"
-                    shape="rounded"
-                    labelText="Last Name"
-                />
-                <Input
-                    placeholder="About You"
-                    size="lg"
-                    type="textarea"
-                    shape="rounded"
-                    labelText="Tell us about yourself"
-                    hintMessage="This is for your password"
-                />
-                <Button>Submit</Button>
-            </form>
 
-            {show && <p>Helllo</p>}
+                <Input
+                    type="textarea"
+                    placeholder="About Me"
+                    size="md"
+                    shape="rounded"
+                    labelText="About Me"
+                    onChange={handleOnChangeTextarea}
+                    value={text}
+                />
+
+                <Button size="md" shape="rounded" color="primary">
+                    Sign Up
+                </Button>
+            </form>
         </div>
     );
 };
