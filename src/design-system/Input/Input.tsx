@@ -47,11 +47,12 @@ const Input: React.FC<InputProps> = (props) => {
     const shapeClassName = shape !== undefined ? shapeClassNames[shape] : "";
 
     const errorClassName = error ? "input-error" : "";
+    const textareaClassName = type === "textarea" ? "input-textarea" : "";
 
     const finalClassNames = trimWhiteSpaces(
         `input ${
             className || ""
-        } ${sizeClassName} ${shapeClassName} ${errorClassName} $`
+        } ${sizeClassName} ${shapeClassName} ${errorClassName} ${textareaClassName}`
     );
 
     return (

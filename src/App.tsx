@@ -37,7 +37,9 @@ const App = () => {
                     labelText="Tell us about yourself"
                     hintMessage="This is for your password"
                 />
-                <Button>Submit</Button>
+                <Button size="md" shape="rounded" color="primary">
+                    Sign Up
+                </Button>
             </form>
 
             {show && <p>Helllo</p>}
