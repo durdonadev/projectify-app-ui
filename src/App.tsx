@@ -16,16 +16,18 @@ const App = () => {
                     size="md"
                     shape="rounded"
                     labelText="Email"
+                    error={true}
+                    hintMessage="This is for your password"
                 />
 
                 <Input
                     placeholder="About You"
-                    size="lg"
+                    size="md"
                     type="textarea"
                     shape="rounded"
                     labelText="Tell us about yourself"
-                    hintMessage="This is for your password"
                 />
+
                 <Button size="md" shape="rounded" fullWidth color="primary">
                     Sign Up
                 </Button>
