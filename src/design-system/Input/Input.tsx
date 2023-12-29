@@ -1,18 +1,9 @@
 import React from "react";
-import "./Input.css";
+import { sizeClassNames, shapeClassNames } from "./clasnames";
 import { trimWhiteSpaces } from "../utils";
 import { Label } from "../Label";
 
-const sizeClassNames = {
-    sm: "input-small",
-    md: "input-medium",
-    lg: "input-large"
-};
-
-const shapeClassNames = {
-    rounded: "input-rounded",
-    circle: "input-circle"
-};
+import "./Input.css";
 
 type InputProps = {
     type?: "email" | "password" | "tel" | "textarea";
