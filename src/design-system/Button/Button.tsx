@@ -1,6 +1,12 @@
 import React, { FC } from "react";
-import "./Button.css";
 import { trimWhiteSpaces } from "../utils";
+import {
+    sizeClassNames,
+    shapeClassNames,
+    colorClassNames,
+    variantClassNames
+} from "./classnames";
+import "./Button.css";
 
 type ButtonSize = "sm" | "md" | "lg";
 type ButtonShape = "rounded" | "circle";
@@ -17,30 +23,6 @@ type ButtonProps = {
     className?: string;
     children: React.ReactNode;
     onClick?: () => void;
-};
-
-const sizeClassNames = {
-    sm: "btn-small",
-    md: "btn-medium",
-    lg: "btn-large"
-};
-
-const shapeClassNames = {
-    rounded: "btn-rounded",
-    circle: "btn-circle"
-};
-
-const colorClassNames = {
-    primary: "btn-primary",
-    secondary: "btn-secondary",
-    danger: "btn-danger",
-    success: "btn-success"
-};
-
-const variantClassNames = {
-    contained: "btn-contained",
-    outlined: "btn-outlined",
-    text: "btn-text"
 };
 
 const Button: FC<ButtonProps> = (props) => {

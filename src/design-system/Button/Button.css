@@ -8,6 +8,8 @@
 
     height: 3.6rem;
     padding: 0 var(--space-16);
+
+    transition: all 0.3s;
 }
 
 .btn-full-width {
@@ -43,6 +45,7 @@
 .btn-circle {
     border-radius: var(--border-radius-20);
 }
+
 .btn-large.btn-circle {
     border-radius: var(--border-radius-24);
 }
