@@ -1,15 +1,7 @@
-import { useState } from "react";
-import {
-    Button,
-    Typography,
-    Input,
-    Modal,
-    Avatar,
-    Logo
-} from "./design-system";
+import { Signup } from "./pages";
 
 const App = () => {
-    return <div style={{ padding: "100px" }}></div>;
+    return <Signup />;
 };
 
 export { App };
