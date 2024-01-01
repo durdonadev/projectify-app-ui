@@ -98,7 +98,7 @@ const Signup = () => {
                 />
                 <Input
                     type="password"
-                    placeholder="Password Confirmation"
+                    placeholder="Confirm Password"
                     value={passwordConfirm}
                     onChange={handleOnChangePasswordConfirm}
                     shape="rounded"
