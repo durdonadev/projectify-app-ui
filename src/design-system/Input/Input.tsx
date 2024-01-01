@@ -6,7 +6,7 @@ import { Label } from "../Label";
 import "./Input.css";
 
 type InputProps = {
-    type?: "email" | "password" | "tel" | "textarea";
+    type?: "text" | "email" | "password" | "tel" | "textarea";
     disabled?: boolean;
     placeholder: string;
     className?: string;
@@ -46,9 +46,7 @@ const Input: React.FC<InputProps> = (props) => {
     const textareaClassName = type === "textarea" ? "input-textarea" : "";
 
     const finalClassNames = trimWhiteSpaces(
-        `input ${
-            className || ""
-        } ${sizeClassName} ${shapeClassName} ${errorClassName} ${textareaClassName}`
+        `input  ${sizeClassName} ${shapeClassName} ${errorClassName} ${textareaClassName}`
     );
 
     const hintMessageClassName = trimWhiteSpaces(
@@ -64,7 +62,7 @@ const Input: React.FC<InputProps> = (props) => {
     };
 
     return (
-        <div className="input-wrapper">
+        <div className={`input-wrapper ${className || ""}`}>
             {labelText ? (
                 <Label htmlFor={id} disabled={disabled} error={error}>
                     {labelText}
