@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Typography, Input } from "../../../design-system";
+import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 
 import teamWork from "../../../assets/images/team-work.jpg";
@@ -34,7 +34,7 @@ const Signup = () => {
     };
 
     const handleOnChangePasswordConfirm = (value: string) => {
-        setPassword(value);
+        setPasswordConfirm(value);
     };
 
     const createAccount = (e: React.FormEvent<HTMLFormElement>) => {
