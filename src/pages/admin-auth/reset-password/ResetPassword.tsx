@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PasswordWrapper } from "../../components";
 import { Input, Button } from "../../../design-system";
 import updatePassword from "../../../assets/images/update-password.svg";
-import "./UpdatePassword.css";
+import "./ResetPassword.css";
 
 const UpdatePassword = () => {
     const [newPassword, setNewPassword] = useState<string>("");

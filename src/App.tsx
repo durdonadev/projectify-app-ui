@@ -1,6 +1,7 @@
 import { Login } from "./pages";
-import { ForgotPassword } from "./pages/admin-auth/forgot-password/ForgotPassword";
-import { UpdatePassword } from "./pages/admin-auth/update-password/UpdatePassword";
+import { ForgotPassword } from "./pages";
+import { UpdatePassword } from "./pages";
+import { MainLayout } from "./pages/components";
 
 const App = () => {
     return (
@@ -8,6 +9,7 @@ const App = () => {
             <Login />
             <ForgotPassword />
             <UpdatePassword />
+            <MainLayout>Hello</MainLayout>
         </>
     );
 };
