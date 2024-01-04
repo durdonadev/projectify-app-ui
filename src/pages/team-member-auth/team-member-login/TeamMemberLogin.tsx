@@ -3,12 +3,11 @@ import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./CreatePassword.css";
+import "./TeamMemberLogin.css";
 
-const CreatePassword = () => {
+const TeamMemberLogin = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [passwordConfirm, setPasswordConfirm] = useState<string>("");
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -18,22 +17,14 @@ const CreatePassword = () => {
         setPassword(value);
     };
 
-    const handleOnChangePasswordConfirm = (value: string) => {
-        setPasswordConfirm(value);
-    };
-
-    const createPassword = (e: React.FormEvent<HTMLFormElement>) => {
+    const login = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email, password, passwordConfirm);
+        console.log(email, password);
     };
 
     return (
-        <AuthWrapper imageUrl={teamWork} pageTitle="Create Password">
-            <form
-                className="create-password"
-                onSubmit={createPassword}
-                noValidate
-            >
+        <AuthWrapper imageUrl={teamWork} pageTitle="Login">
+            <form className="login" onSubmit={login} noValidate>
                 <Input
                     type="email"
                     placeholder="Email"
@@ -41,7 +32,7 @@ const CreatePassword = () => {
                     onChange={handleOnChangeEmail}
                     shape="rounded"
                     size="lg"
-                    className="create-password__email"
+                    className="login__email"
                 />
                 <Input
                     type="password"
@@ -50,26 +41,20 @@ const CreatePassword = () => {
                     onChange={handleOnChangePassword}
                     shape="rounded"
                     size="lg"
+                    className="login__password"
                 />
-                <Input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={passwordConfirm}
-                    onChange={handleOnChangePasswordConfirm}
-                    shape="rounded"
-                    size="lg"
-                />
+
                 <Button
                     color="primary"
                     size="lg"
                     shape="rounded"
-                    className="create-password__submit-button"
+                    className="login__submit-button"
                 >
-                    Create Password
+                    Login
                 </Button>
             </form>
         </AuthWrapper>
     );
 };
 
-export { CreatePassword };
+export { TeamMemberLogin };

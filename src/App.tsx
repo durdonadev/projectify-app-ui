@@ -1,15 +1,10 @@
-import { Login } from "./pages";
-import { ForgotPassword } from "./pages";
-import { UpdatePassword } from "./pages";
-import { MainLayout } from "./pages/components";
+import { TeamMemberCreatePassword, TeamMemberLogin } from "./pages";
 
 const App = () => {
     return (
         <>
-            <Login />
-            <ForgotPassword />
-            <UpdatePassword />
-            <MainLayout>Hello</MainLayout>
+            <TeamMemberCreatePassword />
+            <TeamMemberLogin />
         </>
     );
 };
