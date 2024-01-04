@@ -1,14 +1,17 @@
-import { Login } from "./pages";
-import { ForgotPassword } from "./pages/admin-auth/forgot-password/ForgotPassword";
-import { UpdatePassword } from "./pages/admin-auth/update-password/UpdatePassword";
+import { useState } from "react";
+import { Toggle } from "./design-system";
 
 const App = () => {
+    const [value, setValue] = useState<boolean>(false);
+
+    const handleOnToggle = (value: boolean) => {
+        setValue(value);
+    };
+
     return (
-        <>
-            <Login />
-            <ForgotPassword />
-            <UpdatePassword />
-        </>
+        <div style={{ padding: "300px" }}>
+            <Toggle rounded={true} value={value} onToggle={handleOnToggle} />
+        </div>
     );
 };
 
