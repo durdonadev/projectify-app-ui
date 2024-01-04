@@ -10,7 +10,7 @@ const App = () => {
 
     return (
         <div style={{ padding: "300px" }}>
-            <Toggle value={value} onToggle={handleOnToggle} />
+            <Toggle rounded={true} value={value} onToggle={handleOnToggle} />
         </div>
     );
 };
