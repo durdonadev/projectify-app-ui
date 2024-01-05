@@ -2,7 +2,26 @@ import { useState } from "react";
 import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./AdminSignUp.css";
+import styled from "styled-components";
+
+const Form = styled.form`
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-20);
+`;
+
+const StyledPreferredNameInput = styled(Input)`
+    grid-column: 1 / 3;
+`;
+
+const StyledEmailInput = styled(Input)`
+    grid-column: 1 / 3;
+`;
+
+const StyledButton = styled(Button)`
+    grid-column: 1 / 3;
+`;
 
 const AdminSignup = () => {
     const [firstName, setFirstName] = useState<string>("");
@@ -54,7 +73,7 @@ const AdminSignup = () => {
             pageTitle="Sign Up"
             switchLayout={true}
         >
-            <form className="sign-up" onSubmit={createAccount} noValidate>
+            <Form onSubmit={createAccount} noValidate>
                 <Input
                     type="text"
                     placeholder="First Name"
@@ -62,7 +81,6 @@ const AdminSignup = () => {
                     onChange={handleOnChangeFirstName}
                     shape="rounded"
                     size="lg"
-                    className="sign-up__first-name"
                 />
                 <Input
                     type="text"
@@ -73,16 +91,15 @@ const AdminSignup = () => {
                     size="lg"
                 />
 
-                <Input
+                <StyledPreferredNameInput
                     type="text"
                     placeholder="Preferred First Name"
                     value={preferredName}
                     onChange={handleOnChangePreferredName}
                     shape="rounded"
                     size="lg"
-                    className="sign-up__preferred-name"
                 />
-                <Input
+                <StyledEmailInput
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -107,15 +124,10 @@ const AdminSignup = () => {
                     shape="rounded"
                     size="lg"
                 />
-                <Button
-                    color="primary"
-                    size="lg"
-                    shape="rounded"
-                    className="sign-up__submit-button"
-                >
+                <StyledButton color="primary" size="lg" shape="rounded">
                     Sign Up
-                </Button>
-            </form>
+                </StyledButton>
+            </Form>
         </AuthWrapper>
     );
 };

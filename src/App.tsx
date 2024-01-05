@@ -11,6 +11,7 @@ const App = () => {
             <AdminSignup />
             <AdminLogin />
             <AdminForgotPassword />
+            <AdminResetPassword />
         </>
     );
 };
