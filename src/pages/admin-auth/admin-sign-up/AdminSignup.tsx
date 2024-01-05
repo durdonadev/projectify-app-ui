@@ -49,7 +49,11 @@ const AdminSignup = () => {
     };
 
     return (
-        <AuthWrapper imageUrl={teamWork} pageTitle="Sign Up">
+        <AuthWrapper
+            imageUrl={teamWork}
+            pageTitle="Sign Up"
+            switchLayout={true}
+        >
             <form className="sign-up" onSubmit={createAccount} noValidate>
                 <Input
                     type="text"

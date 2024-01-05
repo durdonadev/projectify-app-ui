@@ -7,6 +7,7 @@ type AuthWrapperProps = {
     imageUrl: string;
     children: ReactNode;
     pageTitle: string;
+    switchLayout?: boolean;
 };
 
 const Wrapper = styled.main`
@@ -15,8 +16,10 @@ const Wrapper = styled.main`
     grid-template-rows: 100vh;
 `;
 
-const AuthForm = styled.section`
-    grid-column: 1 / 2;
+const AuthForm = styled.section<{ $switchLayout?: boolean }>`
+    grid-row: 1 / 2;
+    grid-column: ${(props) => (props.$switchLayout ? "2 / 3" : "1 / 2")};
+
     padding: var(--space-50);
     display: flex;
     align-items: center;
@@ -31,36 +34,41 @@ const AuthContent = styled.div`
     flex-basis: 57rem;
 `;
 
-const AuthImageWrapper = styled.section`
-    grid-column: 2 / 3;
+const AuthImageWrapper = styled.section<{ $switchLayout?: boolean }>`
+    grid-row: 1 / 2;
+    grid-column: ${(props) => (props.$switchLayout ? "1 / 2" : "2 / 3")};
     padding: var(--space-50);
-
-    img {
-        height: 100%;
-        width: 100%;
-        border-radius: var(--space-50);
-        object-fit: cover;
-    }
 `;
 
 const AuthImage = styled.img.attrs({
     alt: "Office"
-})``;
+})`
+    height: 100%;
+    width: 100%;
+    border-radius: var(--space-50);
+    object-fit: cover;
+    transition: all 1s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
 
 const AuthWrapper: FC<AuthWrapperProps> = ({
     imageUrl,
     pageTitle,
+    switchLayout,
     children
 }) => {
     return (
         <Wrapper>
-            <AuthForm>
+            <AuthForm $switchLayout={switchLayout}>
                 <AuthContent>
                     <Logo layout="vertical" size="lg" customText={pageTitle} />
                     {children}
                 </AuthContent>
             </AuthForm>
-            <AuthImageWrapper>
+            <AuthImageWrapper $switchLayout={switchLayout}>
                 <AuthImage src={imageUrl} />
             </AuthImageWrapper>
         </Wrapper>
