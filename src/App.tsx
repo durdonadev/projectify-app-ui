@@ -1,9 +1,10 @@
-import { TeamMemberCreatePassword } from "./pages";
+import { TeamMemberCreatePassword, TeamMemberLogin } from "./pages";
 
 const App = () => {
     return (
         <>
             <TeamMemberCreatePassword />
+            <TeamMemberLogin />
         </>
     );
 };
