@@ -8,6 +8,8 @@ import {
 const App = () => {
     return (
         <>
+            <AdminSignup />
+            <AdminLogin />
             <AdminForgotPassword />
         </>
     );
