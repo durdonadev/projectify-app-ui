@@ -1,17 +1,9 @@
-import {
-    AdminForgotPassword,
-    AdminLogin,
-    AdminSignup,
-    AdminResetPassword
-} from "./pages";
+import { TeamMemberCreatePassword } from "./pages";
 
 const App = () => {
     return (
         <>
-            <AdminSignup />
-            <AdminLogin />
-            <AdminForgotPassword />
-            <AdminResetPassword />
+            <TeamMemberCreatePassword />
         </>
     );
 };

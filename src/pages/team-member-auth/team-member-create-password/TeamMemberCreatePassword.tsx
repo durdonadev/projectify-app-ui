@@ -3,7 +3,22 @@ import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./TeamMemberCreatePassword.css";
+import styled from "styled-components";
+
+const Form = styled.form`
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-20);
+`;
+
+const StyledEmailInput = styled(Input)`
+    grid-column: 1 / 3;
+`;
+
+const StyledButton = styled(Button)`
+    grid-column: 1 / 3;
+`;
 
 const TeamMemberCreatePassword = () => {
     const [email, setEmail] = useState<string>("");
@@ -29,19 +44,14 @@ const TeamMemberCreatePassword = () => {
 
     return (
         <AuthWrapper imageUrl={teamWork} pageTitle="Create Password">
-            <form
-                className="create-password"
-                onSubmit={createPassword}
-                noValidate
-            >
-                <Input
+            <Form onSubmit={createPassword} noValidate>
+                <StyledEmailInput
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={handleOnChangeEmail}
                     shape="rounded"
                     size="lg"
-                    className="create-password__email"
                 />
                 <Input
                     type="password"
@@ -59,15 +69,10 @@ const TeamMemberCreatePassword = () => {
                     shape="rounded"
                     size="lg"
                 />
-                <Button
-                    color="primary"
-                    size="lg"
-                    shape="rounded"
-                    className="create-password__submit-button"
-                >
+                <StyledButton color="primary" size="lg" shape="rounded">
                     Create Password
-                </Button>
-            </form>
+                </StyledButton>
+            </Form>
         </AuthWrapper>
     );
 };
