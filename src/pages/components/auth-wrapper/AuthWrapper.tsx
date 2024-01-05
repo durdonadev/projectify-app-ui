@@ -9,7 +9,7 @@ type AuthWrapperProps = {
     switchLayout?: boolean;
 };
 
-const Wrapper = styled.main`
+const AuthWrapperBase = styled.main`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100vh;
@@ -60,7 +60,7 @@ const AuthWrapper: FC<AuthWrapperProps> = ({
     children
 }) => {
     return (
-        <Wrapper>
+        <AuthWrapperBase>
             <AuthForm $switchLayout={switchLayout}>
                 <AuthContent>
                     <Logo layout="vertical" size="lg" customText={pageTitle} />
@@ -70,7 +70,7 @@ const AuthWrapper: FC<AuthWrapperProps> = ({
             <AuthImageWrapper $switchLayout={switchLayout}>
                 <AuthImage src={imageUrl} />
             </AuthImageWrapper>
-        </Wrapper>
+        </AuthWrapperBase>
     );
 };
 
