@@ -1,11 +1,16 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
-
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./Login.css";
 
-const Login = () => {
+const Form = styled.form`
+    width: 100%;
+    display: grid;
+    gap: var(--space-20);
+`;
+
+const AdminLogin = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -24,7 +29,7 @@ const Login = () => {
 
     return (
         <AuthWrapper imageUrl={teamWork} pageTitle="Login">
-            <form className="login" onSubmit={createAccount} noValidate>
+            <Form onSubmit={createAccount} noValidate>
                 <Input
                     type="email"
                     placeholder="Email"
@@ -52,9 +57,9 @@ const Login = () => {
                 >
                     Login
                 </Button>
-            </form>
+            </Form>
         </AuthWrapper>
     );
 };
 
-export { Login };
+export { AdminLogin };
