@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
-
 import teamWork from "../../../assets/images/team-work.jpg";
 import "./AdminSignUp.css";
 
