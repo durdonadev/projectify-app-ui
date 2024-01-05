@@ -2,9 +2,9 @@ import { useState } from "react";
 import { PasswordWrapper } from "../../components";
 import { Input, Button } from "../../../design-system";
 import forgotPassword from "../../../assets/images/forgot-password.svg";
-import "./ForgotPassword.css";
+import "./AdminForgotPassword.css";
 
-const ForgotPassword = () => {
+const AdminForgotPassword = () => {
     const [email, setEmail] = useState<string>("");
 
     const handleOnChangeEmail = (value: string) => {
@@ -44,4 +44,4 @@ const ForgotPassword = () => {
     );
 };
 
-export { ForgotPassword };
+export { AdminForgotPassword };

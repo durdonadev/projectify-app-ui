@@ -3,9 +3,9 @@ import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./Login.css";
+import "./AdminLogin.css";
 
-const Login = () => {
+const AdminLogin = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -57,4 +57,4 @@ const Login = () => {
     );
 };
 
-export { Login };
+export { AdminLogin };

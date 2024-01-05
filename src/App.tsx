@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { Toggle } from "./design-system";
+import {
+    AdminForgotPassword,
+    AdminLogin,
+    AdminSignup,
+    AdminResetPassword
+} from "./pages";
 
 const App = () => {
-    const [value, setValue] = useState<boolean>(false);
-
-    const handleOnToggle = (value: boolean) => {
-        setValue(value);
-    };
-
     return (
-        <div style={{ padding: "300px" }}>
-            <Toggle value={value} onToggle={handleOnToggle} />
-        </div>
+        <>
+            <AdminSignup />
+            <AdminLogin />
+            <AdminForgotPassword />
+            <AdminResetPassword />
+        </>
     );
 };
 

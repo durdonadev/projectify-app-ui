@@ -3,9 +3,9 @@ import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 
 import teamWork from "../../../assets/images/team-work.jpg";
-import "./SignUp.css";
+import "./AdminSignUp.css";
 
-const Signup = () => {
+const AdminSignup = () => {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [preferredName, setPreferredName] = useState<string>("");
@@ -117,4 +117,4 @@ const Signup = () => {
     );
 };
 
-export { Signup };
+export { AdminSignup };

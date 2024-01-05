@@ -2,9 +2,9 @@ import { useState } from "react";
 import { PasswordWrapper } from "../../components";
 import { Input, Button } from "../../../design-system";
 import updatePassword from "../../../assets/images/update-password.svg";
-import "./ResetPassword.css";
+import "./AdminResetPassword.css";
 
-const UpdatePassword = () => {
+const AdminResetPassword = () => {
     const [newPassword, setNewPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
 
@@ -50,11 +50,11 @@ const UpdatePassword = () => {
                     shape="rounded"
                     fullWidth={true}
                 >
-                    Peset My Password
+                    Reset My Password
                 </Button>
             </form>
         </PasswordWrapper>
     );
 };
 
-export { UpdatePassword };
+export { AdminResetPassword };
