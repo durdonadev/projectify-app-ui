@@ -1,6 +1,5 @@
 import { FC, ReactNode } from "react";
 import { Logo } from "../../../design-system/Logo";
-import "./AuthWrapper.css";
 import styled from "styled-components";
 
 type AuthWrapperProps = {
