@@ -3,6 +3,7 @@ import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
 import styled from "styled-components";
+import { Icon } from "../../../design-system/Icon/Icon";
 
 const Form = styled.form`
     width: 100%;
@@ -74,6 +75,12 @@ const AdminSignup = () => {
             switchLayout={true}
         >
             <Form onSubmit={createAccount} noValidate>
+                <Icon iconName="projects" />
+                <Icon iconName="members" />
+                <Icon iconName="stories" />
+                <Icon iconName="tasks" />
+                <Icon iconName="settings" />
+                <Icon iconName="support" />
                 <Input
                     type="text"
                     placeholder="First Name"
