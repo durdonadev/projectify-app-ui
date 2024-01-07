@@ -21,7 +21,6 @@ type InputProps = {
     onChange: (value: string) => void;
     value: string;
 };
-
 const Input: React.FC<InputProps> = (props) => {
     const {
         type,
@@ -46,10 +45,10 @@ const Input: React.FC<InputProps> = (props) => {
     const textareaClassName = type === "textarea" ? "input-textarea" : "";
 
     const finalClassNames = trimWhiteSpaces(
-        `input  ${sizeClassName} ${shapeClassName} ${errorClassName} ${textareaClassName}`
+        `input ${sizeClassName} ${shapeClassName} ${errorClassName} ${textareaClassName}`
     );
 
-    const hintMessageClassName = trimWhiteSpaces(
+    const hintMessageClass = trimWhiteSpaces(
         `hint-message ${error ? "hint-message--error" : ""}`
     );
 
@@ -80,16 +79,17 @@ const Input: React.FC<InputProps> = (props) => {
             ) : (
                 <input
                     className={finalClassNames}
-                    type={type}
+                    type={type || "text"}
                     placeholder={placeholder}
                     disabled={disabled}
                     id={id}
                     onChange={handleOnChange}
+                    value={value}
                 />
             )}
 
             {hintMessage ? (
-                <span className={hintMessageClassName}>{hintMessage}</span>
+                <span className={hintMessageClass}>{hintMessage}</span>
             ) : null}
         </div>
     );
