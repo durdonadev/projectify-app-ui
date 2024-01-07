@@ -6,7 +6,6 @@ const User = styled.div`
     margin: 0 auto;
     background-color: var(--jaguar-25);
     border-radius: var(--border-radius-16);
-    margin-bottom: var(--space-30);
 `;
 
 export { User };

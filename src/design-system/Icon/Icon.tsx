@@ -4,16 +4,10 @@ import sprite from "./sprite.svg";
 type IconProps = {
     iconName: string;
     className?: string;
-    color?: string;
 };
-const Icon: React.FC<IconProps> = ({ iconName, className, color }) => {
+const Icon: React.FC<IconProps> = ({ iconName, className }) => {
     return (
-        <svg
-            height="2.4rem"
-            width="2.4rem"
-            className={className || ""}
-            color={color}
-        >
+        <svg height="2.4rem" width="2.4rem" className={className || ""}>
             <use xlinkHref={`${sprite}#${iconName}`} />
         </svg>
     );

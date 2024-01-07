@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 type SideBarLink = {
     linkText: string;
     linkTo: string;
@@ -17,21 +17,31 @@ type SideBarLinksProps = { links: SideBarLinksGroup[] };
 
 const SideBarLinks: React.FC<SideBarLinksProps> = ({ links }) => {
     return (
-        <div>
+        <>
             {links.map((group) => {
                 return (
-                    <div>
-                        <Typography variant="subtitleMD" weight="semibold">
-                            {group.title}
+                    <div className="side-bar__link-group">
+                        <Typography
+                            variant="subtitleMD"
+                            weight="semibold"
+                            className="side-bar__link-group-title"
+                        >
+                            {group.title.toUpperCase()}
                         </Typography>
-                        <ul>
+                        <ul className="side-bar__links">
                             {group.links.map((link) => {
                                 return (
-                                    <li>
-                                        <Link to={link.linkTo}>
-                                            <Icon iconName={link.iconName} />
+                                    <li className="side-bar__link-item">
+                                        <NavLink
+                                            to={link.linkTo}
+                                            className="side-bar__link"
+                                        >
+                                            <Icon
+                                                iconName={link.iconName}
+                                                className="side-bar__link-icon"
+                                            />
                                             {link.linkText}
-                                        </Link>
+                                        </NavLink>
                                     </li>
                                 );
                             })}
@@ -39,7 +49,13 @@ const SideBarLinks: React.FC<SideBarLinksProps> = ({ links }) => {
                     </div>
                 );
             })}
-        </div>
+            <div className="side-bar__log-out">
+                <Icon iconName="log-out" className="log-out-icon" />
+                <Link to="" className="side-bar__log-out-link">
+                    Log Out
+                </Link>
+            </div>
+        </>
     );
 };
 
