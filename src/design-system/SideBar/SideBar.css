@@ -23,7 +23,7 @@
 .side-bar__link {
     font-size: var(--font-size-16);
     font-family: inherit;
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-500);
     line-height: var(--line-height-24);
     color: var(--jaguar-900);
     height: 100%;
