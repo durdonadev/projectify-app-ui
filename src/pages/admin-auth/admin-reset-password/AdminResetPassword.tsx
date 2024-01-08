@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { PasswordWrapper } from "../../components";
 import { Input, Button } from "../../../design-system";
-import resetPasswordImg from "../../../assets/images/reset-password.svg";
+import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";
 
 const Form = styled.form`
     width: 100%;
