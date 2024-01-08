@@ -50,7 +50,7 @@ const AdminPersonalTasks = () => {
                 </CreateTaskModalTitle>
                 <Inputs>
                     <Input
-                        placeholder="Task Name"
+                        placeholder="Task"
                         value=""
                         onChange={() => {}}
                         shape="rounded"
@@ -58,7 +58,7 @@ const AdminPersonalTasks = () => {
                     />
                     <Input
                         type="textarea"
-                        placeholder="Task Description"
+                        placeholder="Description"
                         value=""
                         onChange={() => {}}
                         shape="rounded"
