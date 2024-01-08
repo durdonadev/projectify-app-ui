@@ -26,7 +26,7 @@ const Buttons = styled.div`
     gap: var(--space-10);
 `;
 
-const AdminPersonalTasks = () => {
+const TeamMemberPersonalTasks = () => {
     const [tasks, setTasks] = useState<string[]>([]);
     const [showCreateTaskModal, setShowCreateTaskModal] =
         useState<boolean>(false);
@@ -36,7 +36,7 @@ const AdminPersonalTasks = () => {
             {!tasks.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noTask}
-                    text="You don’t have any tasks yet!"
+                    text="You don't have any tasks yet!"
                     buttonText="Add a Task"
                     buttonAction={() => setShowCreateTaskModal(true)}
                 />
@@ -85,4 +85,4 @@ const AdminPersonalTasks = () => {
     );
 };
 
-export { AdminPersonalTasks };
+export { TeamMemberPersonalTasks };

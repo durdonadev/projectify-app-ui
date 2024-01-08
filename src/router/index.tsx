@@ -5,19 +5,22 @@ import {
 } from "react-router-dom";
 import { App } from "../App";
 import {
-    AdminForgotPassword,
-    AdminLogin,
-    AdminResetPassword,
     AdminSignup,
-    TeamMemberCreatePassword,
-    TeamMemberLogin,
+    AdminLogin,
+    AdminForgotPassword,
+    AdminResetPassword,
     AdminPlatform,
     AdminProjects,
     AdminStories,
     AdminPersonalTasks,
-    AdminTeamMembers
+    AdminTeamMembers,
+    TeamMemberCreatePassword,
+    TeamMemberLogin,
+    TeamMemberPlatform,
+    TeamMemberProjects,
+    TeamMemberStories,
+    TeamMemberPersonalTasks
 } from "../pages";
-import { SideBar } from "../design-system";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,18 +36,28 @@ export const router = createBrowserRouter(
                 path="/admin/reset-password"
                 element={<AdminResetPassword />}
             />
+            <Route path="/admin/platform" element={<AdminPlatform />}>
+                <Route path="projects" element={<AdminProjects />} />
+                <Route path="stories" element={<AdminStories />} />
+                <Route path="personal-tasks" element={<AdminPersonalTasks />} />
+                <Route path="team-members" element={<AdminTeamMembers />} />
+            </Route>
 
             <Route
                 path="/team-member/create-password"
                 element={<TeamMemberCreatePassword />}
             />
             <Route path="/team-member/login" element={<TeamMemberLogin />} />
-
-            <Route path="/platform" element={<AdminPlatform />}>
-                <Route path="projects" element={<AdminProjects />} />
-                <Route path="stories" element={<AdminStories />} />
-                <Route path="personal-tasks" element={<AdminPersonalTasks />} />
-                <Route path="team-members" element={<AdminTeamMembers />} />
+            <Route
+                path="/team-member/platform"
+                element={<TeamMemberPlatform />}
+            >
+                <Route path="projects" element={<TeamMemberProjects />} />
+                <Route path="stories" element={<TeamMemberStories />} />
+                <Route
+                    path="personal-tasks"
+                    element={<TeamMemberPersonalTasks />}
+                />
             </Route>
         </>
     )
