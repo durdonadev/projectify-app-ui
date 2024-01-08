@@ -11,3 +11,8 @@ export * from "./admin-platform/admin-team-members/AdminTeamMembers";
 
 export * from "./team-member-auth/team-member-create-password/TeamMemberCreatePassword";
 export * from "./team-member-auth/team-member-login/TeamMemberLogin";
+
+export * from "./team-member-platform/TeamMemberPlatform";
+export * from "./team-member-platform/team-member-projects/TeamMemberProjects";
+export * from "./team-member-platform/team-member-stories/TeamMemberStories";
+export * from "./team-member-platform/team-member-personal-tasks/TeamMemberPersonalTasks";

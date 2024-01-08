@@ -17,7 +17,7 @@ const TeamMemberProjects = () => {
             {!projects.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noProject}
-                    text="You don’t have any projects yet!"
+                    text="You don't have any projects yet!"
                 />
             ) : (
                 <h1>Projects</h1>
