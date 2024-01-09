@@ -27,6 +27,8 @@ const AdminSignup = () => {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [preferredName, setPreferredName] = useState<string>("");
+    const [company, setCompany] = useState<string>("");
+    const [position, setPosition] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
@@ -41,6 +43,14 @@ const AdminSignup = () => {
 
     const handleOnChangePreferredName = (value: string) => {
         setPreferredName(value);
+    };
+
+    const handleOnChangeCompany = (value: string) => {
+        setCompany(value);
+    };
+
+    const handleOnChangePosition = (value: string) => {
+        setPosition(value);
     };
 
     const handleOnChangeEmail = (value: string) => {
@@ -61,6 +71,8 @@ const AdminSignup = () => {
             firstName,
             lastName,
             preferredName,
+            company,
+            position,
             email,
             password,
             passwordConfirm
@@ -71,7 +83,7 @@ const AdminSignup = () => {
         <AuthWrapper
             imageUrl={teamWork}
             pageTitle="Sign Up"
-            switchLayout={true}
+            switchLayout={false}
         >
             <Form onSubmit={createAccount} noValidate>
                 <Input
@@ -96,6 +108,22 @@ const AdminSignup = () => {
                     placeholder="Preferred First Name"
                     value={preferredName}
                     onChange={handleOnChangePreferredName}
+                    shape="rounded"
+                    size="lg"
+                />
+                <Input
+                    type="text"
+                    placeholder="Company"
+                    value={company}
+                    onChange={handleOnChangeCompany}
+                    shape="rounded"
+                    size="lg"
+                />
+                <Input
+                    type="text"
+                    placeholder="Position"
+                    value={position}
+                    onChange={handleOnChangePosition}
                     shape="rounded"
                     size="lg"
                 />
