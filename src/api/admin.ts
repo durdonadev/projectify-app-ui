@@ -1,9 +1,10 @@
 type SignUpInput = {
     firstName: string;
     lastName: string;
+    preferredName?: string;
     email: string;
     password: string;
-    company: {
+    company?: {
         name: string;
         position: string;
     };
@@ -17,7 +18,11 @@ type SignInInput = {
 class Admin {
     url: string;
     constructor() {
-        this.url = `${process.env.REACT_APP_PROJECTIFY_API_URL}/admins`;
+        this.url = `${
+            process.env.NODE_ENV === "development"
+                ? process.env.REACT_APP_PROJECTIFY_API_URL_LOCAL
+                : process.env.REACT_APP_PROJECTIFY_API_URL
+        }/admins`;
     }
     async signUp(input: SignUpInput) {
         try {

@@ -37,7 +37,6 @@ const AdminLogin = () => {
                     onChange={handleOnChangeEmail}
                     shape="rounded"
                     size="lg"
-                    className="login__email"
                 />
                 <Input
                     type="password"
@@ -46,14 +45,13 @@ const AdminLogin = () => {
                     onChange={handleOnChangePassword}
                     shape="rounded"
                     size="lg"
-                    className="login__password"
                 />
 
                 <Button
                     color="primary"
                     size="lg"
                     shape="rounded"
-                    className="login__submit-button"
+                    fullWidth={true}
                 >
                     Login
                 </Button>
