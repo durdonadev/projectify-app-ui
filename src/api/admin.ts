@@ -15,6 +15,22 @@ type SignInInput = {
     password: string;
 };
 
+type BackendError = {
+    message: string;
+    statusCode: number;
+    isOperational: boolean;
+};
+export class CustomError extends Error {
+    statusCode: number;
+    isOperational: boolean;
+
+    constructor(backendError: BackendError) {
+        super(backendError.message);
+        this.statusCode = backendError.statusCode;
+        this.isOperational = backendError.isOperational;
+    }
+}
+
 class Admin {
     url: string;
     constructor() {
@@ -34,15 +50,16 @@ class Admin {
                 body: JSON.stringify(input)
             });
             if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message);
+                const data: BackendError = await response.json();
+                console.log(data);
+                throw new CustomError(data);
             }
         } catch (error) {
             throw error;
         }
     }
 
-    async signIn(input: SignInInput) {
+    async signIn(input: SignInInput): Promise<{ token: string }> {
         try {
             const response = await fetch(`${this.url}/login`, {
                 method: "POST",
@@ -52,9 +69,11 @@ class Admin {
                 body: JSON.stringify(input)
             });
             if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message);
+                const data: BackendError = await response.json();
+                console.log(data);
+                throw new CustomError(data);
             }
+            return response.json();
         } catch (error) {
             throw error;
         }

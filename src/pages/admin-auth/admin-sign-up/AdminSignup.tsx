@@ -35,7 +35,6 @@ const AdminSignup = () => {
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
 
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
-
     const [isError, setIsError] = useState<boolean>(false);
 
     const handleOnChangeFirstName = (value: string) => {
@@ -72,8 +71,9 @@ const AdminSignup = () => {
 
     const createAccount = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsFormSubmitting(true);
+
         try {
+            setIsFormSubmitting(true);
             await admin.signUp({
                 firstName,
                 lastName,

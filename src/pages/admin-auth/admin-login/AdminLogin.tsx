@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
+import { admin } from "../../../api";
 
 const Form = styled.form`
     width: 100%;
@@ -13,6 +15,9 @@ const Form = styled.form`
 const AdminLogin = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -22,14 +27,28 @@ const AdminLogin = () => {
         setPassword(value);
     };
 
-    const createAccount = (e: React.FormEvent<HTMLFormElement>) => {
+    const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email, password);
+        try {
+            setIsFormSubmitting(true);
+            const { token } = await admin.signIn({
+                email,
+                password
+            });
+            localStorage.setItem("authTokem", token);
+            navigate("/admin/platform");
+
+            setIsFormSubmitting(false);
+            setEmail("");
+        } catch (error) {
+            setIsFormSubmitting(false);
+            setIsError(true);
+        }
     };
 
     return (
         <AuthWrapper imageUrl={teamWork} pageTitle="Login">
-            <Form onSubmit={createAccount} noValidate>
+            <Form onSubmit={signin} noValidate>
                 <Input
                     type="email"
                     placeholder="Email"
@@ -37,6 +56,7 @@ const AdminLogin = () => {
                     onChange={handleOnChangeEmail}
                     shape="rounded"
                     size="lg"
+                    disabled={isFormSubmitting}
                 />
                 <Input
                     type="password"
@@ -45,6 +65,7 @@ const AdminLogin = () => {
                     onChange={handleOnChangePassword}
                     shape="rounded"
                     size="lg"
+                    disabled={isFormSubmitting}
                 />
 
                 <Button
@@ -52,6 +73,7 @@ const AdminLogin = () => {
                     size="lg"
                     shape="rounded"
                     fullWidth={true}
+                    disabled={isFormSubmitting}
                 >
                     Login
                 </Button>
