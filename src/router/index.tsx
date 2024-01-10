@@ -6,7 +6,7 @@ import {
 import { App } from "../App";
 import {
     AdminSignup,
-    AdminLogin,
+    AdminSignin,
     AdminForgotPassword,
     AdminResetPassword,
     AdminPlatform,
@@ -29,7 +29,7 @@ export const router = createBrowserRouter(
         <>
             <Route path="/" element={<App />} />
             <Route path="/admin/sign-up" element={<AdminSignup />} />
-            <Route path="/admin/sign-in" element={<AdminLogin />} />
+            <Route path="/admin/sign-in" element={<AdminSignin />} />
             <Route
                 path="/admin/forgot-password"
                 element={<AdminForgotPassword />}
