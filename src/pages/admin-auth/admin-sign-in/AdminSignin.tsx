@@ -4,7 +4,7 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 
 import { Button, Input, Toaster } from "../../../design-system";
-import { AuthWrapper } from "../../components";
+import { AuthActionLink, AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { admin } from "../../../api";
 
@@ -12,6 +12,13 @@ const Form = styled.form`
     width: 100%;
     display: grid;
     gap: var(--space-20);
+`;
+
+const ActionLinks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    align-items: center;
 `;
 
 const AdminSignin = () => {
@@ -28,6 +35,8 @@ const AdminSignin = () => {
     const handleOnChangePassword = (value: string) => {
         setPassword(value);
     };
+
+    const isFormSubmittable = email && password;
 
     const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -80,11 +89,22 @@ const AdminSignin = () => {
                         size="lg"
                         shape="rounded"
                         fullWidth={true}
-                        disabled={isFormSubmitting}
+                        disabled={isFormSubmitting || !isFormSubmittable}
                     >
                         Sign In
                     </Button>
                 </Form>
+                <ActionLinks>
+                    <AuthActionLink
+                        linkText="Forgot Password?"
+                        linkTo="../admin/forgot-password"
+                    />
+                    <AuthActionLink
+                        hintText="Don't have an account?"
+                        linkText="Sign Up"
+                        linkTo="../admin/sign-up"
+                    />
+                </ActionLinks>
             </AuthWrapper>
             <Toaster />
         </>

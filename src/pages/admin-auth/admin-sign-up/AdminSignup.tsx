@@ -2,11 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 
-import { Button, Input, Toaster } from "../../../design-system";
-import { AuthWrapper } from "../../components";
+import { Button, Input, Toaster, Typography } from "../../../design-system";
+import { AuthActionLink, AuthWrapper } from "../../components";
 import { admin } from "../../../api";
 
 import teamWork from "../../../assets/images/team-work.jpg";
+import { Link } from "react-router-dom";
 
 const Form = styled.form`
     width: 100%;
@@ -111,11 +112,7 @@ const AdminSignup = () => {
 
     return (
         <>
-            <AuthWrapper
-                imageUrl={teamWork}
-                pageTitle="Sign Up"
-                switchLayout={false}
-            >
+            <AuthWrapper imageUrl={teamWork} pageTitle="Sign Up">
                 <Form onSubmit={createAccount} noValidate>
                     <Input
                         type="text"
@@ -199,7 +196,14 @@ const AdminSignup = () => {
                         Sign Up
                     </StyledButton>
                 </Form>
+
+                <AuthActionLink
+                    hintText="Already have an account?"
+                    linkText="Sign In"
+                    linkTo="../admin/sign-in"
+                />
             </AuthWrapper>
+
             <Toaster />
         </>
     );
