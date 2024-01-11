@@ -30,7 +30,7 @@ const AuthContent = styled.div`
     flex-direction: column;
     align-items: center;
     gap: var(--space-50);
-    flex-basis: 57rem;
+    flex-basis: 47rem;
 `;
 
 const AuthImageWrapper = styled.section<{ $switchLayout?: boolean }>`
