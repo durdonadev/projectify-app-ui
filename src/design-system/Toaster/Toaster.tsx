@@ -9,7 +9,7 @@ const Toaster: React.FC<ToasterProps> = () => {
     return (
         <HotToaster
             toastOptions={{
-                duration: 80000,
+                duration: 8000,
                 style: {
                     fontSize: "var(--font-size-14)",
                     fontFamily: "inherit",

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
+import toast from "react-hot-toast";
+
+import { Input, Button, Toaster } from "../../../design-system";
 import { PasswordWrapper } from "../../components";
-import { Input, Button } from "../../../design-system";
+
 import forgotPassword from "../../../assets/illustrations/forgot-password.svg";
+import { admin } from "../../../api";
 
 const Form = styled.form`
     width: 100%;
@@ -12,37 +16,59 @@ const Form = styled.form`
 
 const AdminForgotPassword = () => {
     const [email, setEmail] = useState<string>("");
+    const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
     };
 
-    const getInstructions = (e: React.FormEvent<HTMLFormElement>) => {
+    const isFormSubmittable = email;
+
+    const getInstructions = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email);
+        try {
+            setIsFormSubmitting(true);
+            const response = await admin.forgotPassword(email);
+
+            setIsFormSubmitting(false);
+            setEmail("");
+            toast.success(response.message);
+        } catch (error) {
+            if (error instanceof Error) {
+                setIsFormSubmitting(false);
+                toast.error(error.message);
+            }
+        }
     };
 
     return (
-        <PasswordWrapper pageTitle="Forgot Password?" imageUrl={forgotPassword}>
-            <Form onSubmit={getInstructions} noValidate>
-                <Input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={handleOnChangeEmail}
-                    shape="rounded"
-                    size="lg"
-                />
-                <Button
-                    color="primary"
-                    size="lg"
-                    shape="rounded"
-                    fullWidth={true}
-                >
-                    Get Instructions
-                </Button>
-            </Form>
-        </PasswordWrapper>
+        <>
+            <PasswordWrapper
+                pageTitle="Forgot Password?"
+                imageUrl={forgotPassword}
+            >
+                <Form onSubmit={getInstructions} noValidate>
+                    <Input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={handleOnChangeEmail}
+                        shape="rounded"
+                        size="lg"
+                    />
+                    <Button
+                        color="primary"
+                        size="lg"
+                        shape="rounded"
+                        fullWidth={true}
+                        disabled={isFormSubmitting || !isFormSubmittable}
+                    >
+                        Get Instructions
+                    </Button>
+                </Form>
+            </PasswordWrapper>
+            <Toaster />
+        </>
     );
 };
 
