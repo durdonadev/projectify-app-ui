@@ -43,7 +43,9 @@ class Admin {
         }
     }
 
-    async signIn(input: SignInInput): Promise<{ token: string }> {
+    async signIn(
+        input: SignInInput
+    ): Promise<{ message: string; token: string }> {
         try {
             const response = await fetch(`${this.url}/login`, {
                 method: "POST",
