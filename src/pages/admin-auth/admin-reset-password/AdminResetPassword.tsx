@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { admin } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
 import { Input, Button, Toaster } from "../../../design-system";
+import { useCounter } from "../../../App";
 
 import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";
 
@@ -23,6 +24,7 @@ const AdminResetPassword = () => {
 
     const [searchParams] = useSearchParams();
     const passwordResetToken = searchParams.get("passwordResetToken");
+    const [counter, setCounter] = useCounter(200, 5);
 
     const navigate = useNavigate();
 
@@ -68,7 +70,9 @@ const AdminResetPassword = () => {
                 pageTitle="Update Password?"
                 imageUrl={resetPasswordImg}
             >
+                <button onClick={setCounter}>{counter}</button>
                 <Form onSubmit={resetPassword} noValidate>
+                    <button onClick={setCounter}>{counter}</button>
                     <Input
                         type="password"
                         placeholder="New Password"

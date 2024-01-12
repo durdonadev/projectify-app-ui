@@ -7,6 +7,7 @@ import { Button, Input, Toaster } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { admin } from "../../../api";
+import { useLocalStorage } from "../../../hooks";
 
 const Form = styled.form`
     width: 100%;
@@ -27,6 +28,7 @@ const AdminSignin = () => {
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [setItem, getItem] = useLocalStorage();
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -47,6 +49,7 @@ const AdminSignin = () => {
                 password
             });
             localStorage.setItem("authTokem", response.token);
+            setItem("authToken", response.token);
             navigate("/admin/platform");
 
             setIsFormSubmitting(false);

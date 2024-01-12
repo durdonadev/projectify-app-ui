@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -8,10 +9,26 @@ const Base = styled.div`
     gap: 2rem;
 `;
 
+const useCounter = (
+    startAt: number,
+    incrementBy: number
+): [number, () => void] => {
+    const [counter, setCounter] = useState(startAt);
+
+    const increment = () => {
+        setCounter((prevCounter) => prevCounter + incrementBy);
+    };
+
+    return [counter, increment];
+};
+
 const App = () => {
+    const [counter, setCounter] = useCounter(100, 100);
+
     return (
         <Base>
-            <h1>You are at Home</h1>
+            <button onClick={setCounter}>Count</button>
+            <h1>{counter}</h1>
             <Link to="admin/sign-up">Admin Sign up</Link>
             <Link to="admin/sign-in">Admin Sign in</Link>
             <Link to="admin/forgot-password">Admin Forgot Password</Link>
@@ -33,4 +50,4 @@ const App = () => {
     );
 };
 
-export { App };
+export { App, useCounter };

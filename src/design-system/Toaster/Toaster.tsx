@@ -13,18 +13,25 @@ const Toaster: React.FC<ToasterProps> = () => {
                 style: {
                     fontSize: "var(--font-size-14)",
                     fontFamily: "inherit",
+                    width: "40rem",
                     padding: "var(--space-16)"
                 },
                 success: {
                     iconTheme: {
                         primary: `var(--green-500)`,
                         secondary: "var(--white)"
+                    },
+                    style: {
+                        backgroundColor: "var(--primary-25)"
                     }
                 },
                 error: {
                     iconTheme: {
                         primary: `var(--red-orange-500)`,
                         secondary: "var(--white)"
+                    },
+                    style: {
+                        backgroundColor: "var(--red-orange-25)"
                     }
                 }
             }}
