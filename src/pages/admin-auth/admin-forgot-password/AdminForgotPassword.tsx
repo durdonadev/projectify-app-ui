@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 
-import { Input, Button, Toaster } from "../../../design-system";
+import { Input, Button } from "../../../design-system";
 import { PasswordWrapper } from "../../components";
 
 import forgotPassword from "../../../assets/illustrations/forgot-password.svg";

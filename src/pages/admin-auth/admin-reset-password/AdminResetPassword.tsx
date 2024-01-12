@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 import { admin } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
-import { Input, Button, Toaster } from "../../../design-system";
+import { Input, Button } from "../../../design-system";
 import { useCounter } from "../../../App";
 
 import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";

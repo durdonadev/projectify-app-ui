@@ -10,7 +10,7 @@ export * from "./admin-platform/admin-personal-tasks/AdminPersonalTasks";
 export * from "./admin-platform/admin-team-members/AdminTeamMembers";
 
 export * from "./team-member-auth/team-member-create-password/TeamMemberCreatePassword";
-export * from "./team-member-auth/team-member-login/TeamMemberLogin";
+export * from "./team-member-auth/team-member-signin/TeamMemberSignin";
 export * from "./team-member-auth/team-member-forgot-password/TeamMemberForgotPassword";
 export * from "./team-member-auth/team-member-reset-password/TeamMemberResetPassword";
 

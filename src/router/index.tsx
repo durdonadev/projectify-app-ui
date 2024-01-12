@@ -15,7 +15,7 @@ import {
     AdminPersonalTasks,
     AdminTeamMembers,
     TeamMemberCreatePassword,
-    TeamMemberLogin,
+    TeamMemberSignin,
     TeamMemberPlatform,
     TeamMemberProjects,
     TeamMemberStories,
@@ -49,7 +49,7 @@ export const router = createBrowserRouter(
                 path="/team-member/create-password"
                 element={<TeamMemberCreatePassword />}
             />
-            <Route path="/team-member/login" element={<TeamMemberLogin />} />
+            <Route path="/team-member/sign-in" element={<TeamMemberSignin />} />
             <Route
                 path="/team-member/forgot-password"
                 element={<TeamMemberForgotPassword />}
