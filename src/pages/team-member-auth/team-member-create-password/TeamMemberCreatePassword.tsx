@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button, Input } from "../../../design-system";
 import { AuthWrapper } from "../../components";
+import toast from "react-hot-toast";
 
 import teamWork from "../../../assets/images/team-work.jpg";
 import styled from "styled-components";
+import { teamMember } from "../../../api";
 
 const Form = styled.form`
     width: 100%;
@@ -24,6 +27,10 @@ const TeamMemberCreatePassword = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+    const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const inviteToken = searchParams.get("inviteToken");
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -37,9 +44,40 @@ const TeamMemberCreatePassword = () => {
         setPasswordConfirm(value);
     };
 
-    const createPassword = (e: React.FormEvent<HTMLFormElement>) => {
+    const isFormSubmittable = email && password && passwordConfirm;
+
+    const createPassword = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email, password, passwordConfirm);
+        try {
+            setIsFormSubmitting(true);
+
+            const response = await teamMember.createPassword(
+                {
+                    email,
+                    password,
+                    passwordConfirm
+                },
+                inviteToken as string
+            );
+
+            setIsFormSubmitting(false);
+
+            setEmail("");
+            setPassword("");
+            setPasswordConfirm("");
+
+            toast.success(response.message);
+
+            setTimeout(() => {
+                navigate("/team-member/login");
+            }, 3000);
+        } catch (error) {
+            if (error instanceof Error) {
+                setIsFormSubmitting(false);
+
+                toast.error(error.message);
+            }
+        }
     };
 
     return (
@@ -69,7 +107,12 @@ const TeamMemberCreatePassword = () => {
                     shape="rounded"
                     size="lg"
                 />
-                <StyledButton color="primary" size="lg" shape="rounded">
+                <StyledButton
+                    color="primary"
+                    size="lg"
+                    shape="rounded"
+                    disabled={isFormSubmitting || !isFormSubmittable}
+                >
                     Create Password
                 </StyledButton>
             </Form>

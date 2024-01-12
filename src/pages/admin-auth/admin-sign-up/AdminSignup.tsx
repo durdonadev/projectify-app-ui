@@ -87,6 +87,7 @@ const AdminSignup = () => {
                 preferredName: preferredName,
                 email,
                 password,
+                passwordConfirm,
                 company: {
                     name: company,
                     position: position
@@ -99,6 +100,8 @@ const AdminSignup = () => {
             setEmail("");
             setCompany("");
             setPosition("");
+            setPassword("");
+            setPasswordConfirm("");
 
             toast.success(response.message);
         } catch (error) {
