@@ -67,7 +67,6 @@ const AdminForgotPassword = () => {
                     </Button>
                 </Form>
             </PasswordWrapper>
-            <Toaster />
         </>
     );
 };

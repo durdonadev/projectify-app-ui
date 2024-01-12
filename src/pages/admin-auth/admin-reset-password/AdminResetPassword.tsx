@@ -105,7 +105,6 @@ const AdminResetPassword = () => {
                     linkTo="../admin/forgot-password"
                 />
             </PasswordWrapper>
-            <Toaster />
         </>
     );
 };

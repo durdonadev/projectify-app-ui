@@ -206,8 +206,6 @@ const AdminSignup = () => {
                     linkTo="../admin/sign-in"
                 />
             </AuthWrapper>
-
-            <Toaster />
         </>
     );
 };

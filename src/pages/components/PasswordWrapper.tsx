@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Typography } from "../../design-system";
+import { Toaster, Typography } from "../../design-system";
 import styled from "styled-components";
 
 type PasswordWrapperProps = {
@@ -44,17 +44,20 @@ const PasswordWrapper: FC<PasswordWrapperProps> = ({
     children
 }) => {
     return (
-        <PasswordWrapperBase>
-            <PasswordForm>
-                <PasswordContent>
-                    <Typography variant="h6">{pageTitle}</Typography>
-                    <PasswordImageWrapper>
-                        <PasswordImage src={imageUrl} />
-                    </PasswordImageWrapper>
-                    {children}
-                </PasswordContent>
-            </PasswordForm>
-        </PasswordWrapperBase>
+        <>
+            <PasswordWrapperBase>
+                <PasswordForm>
+                    <PasswordContent>
+                        <Typography variant="h6">{pageTitle}</Typography>
+                        <PasswordImageWrapper>
+                            <PasswordImage src={imageUrl} />
+                        </PasswordImageWrapper>
+                        {children}
+                    </PasswordContent>
+                </PasswordForm>
+            </PasswordWrapperBase>
+            <Toaster />
+        </>
     );
 };
 

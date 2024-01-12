@@ -109,7 +109,6 @@ const AdminSignin = () => {
                     />
                 </ActionLinks>
             </AuthWrapper>
-            <Toaster />
         </>
     );
 };
