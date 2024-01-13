@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import styled from "styled-components";
 
 import { Button, Input } from "../../../design-system";
-import { AuthWrapper } from "../../components";
+import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { useLocalStorage } from "../../../hooks";
@@ -13,6 +13,13 @@ const Form = styled.form`
     width: 100%;
     display: grid;
     gap: var(--space-20);
+`;
+
+const ActionLinks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    align-items: center;
 `;
 
 const TeamMemberSignin = () => {
@@ -31,6 +38,8 @@ const TeamMemberSignin = () => {
     const handleOnChangePassword = (value: string) => {
         setPassword(value);
     };
+
+    const isFormSubmittable = email && password;
 
     const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -76,10 +85,26 @@ const TeamMemberSignin = () => {
                     size="lg"
                 />
 
-                <Button color="primary" size="lg" shape="rounded">
+                <Button
+                    color="primary"
+                    size="lg"
+                    shape="rounded"
+                    disabled={isFormSubmitting || !isFormSubmittable}
+                >
                     Sign In
                 </Button>
             </Form>
+            <ActionLinks>
+                <AuthActionLink
+                    linkText="Forgot Password?"
+                    linkTo="../team-member/forgot-password"
+                />
+                <AuthActionLink
+                    hintText="Have not created password yet?"
+                    linkText="Create Password"
+                    linkTo="../team-member/create-password"
+                />
+            </ActionLinks>
         </AuthWrapper>
     );
 };

@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { Button, Input } from "../../../design-system";
-import { AuthWrapper } from "../../components";
+import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 import toast from "react-hot-toast";
 
-import teamWork from "../../../assets/images/team-work.jpg";
-import styled from "styled-components";
+import { Button, Input } from "../../../design-system";
+import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
+
+import teamWork from "../../../assets/images/team-work.jpg";
 
 const Form = styled.form`
     width: 100%;
@@ -28,7 +29,7 @@ const TeamMemberCreatePassword = () => {
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
-    const navigate = useNavigate();
+
     const [searchParams] = useSearchParams();
     const inviteToken = searchParams.get("inviteToken");
 
@@ -67,10 +68,6 @@ const TeamMemberCreatePassword = () => {
             setPasswordConfirm("");
 
             toast.success(response.message);
-
-            setTimeout(() => {
-                navigate("/team-member/login");
-            }, 3000);
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);
@@ -116,6 +113,12 @@ const TeamMemberCreatePassword = () => {
                     Create Password
                 </StyledButton>
             </Form>
+
+            <AuthActionLink
+                hintText="Already have an account?"
+                linkText="Sign In"
+                linkTo="../team-member/sign-in"
+            />
         </AuthWrapper>
     );
 };

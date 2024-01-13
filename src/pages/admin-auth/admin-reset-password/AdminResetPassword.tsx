@@ -100,7 +100,7 @@ const AdminResetPassword = () => {
                     </Button>
                 </Form>
                 <AuthActionLink
-                    hintText="Didn't get email?"
+                    hintText="An other email?"
                     linkText="Try again"
                     linkTo="../admin/forgot-password"
                 />
