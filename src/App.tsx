@@ -38,7 +38,7 @@ const App = () => {
             <Link to="team-member/create-password">
                 Team Member Create Password
             </Link>
-            <Link to="team-member/login">Team Member Login</Link>
+            <Link to="team-member/sign-in">Team Member Sign in</Link>
             <Link to="team-member/forgot-password">
                 Team Member Forgot Password
             </Link>

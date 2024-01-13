@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 import { admin } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
-import { Input, Button, Toaster } from "../../../design-system";
+import { Input, Button } from "../../../design-system";
 import { useCounter } from "../../../App";
 
 import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";
@@ -100,12 +100,11 @@ const AdminResetPassword = () => {
                     </Button>
                 </Form>
                 <AuthActionLink
-                    hintText="Didn't get email?"
+                    hintText="An other email?"
                     linkText="Try again"
                     linkTo="../admin/forgot-password"
                 />
             </PasswordWrapper>
-            <Toaster />
         </>
     );
 };

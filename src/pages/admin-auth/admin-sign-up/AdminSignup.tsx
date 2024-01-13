@@ -2,12 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 
-import { Button, Input, Toaster, Typography } from "../../../design-system";
+import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { admin } from "../../../api";
 
 import teamWork from "../../../assets/images/team-work.jpg";
-import { Link } from "react-router-dom";
 
 const Form = styled.form`
     width: 100%;
@@ -206,8 +205,6 @@ const AdminSignup = () => {
                     linkTo="../admin/sign-in"
                 />
             </AuthWrapper>
-
-            <Toaster />
         </>
     );
 };

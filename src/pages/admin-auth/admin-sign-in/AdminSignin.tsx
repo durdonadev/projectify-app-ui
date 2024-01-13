@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 
-import { Button, Input, Toaster } from "../../../design-system";
+import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { admin } from "../../../api";
@@ -109,7 +109,6 @@ const AdminSignin = () => {
                     />
                 </ActionLinks>
             </AuthWrapper>
-            <Toaster />
         </>
     );
 };

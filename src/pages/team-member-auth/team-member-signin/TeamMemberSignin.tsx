@@ -1,37 +1,35 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import styled from "styled-components";
 
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
-
 import teamWork from "../../../assets/images/team-work.jpg";
+import { useLocalStorage } from "../../../hooks";
 
 const Form = styled.form`
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: var(--space-20);
 `;
 
-const StyledEmailInput = styled(Input)`
-    grid-column: 1 / 3;
+const ActionLinks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    align-items: center;
 `;
 
-const StyledButton = styled(Button)`
-    grid-column: 1 / 3;
-`;
-
-const TeamMemberCreatePassword = () => {
+const TeamMemberSignin = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [passwordConfirm, setPasswordConfirm] = useState<string>("");
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
 
-    const [searchParams] = useSearchParams();
-    const inviteToken = searchParams.get("inviteToken");
+    const navigate = useNavigate();
+    const [setItem, getItem] = useLocalStorage();
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -41,46 +39,36 @@ const TeamMemberCreatePassword = () => {
         setPassword(value);
     };
 
-    const handleOnChangePasswordConfirm = (value: string) => {
-        setPasswordConfirm(value);
-    };
+    const isFormSubmittable = email && password;
 
-    const isFormSubmittable = email && password && passwordConfirm;
-
-    const createPassword = async (e: React.FormEvent<HTMLFormElement>) => {
+    const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-
-            const response = await teamMember.createPassword(
-                {
-                    email,
-                    password,
-                    passwordConfirm
-                },
-                inviteToken as string
-            );
+            const response = await teamMember.signIn({
+                email,
+                password
+            });
+            localStorage.setItem("authTokem", response.token);
+            setItem("authToken", response.token);
+            navigate("/team-member/platform");
 
             setIsFormSubmitting(false);
-
             setEmail("");
-            setPassword("");
-            setPasswordConfirm("");
-
             toast.success(response.message);
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);
-
+                setIsError(true);
                 toast.error(error.message);
             }
         }
     };
 
     return (
-        <AuthWrapper imageUrl={teamWork} pageTitle="Create Password">
-            <Form onSubmit={createPassword} noValidate>
-                <StyledEmailInput
+        <AuthWrapper imageUrl={teamWork} pageTitle="Sign In">
+            <Form onSubmit={signin} noValidate>
+                <Input
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -96,31 +84,29 @@ const TeamMemberCreatePassword = () => {
                     shape="rounded"
                     size="lg"
                 />
-                <Input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={passwordConfirm}
-                    onChange={handleOnChangePasswordConfirm}
-                    shape="rounded"
-                    size="lg"
-                />
-                <StyledButton
+
+                <Button
                     color="primary"
                     size="lg"
                     shape="rounded"
                     disabled={isFormSubmitting || !isFormSubmittable}
                 >
-                    Create Password
-                </StyledButton>
+                    Sign In
+                </Button>
             </Form>
-
-            <AuthActionLink
-                hintText="Already have an account?"
-                linkText="Sign In"
-                linkTo="../team-member/sign-in"
-            />
+            <ActionLinks>
+                <AuthActionLink
+                    linkText="Forgot Password?"
+                    linkTo="../team-member/forgot-password"
+                />
+                <AuthActionLink
+                    hintText="Have not created password yet?"
+                    linkText="Create Password"
+                    linkTo="../team-member/create-password"
+                />
+            </ActionLinks>
         </AuthWrapper>
     );
 };
 
-export { TeamMemberCreatePassword };
+export { TeamMemberSignin };
