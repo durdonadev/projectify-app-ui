@@ -12,7 +12,7 @@ const useLocalStorage = () => {
         }
     };
 
-    return [setItem, getItem];
+    return { setItem, getItem };
 };
 
 export { useLocalStorage };
