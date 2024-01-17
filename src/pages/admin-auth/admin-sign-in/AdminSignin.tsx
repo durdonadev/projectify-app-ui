@@ -28,7 +28,7 @@ const AdminSignin = () => {
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const navigate = useNavigate();
-    const [setItem, getItem] = useLocalStorage();
+    const { setItem, getItem } = useLocalStorage();
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);

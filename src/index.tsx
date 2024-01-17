@@ -6,7 +6,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
-import { AppProvider } from "./App";
+import { AppProvider } from "./context";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

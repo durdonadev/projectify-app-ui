@@ -4,11 +4,11 @@ import toast from "react-hot-toast";
 import styled from "styled-components";
 
 import { Button, Input } from "../../../design-system";
-import { AppContent, AuthActionLink, AuthWrapper } from "../../components";
+import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { useLocalStorage } from "../../../hooks";
-import { AppContext } from "../../../App";
+import { AppContext } from "../../../context";
 
 const Form = styled.form`
     width: 100%;
@@ -30,7 +30,7 @@ const TeamMemberSignin = () => {
     const [isError, setIsError] = useState<boolean>(false);
 
     const navigate = useNavigate();
-    const [setItem, getItem] = useLocalStorage();
+    const { setItem, getItem } = useLocalStorage();
     const { counter, setCounter } = useContext(AppContext);
 
     const handleOnChangeEmail = (value: string) => {
