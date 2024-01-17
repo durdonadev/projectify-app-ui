@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 
 import { Button, Input } from "../../../design-system";
-import { AuthActionLink, AuthWrapper } from "../../components";
+import { AppContent, AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { useLocalStorage } from "../../../hooks";
+import { AppContext } from "../../../App";
 
 const Form = styled.form`
     width: 100%;
@@ -30,6 +31,7 @@ const TeamMemberSignin = () => {
 
     const navigate = useNavigate();
     const [setItem, getItem] = useLocalStorage();
+    const { counter, setCounter } = useContext(AppContext);
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -67,6 +69,7 @@ const TeamMemberSignin = () => {
 
     return (
         <AuthWrapper imageUrl={teamWork} pageTitle="Sign In">
+            <button onClick={() => setCounter(counter + 1)}>{counter}</button>
             <Form onSubmit={signin} noValidate>
                 <Input
                     type="email"

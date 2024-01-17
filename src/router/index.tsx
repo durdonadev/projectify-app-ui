@@ -28,17 +28,17 @@ export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<App />} />
-            <Route path="/admin/sign-up" element={<AdminSignup />} />
-            <Route path="/admin/sign-in" element={<AdminSignin />} />
+            <Route path="admin/sign-up" element={<AdminSignup />} />
+            <Route path="admin/sign-in" element={<AdminSignin />} />
             <Route
-                path="/admin/forgot-password"
+                path="admin/forgot-password"
                 element={<AdminForgotPassword />}
             />
             <Route
-                path="/admin/reset-password"
+                path="admin/reset-password"
                 element={<AdminResetPassword />}
             />
-            <Route path="/admin/platform" element={<AdminPlatform />}>
+            <Route path="admin/platform" element={<AdminPlatform />}>
                 <Route path="projects" element={<AdminProjects />} />
                 <Route path="stories" element={<AdminStories />} />
                 <Route path="personal-tasks" element={<AdminPersonalTasks />} />
@@ -46,22 +46,19 @@ export const router = createBrowserRouter(
             </Route>
 
             <Route
-                path="/team-member/create-password"
+                path="team-member/create-password"
                 element={<TeamMemberCreatePassword />}
             />
-            <Route path="/team-member/sign-in" element={<TeamMemberSignin />} />
+            <Route path="team-member/sign-in" element={<TeamMemberSignin />} />
             <Route
-                path="/team-member/forgot-password"
+                path="team-member/forgot-password"
                 element={<TeamMemberForgotPassword />}
             />
             <Route
                 path="/team-member/reset-password"
                 element={<TeamMemberResetPassword />}
             />
-            <Route
-                path="/team-member/platform"
-                element={<TeamMemberPlatform />}
-            >
+            <Route path="team-member/platform" element={<TeamMemberPlatform />}>
                 <Route path="projects" element={<TeamMemberProjects />} />
                 <Route path="stories" element={<TeamMemberStories />} />
                 <Route
