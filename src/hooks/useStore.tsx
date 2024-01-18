@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../context";
 
 export const useStore = () => {
-    const { counter, setCounter } = useContext(AppContext);
+    const { dispatch, state } = useContext(AppContext);
 
-    return { counter, setCounter };
+    return { dispatch, state };
 };

@@ -68,7 +68,16 @@ export const router = createBrowserRouter(
                 path="/team-member/reset-password"
                 element={<TeamMemberResetPassword />}
             />
-            <Route path="team-member/platform" element={<TeamMemberPlatform />}>
+            <Route
+                path="team-member/platform"
+                element={
+                    <Private
+                        component={<TeamMemberPlatform />}
+                        userType="teamMember"
+                        to="../team-member/sign-in"
+                    />
+                }
+            >
                 <Route path="projects" element={<TeamMemberProjects />} />
                 <Route path="stories" element={<TeamMemberStories />} />
                 <Route
