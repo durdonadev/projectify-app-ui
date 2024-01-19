@@ -5,7 +5,10 @@ const useLocalStorage = () => {
 
     const getItem = (key: string): string | any => {
         const item = localStorage.getItem(key);
-        if (item) return JSON.parse(item);
+
+        if (item) {
+            return JSON.parse(item);
+        }
         return item;
     };
 

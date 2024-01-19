@@ -53,6 +53,7 @@ const TeamMemberPlatform = () => {
 
     const logOut = () => {
         removeItem("authToken");
+        removeItem("userRole");
         dispatch({ type: Actions.RESET_STATE });
 
         navigate("/team-member/sign-in");
@@ -62,10 +63,10 @@ const TeamMemberPlatform = () => {
             <SideBar>
                 <SideBarUser
                     details={{
-                        firstName: "Amelia",
-                        lastName: "Raven",
-                        imageUrl: member,
-                        email: "memberinfo@email.com"
+                        firstName: user?.firstName || "",
+                        lastName: user?.lastName || "",
+                        imageUrl: "",
+                        email: user?.email || ""
                     }}
                 />
                 <SideBarLinks links={links} logOut={logOut} />
