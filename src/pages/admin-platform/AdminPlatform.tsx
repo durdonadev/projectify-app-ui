@@ -52,8 +52,19 @@ const links = [
 
 const AdminPlatform = () => {
     const {
-        state: { user }
+        state: { user },
+        dispatch
     } = useStore();
+
+    const navigate = useNavigate();
+    const { removeItem } = useLocalStorage();
+
+    const logOut = () => {
+        removeItem("authToken");
+        dispatch({ type: Actions.RESET_STATE });
+
+        navigate("/admin/sign-in");
+    };
 
     return (
         <>
@@ -67,10 +78,7 @@ const AdminPlatform = () => {
                             email: user?.email || ""
                         }}
                     />
-                    <SideBarLinks
-                        links={links}
-                        loggedOutLink="/admin/sign-in"
-                    />
+                    <SideBarLinks links={links} logOut={logOut} />
                 </SideBar>
                 <AppContent>
                     <Outlet />
