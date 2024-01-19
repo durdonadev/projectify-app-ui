@@ -2,7 +2,7 @@ import { UserType } from "../../types";
 
 export enum Actions {
     INIT_USER = "INIT_USER",
-    SOME_TEST = "SOME_TEST"
+    SOME_TEST = "RESET_STATE"
 }
 
 export interface InitUserAction {
