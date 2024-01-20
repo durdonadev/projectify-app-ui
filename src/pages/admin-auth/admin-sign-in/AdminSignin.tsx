@@ -38,23 +38,27 @@ const AdminSignin = () => {
         setPassword(value);
     };
 
+    const saveAuthToken = (token: string) => {
+        setItem("authToken", token);
+    };
+
     const isFormSubmittable = email && password;
 
     const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const response = await admin.signIn({
+            const { token } = await admin.signIn({
                 email,
                 password
             });
-            localStorage.setItem("authTokem", response.token);
-            setItem("authToken", response.token);
+
+            saveAuthToken(token);
             navigate("/admin/platform");
 
             setIsFormSubmitting(false);
             setEmail("");
-            toast.success(response.message);
+            setPassword("");
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);

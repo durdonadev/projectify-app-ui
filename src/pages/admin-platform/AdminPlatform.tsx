@@ -1,11 +1,9 @@
-import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { SideBar, SideBarLinks, Toaster } from "../../design-system";
 import { AppContent, AppLayout, SideBarUser } from "../components";
-import { admin } from "../../api";
-import toast from "react-hot-toast";
+
 import { Actions } from "../../store/actions";
-import { useStore } from "../../hooks";
+import { useLocalStorage, useStore } from "../../hooks";
 
 const links = [
     {
@@ -55,19 +53,18 @@ const AdminPlatform = () => {
         state: { user },
         dispatch
     } = useStore();
-    useEffect(() => {
-        admin
-            .getMe()
-            .then((data): void => {
-                dispatch({
-                    type: Actions.INIT_USER,
-                    payload: data.data
-                });
-            })
-            .catch((error: Error) => {
-                toast.error(error.message);
-            });
-    }, []);
+
+    const navigate = useNavigate();
+    const { removeItem } = useLocalStorage();
+
+    const logOut = () => {
+        removeItem("authToken");
+        removeItem("userRole");
+        dispatch({ type: Actions.RESET_STATE });
+
+        navigate("/admin/sign-in");
+    };
+
     return (
         <>
             <AppLayout>
@@ -80,10 +77,7 @@ const AdminPlatform = () => {
                             email: user?.email || ""
                         }}
                     />
-                    <SideBarLinks
-                        links={links}
-                        loggedOutLink="/admin/sign-in"
-                    />
+                    <SideBarLinks links={links} logOut={logOut} />
                 </SideBar>
                 <AppContent>
                     <Outlet />

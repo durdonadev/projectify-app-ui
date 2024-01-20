@@ -24,28 +24,55 @@ import {
     TeamMemberResetPassword
 } from "../pages";
 import { Private } from "./Private";
+import { Auth } from "./Auth";
+import { UserRole } from "../types";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<App />} />
-            <Route path="admin/sign-up" element={<AdminSignup />} />
-            <Route path="admin/sign-in" element={<AdminSignin />} />
+            <Route
+                path="admin/sign-up"
+                element={
+                    <Auth
+                        component={<AdminSignup />}
+                        userType={UserRole.admin}
+                    />
+                }
+            />
+            <Route
+                path="admin/sign-in"
+                element={
+                    <Auth
+                        component={<AdminSignin />}
+                        userType={UserRole.admin}
+                    />
+                }
+            />
             <Route
                 path="admin/forgot-password"
-                element={<AdminForgotPassword />}
+                element={
+                    <Auth
+                        component={<AdminForgotPassword />}
+                        userType={UserRole.admin}
+                    />
+                }
             />
             <Route
                 path="admin/reset-password"
-                element={<AdminResetPassword />}
+                element={
+                    <Auth
+                        component={<AdminResetPassword />}
+                        userType={UserRole.admin}
+                    />
+                }
             />
             <Route
                 path="admin/platform"
                 element={
                     <Private
                         component={<AdminPlatform />}
-                        userType="admin"
-                        to="../admin/sign-in"
+                        userType={UserRole.admin}
                     />
                 }
             >
@@ -73,8 +100,7 @@ export const router = createBrowserRouter(
                 element={
                     <Private
                         component={<TeamMemberPlatform />}
-                        userType="teamMember"
-                        to="../team-member/sign-in"
+                        userType={UserRole.teamMember}
                     />
                 }
             >
