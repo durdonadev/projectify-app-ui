@@ -1,3 +1,5 @@
+import { UserType } from "../types";
+
 type CreatePasswordInput = {
     email: string;
     password: string;
@@ -7,6 +9,10 @@ type CreatePasswordInput = {
 type SignInInput = {
     email: string;
     password: string;
+};
+
+export type GetMeResponseType = {
+    data: UserType;
 };
 
 class TeamMember {
@@ -40,9 +46,7 @@ class TeamMember {
         }
     }
 
-    async signIn(
-        input: SignInInput
-    ): Promise<{ message: string; token: string }> {
+    async signIn(input: SignInInput): Promise<{ token: string }> {
         try {
             const response = await fetch(`${this.url}/login`, {
                 method: "POST",
@@ -99,6 +103,26 @@ class TeamMember {
                     password,
                     passwordConfirm
                 })
+            });
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+
+            return response.json();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getMe(): Promise<GetMeResponseType> {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+            const response = await fetch(`${this.url}/me`, {
+                headers: {
+                    authorization: `Bearer ${authToken}`
+                }
             });
             if (!response.ok) {
                 const data = await response.json();

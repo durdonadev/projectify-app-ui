@@ -7,7 +7,7 @@ import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
-import { useLocalStorage, useStore } from "../../../hooks";
+import { useLocalStorage } from "../../../hooks";
 
 const Form = styled.form`
     width: 100%;
@@ -39,23 +39,27 @@ const TeamMemberSignin = () => {
         setPassword(value);
     };
 
+    const saveAuthToken = (token: string) => {
+        setItem("authToken", token);
+    };
+
     const isFormSubmittable = email && password;
 
     const signin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const response = await teamMember.signIn({
+            const { token } = await teamMember.signIn({
                 email,
                 password
             });
-            localStorage.setItem("authTokem", response.token);
-            setItem("authToken", response.token);
+
+            saveAuthToken(token);
             navigate("/team-member/platform");
 
             setIsFormSubmitting(false);
             setEmail("");
-            toast.success(response.message);
+            setPassword("");
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);
