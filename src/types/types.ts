@@ -15,3 +15,13 @@ export interface UserType {
     } | null;
     role: UserRole;
 }
+
+export type TaskStatus = "TODO" | "INPROGRESS" | "DONE";
+
+export interface Task {
+    id: string;
+    title: string;
+    description: string;
+    due: string;
+    status: TaskStatus;
+}
