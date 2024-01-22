@@ -49,7 +49,7 @@ const Private: React.FC<ProtectedRouteProps> = ({ component, userType }) => {
                     });
             }
         }
-    }, [userType]);
+    }, []);
 
     const userRole = getItem("userRole");
     const isAuthorized = userType === userRole;
