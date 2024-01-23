@@ -11,6 +11,13 @@ type SignInInput = {
     password: string;
 };
 
+type CreateTeanMemberInput = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    position: string;
+};
+
 export type GetMeResponseType = {
     data: UserType;
 };
@@ -24,6 +31,29 @@ class TeamMember {
                 : process.env.REACT_APP_PROJECTIFY_API_URL
         }/team-members`;
     }
+
+    async add(input: CreateTeanMemberInput) {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+            const response = await fetch(`${this.url}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${authToken}`
+                },
+                body: JSON.stringify(input)
+            });
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+            return response.json();
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async createPassword(input: CreatePasswordInput, inviteToken: string) {
         try {
             const response = await fetch(
