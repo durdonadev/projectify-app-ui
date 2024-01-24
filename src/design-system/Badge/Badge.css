@@ -1,0 +1,121 @@
+.badge {
+    color: var(--jaguar-400);
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-18);
+    border: none;
+    outline: none;
+    display: block;
+
+    height: 2.8rem;
+    padding: 0 var(--space-12);
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+}
+
+.badge-rounded {
+    border-radius: var(--border-radius-8);
+}
+
+.badge-circle {
+    border-radius: var(--border-radius-40);
+}
+
+/* No Background */
+
+.badge-violet {
+    color: var(--primary-600);
+}
+
+.badge-orange {
+    color: var(--sunglow-700);
+}
+
+.badge-green {
+    color: var(--green-600);
+}
+
+.badge-blue {
+    color: var(--dodger-blue-600);
+}
+
+.badge-red {
+    color: var(--red-orange-600);
+}
+
+.badge-purple {
+    color: var(--purple-600);
+}
+
+.badge-grey {
+    color: var(--jaguar-400);
+}
+
+/* Light Bacground */
+
+.badge-violet.badge-light-bg {
+    background-color: var(--primary-50);
+}
+
+.badge-orange.badge-light-bg {
+    background-color: var(--sunglow-50);
+}
+
+.badge-green.badge-light-bg {
+    background-color: var(--green-50);
+}
+
+.badge-blue.badge-light-bg {
+    background-color: var(--dodger-blue-50);
+}
+
+.badge-red.badge-light-bg {
+    background-color: var(--red-orange-50);
+}
+
+.badge-purple.badge-light-bg {
+    background-color: var(--purple-50);
+}
+
+.badge-grey.badge-light-bg {
+    background-color: var(--jaguar-50);
+}
+
+/* Stroke */
+
+.badge-violet.badge-stroke {
+    border: 1px solid var(--primary-200);
+    background-color: var(--primary-25);
+}
+
+.badge-orange.badge-stroke {
+    border: 1px solid var(--sunglow-200);
+    background-color: var(--sunglow-25);
+}
+
+.badge-green.badge-stroke {
+    border: 1px solid var(--green-200);
+    background-color: var(--green-25);
+}
+
+.badge-blue.badge-stroke {
+    border: 1px solid var(--dodger-blue-200);
+    background-color: var(--dodger-blue-25);
+}
+
+.badge-red.badge-stroke {
+    border: 1px solid var(--red-orange-200);
+    background-color: var(--red-orange-25);
+}
+
+.badge-purple.badge-stroke {
+    border: 1px solid var(--purple-200);
+    background-color: var(--purple-25);
+}
+
+.badge-grey.badge-stroke {
+    border: 1px solid var(--jaguar-200);
+    background-color: var(--jaguar-25);
+}

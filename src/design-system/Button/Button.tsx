@@ -49,9 +49,11 @@ const Button: FC<ButtonProps> = (props) => {
 
     const fullWidthClassName = fullWidth ? "btn-full-width" : "";
 
-    const finalClassNames = `btn ${colorClassName} ${sizeClassName} ${shapeClassName} ${fullWidthClassName} ${variantClassName} ${
-        className || ""
-    }`;
+    const finalClassNames = trimWhiteSpaces(
+        `btn ${colorClassName} ${sizeClassName} ${shapeClassName} ${fullWidthClassName} ${variantClassName} ${
+            className || ""
+        }`
+    );
 
     return (
         <button
