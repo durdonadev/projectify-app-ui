@@ -1,17 +1,17 @@
-import { UserType } from "../types";
+import { TeamMemberUser } from "../types";
 
-type CreatePasswordInput = {
+interface CreatePasswordInput {
     email: string;
     password: string;
     passwordConfirm: string;
-};
+}
 
 type SignInInput = {
     email: string;
     password: string;
 };
 
-type CreateTeanMemberInput = {
+type CreateTeamMemberInput = {
     firstName: string;
     lastName: string;
     email: string;
@@ -19,7 +19,7 @@ type CreateTeanMemberInput = {
 };
 
 export type GetMeResponseType = {
-    data: UserType;
+    data: TeamMemberUser;
 };
 
 class TeamMember {
@@ -32,7 +32,7 @@ class TeamMember {
         }/team-members`;
     }
 
-    async add(input: CreateTeanMemberInput) {
+    async add(input: CreateTeamMemberInput) {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";

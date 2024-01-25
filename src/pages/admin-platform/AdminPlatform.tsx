@@ -36,7 +36,7 @@ const links = [
         links: [
             {
                 linkText: "Settings",
-                linkTo: "settings",
+                linkTo: "../team-member/platform",
                 iconName: "settings"
             },
             {

@@ -3,17 +3,27 @@ export enum UserRole {
     teamMember = "teamMember"
 }
 
-export interface UserType {
+interface User {
     firstName: string;
     lastName: string;
     email: string;
     id: string;
+    role: UserRole;
     imageUrl?: string;
+}
+
+export interface AdminUser extends User {
+    preferredFirstName: string;
     company: {
         name: string;
         position: string;
     } | null;
-    role: UserRole;
+}
+
+export interface TeamMemberUser extends User {
+    position: string;
+    status: string;
+    adminId: string;
 }
 
 export type TaskStatus = "TODO" | "INPROGRESS" | "DONE";
