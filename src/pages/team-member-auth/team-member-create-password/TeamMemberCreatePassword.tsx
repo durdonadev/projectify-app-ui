@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMember } from "../../../api";
-
 import teamWork from "../../../assets/images/team-work.jpg";
 
 const Form = styled.form`
@@ -29,9 +27,8 @@ const TeamMemberCreatePassword = () => {
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
-
     const [searchParams] = useSearchParams();
-    const inviteToken = searchParams.get("inviteToken");
+    const navigate = useNavigate();
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);
@@ -49,10 +46,11 @@ const TeamMemberCreatePassword = () => {
 
     const createPassword = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const inviteToken = searchParams.get("inviteToken");
         try {
             setIsFormSubmitting(true);
 
-            const response = await teamMember.createPassword(
+            await teamMember.createPassword(
                 {
                     email,
                     password,
@@ -67,7 +65,7 @@ const TeamMemberCreatePassword = () => {
             setPassword("");
             setPasswordConfirm("");
 
-            toast.success(response.message);
+            navigate("/team-member/sign-in");
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);
