@@ -6,11 +6,11 @@
     line-height: var(--line-height-18);
     border: none;
     outline: none;
-    display: block;
 
     height: 2.8rem;
     padding: 0 var(--space-12);
     display: inline-flex;
+    gap: 0.8rem;
     align-items: center;
     width: max-content;
 }
@@ -118,4 +118,88 @@
 .badge-grey.badge-stroke {
     border: 1px solid var(--jaguar-200);
     background-color: var(--jaguar-25);
+}
+
+.badge.badge-violet.flag,
+.badge-rounded.badge-violet.flag,
+.badge-circle.badge-violet.flag {
+    fill: var(--primary-600);
+}
+
+.badge.badge-violet.check,
+.badge-rounded.badge-violet.check,
+.badge-circle.badge-violet.check {
+    fill: var(--primary-600);
+}
+
+.badge.badge-orange.flag,
+.badge-rounded.badge-orange.flag,
+.badge-circle.badge-orange.flag {
+    fill: var(--sunglow-700);
+}
+
+.badge.badge-orange.check,
+.badge-rounded.badge-orange.check,
+.badge-circle.badge-orange.check {
+    fill: var(--sunglow-700);
+}
+
+.badge.badge-green.flag,
+.badge-rounded.badge-green.flag,
+.badge-circle.badge-green.flag {
+    fill: var(--green-600);
+}
+
+.badge.badge-green.check,
+.badge-rounded.badge-green.check,
+.badge-circle.badge-green.check {
+    fill: var(--green-600);
+}
+
+.badge.badge-blue.flag,
+.badge-rounded.badge-blue.flag,
+.badge-circle.badge-blue.flag {
+    fill: var(--dodger-blue-600);
+}
+
+.badge.badge-blue.check,
+.badge-rounded.badge-blue.check,
+.badge-circle.badge-blue.check {
+    fill: var(--dodger-blue-600);
+}
+
+.badge.badge-red.flag,
+.badge-rounded.badge-red.flag,
+.badge-circle.badge-red.flag {
+    fill: var(--red-orange-600);
+}
+
+.badge.badge-red.check,
+.badge-rounded.badge-red.check,
+.badge-circle.badge-red.check {
+    fill: var(--red-orange-600);
+}
+
+.badge.badge-purple.flag,
+.badge-rounded.badge-purple.flag,
+.badge-circle.badge-purple.flag {
+    fill: var(--purple-600);
+}
+
+.badge.badge-purple.check,
+.badge-rounded.badge-purple.check,
+.badge-circle.badge-purple.check {
+    fill: var(--purple-600);
+}
+
+.badge.badge-grey.flag,
+.badge-rounded.badge-grey.flag,
+.badge-circle.badge-grey.flag {
+    fill: var(--jaguar-400);
+}
+
+.badge.badge-grey.check,
+.badge-rounded.badge-grey.check,
+.badge-circle.badge-grey.check {
+    fill: var(--jaguar-400);
 }
