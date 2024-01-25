@@ -1,3 +1,8 @@
+export const iconClassNames = {
+    flag: "flag",
+    check: "check"
+};
+
 export const shapeClassNames = {
     rounded: "badge-rounded",
     circle: "badge-circle"

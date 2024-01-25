@@ -2,11 +2,14 @@ import React, { FC } from "react";
 import { trimWhiteSpaces } from "../utils";
 import {
     colorClassNames,
+    iconClassNames,
     shapeClassNames,
     variantClassNames
 } from "./classnames";
 import "./Badge.css";
+import { Icon } from "../Icon";
 
+type BadgeIcon = "flag" | "check";
 type BadgeShape = "rounded" | "circle";
 type BadgeColor =
     | "violet"
@@ -19,16 +22,18 @@ type BadgeColor =
 type BadgeVariant = "lightBg" | "stroke";
 
 type BadgeProps = {
+    icon?: BadgeIcon;
     shape?: BadgeShape;
     color?: BadgeColor;
     variant?: BadgeVariant;
     className?: string;
     children: React.ReactNode;
-    onClick?: () => void;
 };
 
 const Badge: FC<BadgeProps> = (props) => {
-    const { shape, color, variant, className, children, onClick } = props;
+    const { icon, shape, color, variant, className, children } = props;
+
+    const iconClassName = icon !== undefined ? iconClassNames[icon] : "";
 
     const shapeClassName = shape !== undefined ? shapeClassNames[shape] : "";
 
@@ -38,17 +43,18 @@ const Badge: FC<BadgeProps> = (props) => {
         variant !== undefined ? variantClassNames[variant] : "";
 
     const finalClassNames = trimWhiteSpaces(
-        `badge ${colorClassName} ${shapeClassName} ${variantClassName} ${
+        `badge ${iconClassName} ${colorClassName} ${shapeClassName} ${variantClassName} ${
             className || ""
         }`
     );
 
     return (
-        // <div className="budge-wrapper">
-        <span className={trimWhiteSpaces(finalClassNames)} onClick={onClick}>
+        <span className={trimWhiteSpaces(finalClassNames)}>
+            {icon ? (
+                <Icon iconName={icon} height="1.6rem" width="1.6rem" />
+            ) : null}
             {children}
         </span>
-        // </div>
     );
 };
 
