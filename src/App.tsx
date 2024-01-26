@@ -15,7 +15,7 @@ const App = () => {
         <Base>
             <h1>Welcome </h1>
 
-            {/* <Link to="admin/sign-up">Admin Sign up</Link>
+            <Link to="admin/sign-up">Admin Sign up</Link>
             <Link to="admin/sign-in">Admin Sign in</Link>
             <Link to="admin/forgot-password">Admin Forgot Password</Link>
             <Link to="admin/reset-password">Admin Reset Password</Link>
@@ -31,62 +31,7 @@ const App = () => {
             <Link to="team-member/reset-password">
                 Team Member Reset Password
             </Link>
-        <Link to="team-member/platform">Team Member Platform</Link> */}
-
-            <Badge icon="check" color="violet">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="violet">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="circle" color="violet">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="violet">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet" variant="lightBg">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet" variant="lightBg">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet" variant="lightBg">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="red" variant="lightBg">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="grey" variant="lightBg">
-                INACTIVE
-            </Badge>
-            <Badge icon="flag" shape="rounded" color="violet" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="orange" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="green" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="blue" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="red" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="purple" variant="stroke">
-                INACTIVE
-            </Badge>
-            <Badge icon="check" shape="rounded" color="grey" variant="stroke">
-                INACTIVE
-            </Badge>
+            <Link to="team-member/platform">Team Member Platform</Link>
         </Base>
     );
 };

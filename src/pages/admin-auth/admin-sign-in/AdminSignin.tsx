@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
@@ -44,7 +43,7 @@ const AdminSignin = () => {
 
     const isFormSubmittable = email && password;
 
-    const signin = async (e: React.FormEvent<HTMLFormElement>) => {
+    const signIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
@@ -71,7 +70,7 @@ const AdminSignin = () => {
     return (
         <>
             <AuthWrapper imageUrl={teamWork} pageTitle="Sign In">
-                <Form onSubmit={signin} noValidate>
+                <Form onSubmit={signIn} noValidate>
                     <Input
                         type="email"
                         placeholder="Email"
