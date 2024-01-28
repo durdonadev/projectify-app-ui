@@ -1,12 +1,6 @@
 import React from "react";
 import sprite from "./sprite.svg";
-
-type IconProps = {
-    iconName: string;
-    className?: string;
-    height?: string;
-    width?: string;
-};
+import { IconProps } from "./types";
 
 const Icon: React.FC<IconProps> = ({ iconName, className, height, width }) => {
     return (
