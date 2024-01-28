@@ -8,53 +8,34 @@ import {
 } from "./classnames";
 import "./Badge.css";
 import { Icon } from "../Icon";
-
-type BadgeIcon = "flag" | "check";
-type BadgeShape = "rounded" | "circle";
-type BadgeColor =
-    | "violet"
-    | "orange"
-    | "green"
-    | "blue"
-    | "red"
-    | "purple"
-    | "grey";
-type BadgeVariant = "lightBg" | "stroke";
-
-type BadgeProps = {
-    icon?: BadgeIcon;
-    shape?: BadgeShape;
-    color?: BadgeColor;
-    variant?: BadgeVariant;
-    className?: string;
-    children: React.ReactNode;
-};
+import { BadgeProps } from "./types";
 
 const Badge: FC<BadgeProps> = (props) => {
-    const { icon, shape, color, variant, className, children } = props;
-
-    const iconClassName = icon !== undefined ? iconClassNames[icon] : "";
+    const { label, shape, color, variant, status, icon, iconName, className } =
+        props;
 
     const shapeClassName = shape !== undefined ? shapeClassNames[shape] : "";
-
     const colorClassName = color !== undefined ? colorClassNames[color] : "";
-
     const variantClassName =
         variant !== undefined ? variantClassNames[variant] : "";
 
     const finalClassNames = trimWhiteSpaces(
-        `badge ${iconClassName} ${colorClassName} ${shapeClassName} ${variantClassName} ${
+        `badge ${colorClassName} ${shapeClassName} ${variantClassName} ${
             className || ""
         }`
     );
 
     return (
-        <span className={trimWhiteSpaces(finalClassNames)}>
-            {icon ? (
-                <Icon iconName={icon} height="1.6rem" width="1.6rem" />
+        <div className={trimWhiteSpaces(finalClassNames)}>
+            {icon && !status && !iconName ? icon : null}
+            {iconName && !status && !iconName ? (
+                <Icon iconName={iconName} />
             ) : null}
-            {children}
-        </span>
+            {status && !icon && !iconName ? (
+                <div className="badge__status" />
+            ) : null}
+            <span className="badge__text">{label}</span>
+        </div>
     );
 };
 

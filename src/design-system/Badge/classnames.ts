@@ -15,10 +15,10 @@ export const colorClassNames = {
     blue: "badge-blue",
     red: "badge-red",
     purple: "badge-purple",
-    grey: "badge-grey"
+    gray: "badge-gray"
 };
 
 export const variantClassNames = {
-    lightBg: "badge-light-bg",
-    stroke: "badge-stroke"
+    contained: "badge-contained",
+    outlined: "badge-outlined"
 };
