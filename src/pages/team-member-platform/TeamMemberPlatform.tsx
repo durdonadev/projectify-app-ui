@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { SideBar, SideBarLinks } from "../../design-system";
 import { AppContent, AppLayout, SideBarUser } from "../components";
-import member from "../../assets/images/member.jpg";
 import { useLocalStorage, useStore } from "../../hooks";
 import { Actions } from "../../store";
 

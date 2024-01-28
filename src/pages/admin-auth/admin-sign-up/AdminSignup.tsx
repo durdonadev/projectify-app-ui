@@ -1,11 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { admin } from "../../../api";
-
 import teamWork from "../../../assets/images/team-work.jpg";
 
 const Form = styled.form`

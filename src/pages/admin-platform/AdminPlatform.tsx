@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { SideBar, SideBarLinks, Toaster } from "../../design-system";
 import { AppContent, AppLayout, SideBarUser } from "../components";
-
 import { Actions } from "../../store/actions";
 import { useLocalStorage, useStore } from "../../hooks";
 

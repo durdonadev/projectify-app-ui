@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
 import { teamMember } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
 import { Input, Button } from "../../../design-system";

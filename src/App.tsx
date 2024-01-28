@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Badge, Icon } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
