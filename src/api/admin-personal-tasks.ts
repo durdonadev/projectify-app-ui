@@ -104,4 +104,4 @@ class AdminPersonalTasks {
     }
 }
 
-export { AdminPersonalTasks };
+export const adminPersonalTasks = new AdminPersonalTasks();

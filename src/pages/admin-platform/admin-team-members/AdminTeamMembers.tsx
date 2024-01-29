@@ -4,7 +4,7 @@ import { Input, Modal, Typography, Button } from "../../../design-system";
 import { NoDataPlaceholder } from "../../components";
 import noMember from "../../../assets/illustrations/no-member.svg";
 import toast from "react-hot-toast";
-import { teamMember } from "../../../api";
+import { adminTeamMembers } from "../../../api";
 
 const PageBase = styled.div`
     position: relative;
@@ -62,7 +62,7 @@ const AdminTeamMembers = () => {
 
         try {
             setIsFormSubmitting(true);
-            const response = await teamMember.add({
+            const response = await adminTeamMembers.add({
                 firstName,
                 lastName,
                 email,
