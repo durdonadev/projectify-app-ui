@@ -2,19 +2,7 @@ import React from "react";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { Link, NavLink } from "react-router-dom";
-
-type SideBarLink = {
-    linkText: string;
-    linkTo: string;
-    iconName: string;
-};
-
-type SideBarLinksGroup = {
-    title: string;
-    links: SideBarLink[];
-};
-
-type SideBarLinksProps = { links: SideBarLinksGroup[]; logOut: () => void };
+import { SideBarLinksProps } from "./types";
 
 const SideBarLinks: React.FC<SideBarLinksProps> = ({ links, logOut }) => {
     return (
