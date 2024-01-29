@@ -35,3 +35,12 @@ export interface Task {
     due: string;
     status: TaskStatus;
 }
+
+export type ProjectStatus = "ACTIVE" | "ARCHIVED";
+
+export interface Project {
+    id: string;
+    name: string;
+    description: string;
+    status: ProjectStatus;
+}
