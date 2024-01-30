@@ -1,15 +1,11 @@
 import { Project } from "../types";
 
-type ProjectCreateInput = Omit<Project, "id" | "status">;
+type CreateProjectInput = Omit<Project, "id" | "status">;
 
 interface GetAllProjectsResponse {
     data: {
         projects: Project[];
     };
-}
-
-interface ProjectCreateResponse {
-    data: Project;
 }
 
 class AdminProjects {
@@ -19,14 +15,14 @@ class AdminProjects {
             process.env.NODE_ENV === "development"
                 ? process.env.REACT_APP_PROJECTIFY_API_URL_LOCAL
                 : process.env.REACT_APP_PROJECTIFY_API_URL
-        }`;
+        }/projects`;
     }
 
-    async create(input: ProjectCreateInput): Promise<ProjectCreateResponse> {
+    async create(input: CreateProjectInput) {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-            const response = await fetch(`${this.url}/projects`, {
+            const response = await fetch(`${this.url}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,7 +44,7 @@ class AdminProjects {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-            const response = await fetch(`${this.url}/projects`, {
+            const response = await fetch(`${this.url}`, {
                 headers: {
                     authorization: `Bearer ${authToken}`
                 }

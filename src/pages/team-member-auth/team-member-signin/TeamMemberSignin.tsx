@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import { Button, Input } from "../../../design-system";
@@ -29,6 +29,13 @@ const TeamMemberSignin = () => {
 
     const navigate = useNavigate();
     const { setItem } = useLocalStorage();
+
+    const [searchParams] = useSearchParams();
+    const inviteToken = searchParams.get("inviteToken");
+
+    useEffect(() => {
+        if (!inviteToken) navigate("/team-member/sign-in");
+    }, [inviteToken, navigate]);
 
     const handleOnChangeEmail = (value: string) => {
         setEmail(value);

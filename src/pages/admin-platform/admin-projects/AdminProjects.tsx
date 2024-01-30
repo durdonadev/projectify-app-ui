@@ -2,9 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Input, Modal, Typography, Button } from "../../../design-system";
 import { NoDataPlaceholder } from "../../components";
-import { adminProjects } from "../../../api";
 import toast from "react-hot-toast";
 import noProject from "../../../assets/illustrations/no-project.svg";
+import { adminProjects } from "../../../api";
 
 const PageBase = styled.div`
     position: relative;
@@ -60,7 +60,6 @@ const AdminProjects = () => {
             setName("");
             setDescription("");
             setShowCreateProjectModal(false);
-            console.log(response);
 
             toast.success(response.message);
         } catch (error) {
