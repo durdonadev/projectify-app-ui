@@ -19,6 +19,7 @@ class AdminTeamMembers {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
             const response = await fetch(`${this.url}`, {
                 method: "POST",
                 headers: {

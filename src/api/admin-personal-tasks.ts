@@ -9,6 +9,10 @@ interface GetAllTasksResponse {
     };
 }
 
+// interface TaskCreateResponse {
+//     data: Task;
+// }
+
 class AdminPersonalTasks {
     url: string;
     constructor() {
@@ -21,10 +25,14 @@ class AdminPersonalTasks {
 
     async createTask(input: TaskCreateInput) {
         try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
             const response = await fetch(`${this.url}/tasks`, {
                 method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${authToken}`
                 },
                 body: JSON.stringify(input)
             });

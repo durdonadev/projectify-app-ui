@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -22,6 +22,10 @@ const TeamMemberResetPassword = () => {
     const [searchParams] = useSearchParams();
     const passwordResetToken = searchParams.get("passwordResetToken");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!passwordResetToken) navigate("/team-member/forgot-password");
+    }, [passwordResetToken, navigate]);
 
     const handleOnChangeNewPassword = (value: string) => {
         setNewPassword(value);
