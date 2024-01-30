@@ -45,6 +45,8 @@ const AdminProjects = () => {
         setDescription(value);
     };
 
+    const isFormSubmittable = name && description;
+
     const createProject = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -60,7 +62,7 @@ const AdminProjects = () => {
             setShowCreateProjectModal(false);
             console.log(response);
 
-            // toast.success(response.message);
+            toast.success(response.message);
         } catch (error) {
             if (error instanceof Error) {
                 setIsFormSubmitting(false);
@@ -126,6 +128,7 @@ const AdminProjects = () => {
                             shape="rounded"
                             color="primary"
                             fullWidth
+                            disabled={isFormSubmitting || !isFormSubmittable}
                         >
                             Save
                         </Button>

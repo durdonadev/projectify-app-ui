@@ -57,6 +57,8 @@ const AdminTeamMembers = () => {
         setEmail(value);
     };
 
+    const isFormSubmittable = firstName && lastName && position && email;
+
     const addTeamMember = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -157,6 +159,7 @@ const AdminTeamMembers = () => {
                             shape="rounded"
                             color="primary"
                             fullWidth
+                            disabled={isFormSubmitting || !isFormSubmittable}
                         >
                             Save
                         </Button>
