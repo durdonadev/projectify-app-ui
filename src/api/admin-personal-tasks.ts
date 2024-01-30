@@ -9,10 +9,6 @@ interface GetAllTasksResponse {
     };
 }
 
-interface TaskCreateResponse {
-    data: Task;
-}
-
 class AdminPersonalTasks {
     url: string;
     constructor() {
@@ -23,7 +19,7 @@ class AdminPersonalTasks {
         }/admins/me`;
     }
 
-    async createTask(input: TaskCreateInput): Promise<TaskCreateResponse> {
+    async createTask(input: TaskCreateInput) {
         try {
             const response = await fetch(`${this.url}/tasks`, {
                 method: "PATCH",
