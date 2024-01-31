@@ -2,25 +2,9 @@ import React from "react";
 import { sizeClassNames, shapeClassNames } from "./clasnames";
 import { trimWhiteSpaces } from "../utils";
 import { Label } from "../Label";
-
+import { InputProps } from "./types";
 import "./Input.css";
 
-type InputProps = {
-    type?: "text" | "email" | "password" | "tel" | "textarea";
-    disabled?: boolean;
-    placeholder: string;
-    className?: string;
-    id?: string;
-
-    error?: boolean;
-    shape?: "rounded" | "circle";
-    size?: "sm" | "md" | "lg";
-    hintMessage?: string;
-    labelText?: string;
-
-    onChange: (value: string) => void;
-    value: string;
-};
 const Input: React.FC<InputProps> = (props) => {
     const {
         type,
