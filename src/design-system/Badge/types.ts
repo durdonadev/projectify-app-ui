@@ -1,3 +1,4 @@
+import React from "react";
 import { IconName } from "../Icon";
 
 type BadgeColors =
@@ -21,6 +22,7 @@ interface BadgePropsBase {
     status?: boolean;
     className?: string;
     icon?: React.ReactNode;
+
     iconName?: IconName;
 }
 
