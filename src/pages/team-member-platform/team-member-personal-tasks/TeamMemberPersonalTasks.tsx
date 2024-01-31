@@ -5,7 +5,8 @@ import {
     Modal,
     Typography,
     Button,
-    Toaster
+    Toaster,
+    DatePickerV1
 } from "../../../design-system";
 import { NoDataPlaceholder } from "../../components";
 import noTask from "../../../assets/illustrations/no-task.svg";
@@ -40,7 +41,7 @@ const TeamMemberPersonalTasks = () => {
         useState<boolean>(false);
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [due, setDue] = useState<string>("");
+    const [due, setDue] = useState<Date>();
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
 
@@ -51,7 +52,8 @@ const TeamMemberPersonalTasks = () => {
     const handleOnChangeDescription = (value: string) => {
         setDescription(value);
     };
-    const handleOnChangeDue = (value: string) => {
+
+    const handleOnChangeDue = (value: Date) => {
         setDue(value);
     };
 
@@ -62,6 +64,7 @@ const TeamMemberPersonalTasks = () => {
 
         try {
             setIsFormSubmitting(true);
+
             const response = await teamMemberPersonalTasks.createTask({
                 title,
                 description,
@@ -70,7 +73,7 @@ const TeamMemberPersonalTasks = () => {
             setIsFormSubmitting(false);
             setTitle("");
             setDescription("");
-            setDue("");
+            setDue(undefined);
             setShowCreateTaskModal(false);
 
             toast.success(response.message);
@@ -122,12 +125,12 @@ const TeamMemberPersonalTasks = () => {
                                 shape="rounded"
                                 size="lg"
                             />
-                            <Input
-                                placeholder="Due Date"
-                                value={due}
-                                onChange={handleOnChangeDue}
+                            <DatePickerV1
+                                inputSize="lg"
                                 shape="rounded"
-                                size="lg"
+                                placeholder="Due Date"
+                                selected={due}
+                                onChange={handleOnChangeDue}
                             />
                         </Inputs>
                         <Buttons>
