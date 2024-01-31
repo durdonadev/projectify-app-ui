@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { trimWhiteSpaces } from "../utils";
 import {
     colorClassNames,
-    iconClassNames,
     shapeClassNames,
     variantClassNames
 } from "./classnames";
