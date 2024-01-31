@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Badge, Icon } from "./design-system";
+
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+import { DatePicker } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -11,6 +14,7 @@ const Base = styled.div`
 `;
 
 const App = () => {
+    const [date, setDate] = useState<Date>();
     return (
         <Base>
             <h1>Welcome </h1>
@@ -32,6 +36,12 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
+
+            <DatePicker
+                selected={date}
+                onChange={(date) => setDate(date)}
+                placeholder="Select Deadline"
+            />
         </Base>
     );
 };
