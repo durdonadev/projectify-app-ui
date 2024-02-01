@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { TaskCard } from "./pages/components";
 
 const Base = styled.div`
     font-size: 1.6rem;
