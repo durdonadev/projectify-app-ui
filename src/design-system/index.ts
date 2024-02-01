@@ -11,5 +11,6 @@ export * from "./Icon";
 export * from "./Toaster";
 export * from "./Badge";
 export * from "./DatePicker";
+export * from "./Bar";
 
 export * from "./utils";
