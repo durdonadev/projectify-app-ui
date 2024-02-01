@@ -10,5 +10,6 @@ export * from "./SideBar";
 export * from "./Icon";
 export * from "./Toaster";
 export * from "./Badge";
+export * from "./DatePicker";
 
 export * from "./utils";
