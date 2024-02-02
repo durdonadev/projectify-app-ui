@@ -9,9 +9,9 @@ interface GetAllTasksResponse {
     };
 }
 
-// interface TaskCreateResponse {
-//     data: Task;
-// }
+interface TaskCreateResponse {
+    data: Task;
+}
 
 class TeamMemberPersonalTasks {
     url: string;
@@ -23,7 +23,7 @@ class TeamMemberPersonalTasks {
         }/team-members/me`;
     }
 
-    async createTask(input: TaskCreateInput) {
+    async createTask(input: TaskCreateInput): Promise<TaskCreateResponse> {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";

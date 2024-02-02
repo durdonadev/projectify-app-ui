@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { DatePickerV1 } from "./design-system";
+import { TaskCard } from "./pages/components";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -36,14 +36,6 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
-
-            <DatePickerV1
-                selected={date}
-                onChange={(date) => setDate(date)}
-                placeholder="Select Deadline"
-                shape="circle"
-                inputSize="lg"
-            />
         </Base>
     );
 };

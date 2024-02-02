@@ -1,7 +1,7 @@
 import { Task } from "../types";
 
-type TaskCreateInput = Omit<Task, "id" | "status">;
-type TaskUpdateInput = Omit<Task, "id">;
+export type TaskCreateInput = Omit<Task, "id" | "status">;
+export type TaskUpdateInput = Omit<Task, "id">;
 
 interface GetAllTasksResponse {
     data: {
@@ -9,9 +9,9 @@ interface GetAllTasksResponse {
     };
 }
 
-// interface TaskCreateResponse {
-//     data: Task;
-// }
+interface TaskCreateResponse {
+    data: Task;
+}
 
 class AdminPersonalTasks {
     url: string;
@@ -23,7 +23,7 @@ class AdminPersonalTasks {
         }/admins/me`;
     }
 
-    async createTask(input: TaskCreateInput) {
+    async createTask(input: TaskCreateInput): Promise<TaskCreateResponse> {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
@@ -46,7 +46,7 @@ class AdminPersonalTasks {
         }
     }
 
-    async getTasks(): Promise<{ data: GetAllTasksResponse }> {
+    async getTasks(): Promise<GetAllTasksResponse> {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
