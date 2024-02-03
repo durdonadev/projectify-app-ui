@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { TaskCardProps } from "./types";
-import { Badge, Bar, Typography } from "../../../design-system";
+import { Badge, Bar, Menu, Typography } from "../../../design-system";
 import { format } from "date-fns";
 import { useState } from "react";
 
@@ -30,6 +30,7 @@ const TaskCardBase = styled.div<{ $isDragging: boolean }>`
 const TaskCardHeader = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const TaskTitle = styled(Typography)`
@@ -55,7 +56,11 @@ enum StatusToIcon {
     INPROGRESS = "flag",
     DONE = "check"
 }
-const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+const TaskCard: React.FC<TaskCardProps> = ({
+    task,
+    menuActions,
+    onSelectMenuAction
+}) => {
     const [isDragging, setIsDragging] = useState<boolean>(false);
 
     const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -67,6 +72,10 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         setIsDragging(false);
     };
 
+    const handleOnSelectMenuItem = (value: string) => {
+        onSelectMenuAction(value, task.id);
+    };
+
     return (
         <TaskCardBase
             draggable
@@ -76,6 +85,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         >
             <TaskCardHeader>
                 <Bar color={StatusToColor[task.status]} />
+                <Menu items={menuActions} onSelect={handleOnSelectMenuItem} />
             </TaskCardHeader>
             <div>
                 <TaskTitle variant="paragraphLG" weight="semibold">
