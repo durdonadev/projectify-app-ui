@@ -2,12 +2,16 @@ import React from "react";
 import sprite from "./sprite.svg";
 import { IconProps } from "./types";
 
-const Icon: React.FC<IconProps> = ({ iconName, className, height, width }) => {
+const Icon: React.FC<IconProps> = ({ iconName, className, onClick }) => {
+    const handleOnClick = () => {
+        onClick && onClick();
+    };
     return (
         <svg
-            height={height || "2.4rem"}
-            width={width || "2.4rem"}
+            height="2.4rem"
+            width="2.4rem"
             className={className || ""}
+            onClick={handleOnClick}
         >
             <use xlinkHref={`${sprite}#${iconName}`} />
         </svg>
