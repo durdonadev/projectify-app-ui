@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
     Input,
@@ -9,20 +9,20 @@ import {
 } from "../../../design-system";
 import { NoDataPlaceholder, TaskCard } from "../../components";
 import noTask from "../../../assets/illustrations/no-task.svg";
-import toast from "react-hot-toast";
 import {
     TaskCreateInput,
     adminPersonalTasks as adminPersonalTasksService
 } from "../../../api";
 import { useStore } from "../../../hooks";
-import { groupTasksByStatus } from "../../../utils";
 import {
     Actions,
     AddTaskAction,
     ChangeTaskStatusAction,
     PopulateTasksAction
 } from "../../../store";
+import { groupTasksByStatus } from "../../../utils";
 import { TaskStatus } from "../../../types";
+import toast from "react-hot-toast";
 
 enum StatusToTitle {
     TODO = "To Do",
@@ -36,7 +36,7 @@ enum StatusToColor {
     DONE = "var(--green-500)"
 }
 
-const PageBase = styled.div`
+const PageBase = styled.main`
     position: relative;
     width: 100%;
     height: 100%;
@@ -96,8 +96,8 @@ const AdminPersonalTasks = () => {
     const [taskTitle, setTaskTitle] = useState<string>("");
     const [taskDescription, setTaskDescription] = useState<string>("");
     const [isTasksFetching, setIsTasksFetching] = useState(true);
-    const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
-    const [isError, setIsError] = useState<boolean>(false);
+    const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+
     const {
         state: { adminPersonalTasks },
         dispatch
@@ -127,20 +127,6 @@ const AdminPersonalTasks = () => {
         return null;
     }
 
-    const handleOnChangeTaskTitle = (value: string) => {
-        setTaskTitle(value);
-    };
-
-    const handleOnChangeTaskDescription = (value: string) => {
-        setTaskDescription(value);
-    };
-
-    const handleOnChangeTaskDue = (value: Date) => {
-        setTaskDue(value);
-    };
-
-    const isFormSubmittable = taskTitle && taskDescription && taskDue;
-
     const createTask = () => {
         setIsFormSubmitting(true);
         const input: TaskCreateInput = {
@@ -167,6 +153,7 @@ const AdminPersonalTasks = () => {
                 toast.error(error.message);
             });
     };
+
     const closeCreateTaskModal = () => {
         setTaskTitle("");
         setTaskDescription("");
@@ -199,7 +186,7 @@ const AdminPersonalTasks = () => {
             {!adminPersonalTasks.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noTask}
-                    text="You don't have any tasks yet!"
+                    text="You don’t have any tasks yet!"
                     buttonText="Add a Task"
                     buttonAction={() => setShowCreateTaskModal(true)}
                 />
@@ -226,7 +213,7 @@ const AdminPersonalTasks = () => {
                                 <TasksColumn
                                     key={groupName}
                                     onDragOver={(e) => e.preventDefault()}
-                                    onDrag={(e) =>
+                                    onDrop={(e) =>
                                         onDrop(e, groupName as TaskStatus)
                                     }
                                 >
@@ -246,7 +233,12 @@ const AdminPersonalTasks = () => {
                                     </TasksColumnTitle>
 
                                     {groupedTasks[groupName].map((task) => {
-                                        return <TaskCard task={{ ...task }} />;
+                                        return (
+                                            <TaskCard
+                                                key={task.id}
+                                                task={task}
+                                            />
+                                        );
                                     })}
                                 </TasksColumn>
                             );
@@ -256,56 +248,58 @@ const AdminPersonalTasks = () => {
             )}
 
             <Modal show={showCreateTaskModal} position="center">
-                <form onSubmit={createTask} noValidate>
-                    <CreateTaskModalTitle variant="paragraphLG" weight="medium">
-                        New Task
-                    </CreateTaskModalTitle>
-                    <Inputs>
-                        <Input
-                            placeholder="Task"
-                            value={taskTitle}
-                            onChange={handleOnChangeTaskTitle}
-                            shape="rounded"
-                            size="lg"
-                        />
-                        <Input
-                            type="textarea"
-                            placeholder="Description"
-                            value={taskDescription}
-                            onChange={handleOnChangeTaskDescription}
-                            shape="rounded"
-                            size="lg"
-                        />
-                        <DatePickerV1
-                            inputSize="lg"
-                            shape="rounded"
-                            placeholder="Due Date"
-                            selected={taskDue}
-                            onChange={handleOnChangeTaskDue}
-                        />
-                    </Inputs>
-                    <Buttons>
-                        <Button
-                            color="secondary"
-                            size="lg"
-                            shape="rounded"
-                            variant="outlined"
-                            fullWidth
-                            onClick={() => setShowCreateTaskModal(false)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            size="lg"
-                            shape="rounded"
-                            color="primary"
-                            fullWidth
-                            disabled={isFormSubmitting || !isFormSubmittable}
-                        >
-                            Save
-                        </Button>
-                    </Buttons>
-                </form>
+                <CreateTaskModalTitle variant="paragraphLG" weight="medium">
+                    New Task
+                </CreateTaskModalTitle>
+                <Inputs>
+                    <Input
+                        placeholder="Task Name"
+                        value={taskTitle}
+                        onChange={(value) => setTaskTitle(value)}
+                        shape="rounded"
+                        size="lg"
+                    />
+                    <Input
+                        type="textarea"
+                        placeholder="Task Description"
+                        value={taskDescription}
+                        onChange={(value) => {
+                            setTaskDescription(value);
+                        }}
+                        shape="rounded"
+                        size="lg"
+                    />
+                    <DatePickerV1
+                        inputSize="lg"
+                        shape="rounded"
+                        placeholder="Due Date"
+                        selected={taskDue}
+                        onChange={(date) => setTaskDue(date)}
+                    />
+                </Inputs>
+                <Buttons>
+                    <Button
+                        color="secondary"
+                        size="lg"
+                        shape="rounded"
+                        variant="outlined"
+                        fullWidth
+                        onClick={closeCreateTaskModal}
+                        disabled={isFormSubmitting}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        size="lg"
+                        shape="rounded"
+                        color="primary"
+                        fullWidth
+                        onClick={createTask}
+                        disabled={isFormSubmitting}
+                    >
+                        Save
+                    </Button>
+                </Buttons>
             </Modal>
         </PageBase>
     );

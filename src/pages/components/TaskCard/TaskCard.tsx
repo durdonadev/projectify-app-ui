@@ -9,11 +9,13 @@ const TaskCardBase = styled.div<{ $isDragging: boolean }>`
     padding: var(--space-16);
     border-radius: var(--border-radius-16);
     box-shadow: var(--shadow-xs);
+
     display: flex;
     flex-direction: column;
     gap: var(--space-12);
 
     transition: opacity 0.5s;
+
     ${(props) =>
         props.$isDragging &&
         css`
@@ -64,6 +66,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     const onDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
         setIsDragging(false);
     };
+
     return (
         <TaskCardBase
             draggable
