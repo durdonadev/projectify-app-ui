@@ -1,4 +1,4 @@
-import { Task, AdminUser, TeamMemberUser } from "../../types";
+import { AdminUser, Task, TeamMemberUser } from "../../types";
 
 export interface GlobalState {
     user: AdminUser | TeamMemberUser | null;

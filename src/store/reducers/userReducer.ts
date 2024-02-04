@@ -31,7 +31,10 @@ export const userReducer = (
         if (state.adminPersonalTasks) {
             return {
                 ...state,
-                adminPersonalTasks: [...state.adminPersonalTasks, payload]
+                adminPersonalTasks: [
+                    ...state.adminPersonalTasks,
+                    action.payload as AddTaskAction["payload"]
+                ]
             };
         } else {
             return {
