@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { admin } from "../../../api";
+import { adminService } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
 import { Input, Button } from "../../../design-system";
 import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";
@@ -42,7 +42,7 @@ const AdminResetPassword = () => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const response = await admin.resetPassword(
+            const response = await adminService.resetPassword(
                 newPassword,
                 passwordConfirm,
                 passwordResetToken as string

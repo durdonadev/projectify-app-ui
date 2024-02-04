@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import teamWork from "../../../assets/images/team-work.jpg";
-import { admin } from "../../../api";
+import { adminService } from "../../../api";
 import { useLocalStorage } from "../../../hooks";
 
 const Form = styled.form`
@@ -47,7 +47,7 @@ const AdminSignin = () => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const { token } = await admin.signIn({
+            const { token } = await adminService.signIn({
                 email,
                 password
             });

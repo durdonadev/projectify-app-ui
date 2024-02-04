@@ -3,7 +3,7 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
-import { admin } from "../../../api";
+import { adminService } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
 
 const Form = styled.form`
@@ -78,7 +78,7 @@ const AdminSignup = () => {
 
         try {
             setIsFormSubmitting(true);
-            const response = await admin.signUp({
+            const response = await adminService.signUp({
                 firstName,
                 lastName,
                 preferredName: preferredName,
