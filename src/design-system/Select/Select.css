@@ -5,7 +5,7 @@
 
 .btn-secondary.select__header {
     background-color: var(--white);
-    justify-content: start;
+    justify-content: space-between;
 }
 .btn-secondary.select__header:hover {
     border: 1px solid var(--primary-500);
@@ -46,6 +46,8 @@
     align-items: center;
     padding: 0 var(--space-12);
     transition: all 0.3s;
+
+    cursor: pointer;
 }
 
 .select__item:hover {
@@ -70,4 +72,17 @@
 
 .select-large.select-circle .select__item {
     border-radius: var(--border-radius-24);
+}
+
+.select__item--selected {
+    background-color: var(--jaguar-50);
+}
+
+.select__icon {
+    transition: 0.3s;
+    fill: var(--jaguar-500);
+}
+
+.select__icon--expanded {
+    transform: rotate(180deg);
 }
