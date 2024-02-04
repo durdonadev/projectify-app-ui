@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { TaskCard } from "./pages/components";
+import { Select } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -36,6 +37,21 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
+            <Select
+                options={[
+                    { label: "Option1", value: "option1" },
+                    { label: "Option2", value: "option2" },
+                    { label: "Option3", value: "option3" },
+                    { label: "Option4", value: "option4" },
+                    { label: "Option5", value: "option5" },
+                    { label: "Option6", value: "option6" }
+                ]}
+                value="option2"
+                headerPlaceholder="Select Option"
+                onSelect={(value) => {}}
+                size="md"
+                shape="rounded"
+            />
         </Base>
     );
 };
