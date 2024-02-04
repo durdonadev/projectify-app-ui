@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { TaskCard } from "./pages/components";
-import { Select } from "./design-system";
+import { OptionValue, Select } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -15,7 +14,7 @@ const Base = styled.div`
 `;
 
 const App = () => {
-    const [date, setDate] = useState<Date>();
+    const [value, setValue] = useState<OptionValue>("");
     return (
         <Base>
             <h1>Welcome </h1>
@@ -46,11 +45,11 @@ const App = () => {
                     { label: "Option5", value: "option5" },
                     { label: "Option6", value: "option6" }
                 ]}
-                value="option2"
                 headerPlaceholder="Select Option"
-                onSelect={(value) => {}}
+                onSelect={(option) => setValue(option.value)}
                 size="md"
-                shape="rounded"
+                shape="circle"
+                value={value}
             />
         </Base>
     );
