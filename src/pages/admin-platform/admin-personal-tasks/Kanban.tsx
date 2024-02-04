@@ -7,7 +7,7 @@ import { Actions, ChangeTaskStatusAction } from "../../../store";
 import { adminTasksService } from "../../../api";
 import { Typography, Modal } from "../../../design-system";
 import { TaskStatus } from "../../../types";
-import { TaskCard } from "../../components";
+import { KanbanCard } from "../../components";
 import { EditTaskModal } from "./EditTaskModal";
 
 type KanbanProps = {
@@ -98,7 +98,7 @@ const Kanban: React.FC<KanbanProps> = ({ groupedTasks }) => {
 
                             {groupedTasks[groupName].map((task) => {
                                 return (
-                                    <TaskCard
+                                    <KanbanCard
                                         key={task.id}
                                         task={task}
                                         menuActions={[
