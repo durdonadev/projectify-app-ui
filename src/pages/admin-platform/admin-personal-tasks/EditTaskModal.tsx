@@ -60,17 +60,15 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({
     } = useStore();
 
     const [taskDue, setTaskDue] = useState<Date>();
-    const [taskTitle, setTaskTitle] = useState<string>("");
-    const [taskDescription, setTaskDescription] = useState<string>("");
+    const [taskTitle, setTaskTitle] = useState("");
+    const [taskDescription, setTaskDescription] = useState("");
     const [selectedStatus, setSelectedStatus] = useState<Option | undefined>();
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
     useEffect(() => {
         const task = adminPersonalTasks.find((task) => task.id === taskId);
-        console.log("hello");
 
         if (task) {
-            console.log(task);
             setTaskDue(parseISO((task?.due).toString()));
             setTaskDescription(task.description);
             setTaskTitle(task?.title);

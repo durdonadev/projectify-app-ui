@@ -39,8 +39,8 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
     closeModal
 }) => {
     const [taskDue, setTaskDue] = useState<Date>();
-    const [taskTitle, setTaskTitle] = useState<string>("");
-    const [taskDescription, setTaskDescription] = useState<string>("");
+    const [taskTitle, setTaskTitle] = useState("");
+    const [taskDescription, setTaskDescription] = useState("");
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
     const { dispatch } = useStore();

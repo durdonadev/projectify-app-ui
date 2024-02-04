@@ -26,16 +26,16 @@ const StyledButton = styled(Button)`
 `;
 
 const AdminSignup = () => {
-    const [firstName, setFirstName] = useState<string>("");
-    const [lastName, setLastName] = useState<string>("");
-    const [preferredName, setPreferredName] = useState<string>("");
-    const [company, setCompany] = useState<string>("");
-    const [position, setPosition] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [preferredName, setPreferredName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [company, setCompany] = useState("");
+    const [position, setPosition] = useState("");
 
-    const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
+    const [isFormSubmitting, setIsFormSubmitting] = useState(false);
     const [isError, setIsError] = useState<boolean>(false);
 
     const handleOnChangeFirstName = (value: string) => {

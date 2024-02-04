@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Typography, Button } from "../../../design-system";
+
 import { NoDataPlaceholder } from "../../components";
 import noTask from "../../../assets/illustrations/no-task.svg";
 import { adminTasksService } from "../../../api";
@@ -25,8 +25,7 @@ const PageContent = styled.section`
 const AdminTasksPage = () => {
     const [isTasksFetching, setIsTasksFetching] = useState(true);
 
-    const [showCreateTaskModal, setShowCreateTaskModal] =
-        useState<boolean>(false);
+    const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
 
     const {
         state: { adminPersonalTasks },
