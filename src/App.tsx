@@ -42,8 +42,6 @@ const App = () => {
                 checked={value}
                 onChange={(value) => setValue(value)}
                 shape="rounded"
-                indeterminate
-                position="end"
             />
         </Base>
     );
