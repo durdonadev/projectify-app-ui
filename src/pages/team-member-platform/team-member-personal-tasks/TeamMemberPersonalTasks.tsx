@@ -11,7 +11,6 @@ import {
 import { NoDataPlaceholder } from "../../components";
 import noTask from "../../../assets/illustrations/no-task.svg";
 import toast from "react-hot-toast";
-import { teamMemberPersonalTasks } from "../../../api";
 
 const PageBase = styled.div`
     position: relative;

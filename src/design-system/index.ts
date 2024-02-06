@@ -5,7 +5,7 @@ export * from "./Label";
 export * from "./Modal";
 export * from "./Avatar";
 export * from "./Logo";
-export * from "./Toggle";
+export * from "./Switch";
 export * from "./SideBar";
 export * from "./Icon";
 export * from "./Toaster";
@@ -14,5 +14,6 @@ export * from "./DatePicker";
 export * from "./Bar";
 export * from "./Menu";
 export * from "./Select";
+export * from "./Checkbox";
 
 export * from "./utils";

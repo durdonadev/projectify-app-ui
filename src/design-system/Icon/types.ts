@@ -13,7 +13,10 @@ export type IconName =
     | "edit"
     | "delete"
     | "chevron-down"
-    | "calendar";
+    | "calendar"
+    | "check-sharp"
+    | "minus-sharp"
+    | "minus";
 
 export type IconProps = {
     iconName: IconName;
