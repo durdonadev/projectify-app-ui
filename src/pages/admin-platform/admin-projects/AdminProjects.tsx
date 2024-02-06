@@ -30,8 +30,7 @@ const Buttons = styled.div`
 
 const AdminProjects = () => {
     const [projects, setProject] = useState<string[]>([]);
-    const [showCreateProjectModal, setShowCreateProjectModal] =
-        useState<boolean>(false);
+    const [showCreateProjectModal, setShowCreateProjectModal] = useState(false);
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);

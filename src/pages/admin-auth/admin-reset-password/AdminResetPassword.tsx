@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { admin } from "../../../api";
+import { adminService } from "../../../api";
 import { PasswordWrapper, AuthActionLink } from "../../components";
 import { Input, Button } from "../../../design-system";
 import resetPasswordImg from "../../../assets/illustrations/reset-password.svg";
@@ -15,8 +15,8 @@ const Form = styled.form`
 `;
 
 const AdminResetPassword = () => {
-    const [newPassword, setNewPassword] = useState<string>("");
-    const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
 
     const [searchParams] = useSearchParams();
@@ -28,28 +28,28 @@ const AdminResetPassword = () => {
         if (!passwordResetToken) navigate("/admin/forgot-password");
     }, [passwordResetToken, navigate]);
 
-    const handleOnChangeNewPassword = (value: string) => {
-        setNewPassword(value);
+    const handleOnChangePassword = (value: string) => {
+        setPassword(value);
     };
 
     const handleOnChangePasswordConfirm = (value: string) => {
         setPasswordConfirm(value);
     };
 
-    const isFormSubmittable = newPassword && passwordConfirm;
+    const isFormSubmittable = password && passwordConfirm;
 
     const resetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const response = await admin.resetPassword(
-                newPassword,
+            const response = await adminService.resetPassword(
+                password,
                 passwordConfirm,
                 passwordResetToken as string
             );
 
             setIsFormSubmitting(false);
-            setNewPassword("");
+            setPassword("");
             setPasswordConfirm("");
 
             toast.success(response.message);
@@ -74,8 +74,8 @@ const AdminResetPassword = () => {
                     <Input
                         type="password"
                         placeholder="New Password"
-                        value={newPassword}
-                        onChange={handleOnChangeNewPassword}
+                        value={password}
+                        onChange={handleOnChangePassword}
                         shape="rounded"
                         size="lg"
                     />

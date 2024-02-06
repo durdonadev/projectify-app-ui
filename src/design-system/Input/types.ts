@@ -5,7 +5,7 @@ export type InputSize = "sm" | "md" | "lg";
 export type InputProps = {
     type?: InputType;
     disabled?: boolean;
-    placeholder: string;
+    placeholder?: string;
     className?: string;
     id?: string;
 

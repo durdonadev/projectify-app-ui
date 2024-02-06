@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import styled from "styled-components";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
-import { teamMember } from "../../../api";
+import { teamMemberService } from "../../../api";
 import teamWork from "../../../assets/images/team-work.jpg";
 import { useLocalStorage } from "../../../hooks";
 
@@ -55,7 +55,7 @@ const TeamMemberSignin = () => {
         e.preventDefault();
         try {
             setIsFormSubmitting(true);
-            const { token } = await teamMember.signIn({
+            const { token } = await teamMemberService.signIn({
                 email,
                 password
             });

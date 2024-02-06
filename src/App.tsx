@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { TaskCard } from "./pages/components";
+import { OptionValue, Select } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -14,7 +14,7 @@ const Base = styled.div`
 `;
 
 const App = () => {
-    const [date, setDate] = useState<Date>();
+    const [value, setValue] = useState<OptionValue>("");
     return (
         <Base>
             <h1>Welcome </h1>
@@ -36,6 +36,21 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
+            <Select
+                options={[
+                    { label: "Option1", value: "option1" },
+                    { label: "Option2", value: "option2" },
+                    { label: "Option3", value: "option3" },
+                    { label: "Option4", value: "option4" },
+                    { label: "Option5", value: "option5" },
+                    { label: "Option6", value: "option6" }
+                ]}
+                headerPlaceholder="Select Option"
+                onSelect={(option) => setValue(option.value)}
+                size="md"
+                shape="circle"
+                value={value}
+            />
         </Base>
     );
 };
