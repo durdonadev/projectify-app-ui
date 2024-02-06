@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { Checkbox } from "./design-system";
+import { Checkbox, Switch } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -42,6 +42,12 @@ const App = () => {
                 checked={value}
                 onChange={(value) => setValue(value)}
                 shape="rounded"
+            />
+
+            <Switch
+                checked={value}
+                onSwitch={(value) => setValue(value)}
+                shape="circle"
             />
         </Base>
     );
