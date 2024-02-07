@@ -36,19 +36,22 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
-            <Checkbox
-                label="Hello world"
-                id="checkbox"
-                checked={value}
-                onChange={(value) => setValue(value)}
-                shape="rounded"
-            />
-
-            <Switch
-                checked={value}
-                onSwitch={(value) => setValue(value)}
-                shape="circle"
-            />
+            <div style={{ background: "aqua" }}>
+                <Checkbox
+                    label="Hello world"
+                    id="checkbox"
+                    checked={value}
+                    onChange={(value) => setValue(value)}
+                    shape="rounded"
+                />
+                <Switch
+                    checked={value}
+                    onSwitch={(value) => setValue(value)}
+                    shape="circle"
+                    id="switch"
+                    position="end"
+                />
+            </div>
         </Base>
     );
 };
