@@ -1,11 +1,3 @@
-import {
-    AddTaskAction,
-    ChangeTaskStatusAction,
-    PopulateTasksAction,
-    RemoveTaskAction,
-    UpdateTaskAction
-} from "../actions";
-import { GlobalState, initialState } from "../state";
 import { ActionType, Actions, InitUserAction } from "../actions";
 import { UserState } from "../state";
 
