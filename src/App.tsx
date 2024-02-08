@@ -36,7 +36,7 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
-            <div style={{ background: "aqua" }}>
+            <div>
                 <Checkbox
                     label="Hello world"
                     id="checkbox"
