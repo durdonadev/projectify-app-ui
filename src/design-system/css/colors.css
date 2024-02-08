@@ -156,5 +156,6 @@
     --blue-charcoal-900: #00040f;
 
     --white: #fff;
+    --transparent: transparent;
     --overlay-40: rgba(0, 0, 0, 0.4);
 }

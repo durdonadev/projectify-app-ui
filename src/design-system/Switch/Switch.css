@@ -17,6 +17,8 @@
     background-color: var(--jaguar-100);
     transition: all 0.2s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 /* Track Rounded */
 .switch-rounded.switch__track {
@@ -62,4 +64,20 @@
     fill: var(--primary-500);
     height: 1.4rem;
     width: 1.4rem;
+}
+
+/* Label */
+.switch__label {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-16);
+    color: var(--jaguar-900);
+    cursor: pointer;
+    height: 4rem;
+    width: max-content;
+}
+
+.switch__label.switch__label--end .switch__track {
+    order: 1;
 }
