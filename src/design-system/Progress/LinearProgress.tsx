@@ -34,17 +34,21 @@ const LinearProgress: React.FC<LinearProgressProps> = ({
     color,
     value,
     error,
-    className
+    className,
+    shape
 }) => {
+    const shapeClassName = shape ? "linear-progress--rounded" : "";
     const finalClassName = trimWhiteSpaces(
-        `linear-progress ${getFinalClassName(color, error, value)} ${
-            className || ""
-        }`
+        `linear-progress ${shapeClassName} ${getFinalClassName(
+            color,
+            error,
+            value
+        )} ${className || ""}`
     );
 
     const renderIndicator = () => {
         if (error) return <Icon iconName="info-in-circle" />;
-        if (value === 100) return <Icon iconName="info-in-circle" />;
+        if (value === 100) return <Icon iconName="check-in-circle" />;
 
         return <span>{value}</span>;
     };

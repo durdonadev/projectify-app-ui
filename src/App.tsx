@@ -13,7 +13,6 @@ const Base = styled.div`
 `;
 
 const App = () => {
-    const [value, setValue] = useState(false);
     return (
         <Base>
             <h1>Welcome </h1>
@@ -40,8 +39,16 @@ const App = () => {
                 <LinearProgress value={40} color="blue" />
                 <LinearProgress value={40} color="green" />
                 <LinearProgress value={40} color="red" />
-
-                <LinearProgress value={30} />
+                <LinearProgress
+                    value={50}
+                    color="orange"
+                    error
+                    shape="rounded"
+                />
+                <LinearProgress value={40} color="blue" />
+                <LinearProgress value={100} color="green" />
+                <LinearProgress value={40} color="red" />
+                <LinearProgress value={100} />
             </div>
         </Base>
     );

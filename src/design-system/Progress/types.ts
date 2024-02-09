@@ -4,6 +4,6 @@ export interface LinearProgressProps {
     color?: ProgressColor;
     value: number;
     error?: boolean;
-    rounded?: boolean;
+    shape?: "rounded";
     className?: string;
 }
