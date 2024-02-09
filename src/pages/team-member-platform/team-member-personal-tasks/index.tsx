@@ -54,7 +54,6 @@ const TeamMemberTasksPage = () => {
     }
 
     const groupedTasks = groupTasksByStatus(teamMemberPersonalTasks);
-    console.log(groupedTasks);
 
     return (
         <PageBase>

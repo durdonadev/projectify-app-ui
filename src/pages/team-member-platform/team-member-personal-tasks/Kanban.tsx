@@ -3,11 +3,7 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import { GroupedTasks } from "../../../utils";
 import { useStore } from "../../../hooks";
-import {
-    Actions,
-    ChangeTaskStatusAction,
-    TeamMemberChangeTaskStatusAction
-} from "../../../store";
+import { Actions, ChangeTaskStatusAction } from "../../../store";
 import { teamMemberTasksService } from "../../../api";
 import { Typography } from "../../../design-system";
 import { TaskStatus } from "../../../types";
@@ -62,8 +58,8 @@ const Kanban: React.FC<KanbanProps> = ({ groupedTasks }) => {
         teamMemberTasksService
             .updateTask(task.id, { status: status })
             .then((_) => {
-                const action: TeamMemberChangeTaskStatusAction = {
-                    type: Actions.TEAM_MEMBER_CHANGE_TASK_STATUS,
+                const action: ChangeTaskStatusAction = {
+                    type: Actions.CHANGE_TASK_STATUS,
                     payload: {
                         id: task.id,
                         status: status

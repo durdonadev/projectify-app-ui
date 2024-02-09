@@ -7,14 +7,12 @@ import {
     ChangeTaskStatusAction,
     PopulateTasksAction,
     RemoveTaskAction,
-    TeamMemberChangeTaskStatusAction,
     UpdateTaskAction
 } from "../actions";
 import { TaskState } from "../state";
 
 const teamMemberTasksReducer = produce(
     (draft: TaskState, action: ActionType): TaskState => {
-        console.log(action);
         switch (action.type) {
             case Actions.POPULATE_TASKS: {
                 const payload =
@@ -26,20 +24,17 @@ const teamMemberTasksReducer = produce(
                 draft.push(payload);
                 return draft;
             }
-            case Actions.TEAM_MEMBER_CHANGE_TASK_STATUS: {
+            case Actions.CHANGE_TASK_STATUS: {
                 const payload =
-                    action.payload as TeamMemberChangeTaskStatusAction["payload"];
+                    action.payload as ChangeTaskStatusAction["payload"];
 
                 for (let i = 0; i < draft.length; i++) {
                     const task = draft[i];
-                    console.log(task);
-                    console.log(payload.id);
+
                     if (task.id === payload.id) {
-                        console.log("hello");
                         task.status = payload.status;
+                        break;
                     }
-                    console.log(task);
-                    break;
                 }
                 return draft;
             }
@@ -50,8 +45,8 @@ const teamMemberTasksReducer = produce(
                     const task = draft[i];
                     if (task.id === payload.id) {
                         draft[i] = payload;
+                        break;
                     }
-                    break;
                 }
 
                 return draft;
