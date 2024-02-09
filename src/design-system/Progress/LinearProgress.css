@@ -1,0 +1,53 @@
+.linear-progress {
+    display: grid;
+    grid-template-columns: 1fr 3.5rem;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+.linear-progress__max {
+    height: 0.4rem;
+    background-color: var(--jaguar-50);
+}
+
+.linear-progress__progress {
+    background-color: var(--jaguar-400);
+    height: 0.4rem;
+}
+
+.linear-progress--orange .linear-progress__max {
+    background-color: var(--sunglow-50);
+}
+
+.linear-progress--blue .linear-progress__max {
+    background-color: var(--blue-ribbon-50);
+}
+
+.linear-progress--red .linear-progress__max {
+    background-color: var(--red-orange-50);
+}
+
+.linear-progress--green .linear-progress__progress {
+    background-color: var(--green-50);
+}
+
+.linear-progress--orange .linear-progress__progress {
+    background-color: var(--sunglow-700);
+}
+
+.linear-progress--blue .linear-progress__progress {
+    background-color: var(--blue-ribbon-500);
+}
+
+.linear-progress--red .linear-progress__progress {
+    background-color: var(--red-orange-500);
+}
+
+.linear-progress--green .linear-progress__progress {
+    background-color: var(--green-500);
+}
+
+.linear-progress__progress-indicator svg {
+    height: 1.6rem;
+    width: 1.6rem;
+}

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { Checkbox, Switch } from "./design-system";
+import { LinearProgress } from "./design-system/Progress";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -37,20 +36,12 @@ const App = () => {
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
             <div>
-                <Checkbox
-                    label="Hello world"
-                    id="checkbox"
-                    checked={value}
-                    onChange={(value) => setValue(value)}
-                    shape="rounded"
-                />
-                <Switch
-                    checked={value}
-                    onSwitch={(value) => setValue(value)}
-                    shape="circle"
-                    id="switch"
-                    position="end"
-                />
+                <LinearProgress value={50} color="orange" error />
+                <LinearProgress value={40} color="blue" />
+                <LinearProgress value={40} color="green" />
+                <LinearProgress value={40} color="red" />
+
+                <LinearProgress value={30} />
             </div>
         </Base>
     );

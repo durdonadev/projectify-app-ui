@@ -16,7 +16,9 @@ export type IconName =
     | "calendar"
     | "check-sharp"
     | "minus-sharp"
-    | "minus";
+    | "minus"
+    | "info-in-circle"
+    | "check-in-circle";
 
 export type IconProps = {
     iconName: IconName;
