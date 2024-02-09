@@ -7,7 +7,8 @@ export enum Actions {
     ADD_TASK = "ADD_TASK",
     CHANGE_TASK_STATUS = "CHANGE_TASK_STATUS",
     UPDATE_TASK = "UPDATE_TASK",
-    REMOVE_TASK = "REMOVE_TASK"
+    REMOVE_TASK = "REMOVE_TASK",
+    TEAM_MEMBER_CHANGE_TASK_STATUS = "TEAM_MEMBER_CHANGE_TASK_STATUS"
 }
 
 export interface InitUserAction {
@@ -37,6 +38,14 @@ export type ChangeTaskStatusAction = {
     };
 };
 
+export type TeamMemberChangeTaskStatusAction = {
+    type: Actions.TEAM_MEMBER_CHANGE_TASK_STATUS;
+    payload: {
+        id: string;
+        status: TaskStatus;
+    };
+};
+
 export type UpdateTaskAction = {
     type: Actions.UPDATE_TASK;
     payload: Task;
@@ -56,4 +65,5 @@ export type ActionType =
     | AddTaskAction
     | ChangeTaskStatusAction
     | UpdateTaskAction
-    | RemoveTaskAction;
+    | RemoveTaskAction
+    | TeamMemberChangeTaskStatusAction;
