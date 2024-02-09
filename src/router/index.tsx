@@ -19,9 +19,9 @@ import {
     TeamMemberPlatform,
     TeamMemberProjects,
     TeamMemberStories,
-    TeamMemberPersonalTasks,
     TeamMemberForgotPassword,
-    TeamMemberResetPassword
+    TeamMemberResetPassword,
+    TeamMemberTasksPage
 } from "../pages";
 import { Private } from "./Private";
 import { Auth } from "./Auth";
@@ -126,7 +126,7 @@ export const router = createBrowserRouter(
                 <Route path="stories" element={<TeamMemberStories />} />
                 <Route
                     path="personal-tasks"
-                    element={<TeamMemberPersonalTasks />}
+                    element={<TeamMemberTasksPage />}
                 />
             </Route>
         </>

@@ -11,7 +11,7 @@ import {
 } from "../actions";
 import { TaskState } from "../state";
 
-const adminTasksReducer = produce(
+const teamMemberTasksReducer = produce(
     (draft: TaskState, action: ActionType): TaskState => {
         switch (action.type) {
             case Actions.POPULATE_TASKS: {
@@ -30,6 +30,7 @@ const adminTasksReducer = produce(
 
                 for (let i = 0; i < draft.length; i++) {
                     const task = draft[i];
+
                     if (task.id === payload.id) {
                         task.status = payload.status;
                         break;
@@ -66,4 +67,4 @@ const adminTasksReducer = produce(
     }
 );
 
-export { adminTasksReducer };
+export { teamMemberTasksReducer };
