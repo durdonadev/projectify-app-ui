@@ -1,57 +1,20 @@
 import React from "react";
+import { LinearProgressProps } from "./types";
+import { getFinalClassName } from "./utils";
+import { LinearProgressIndicator } from "./LinearProgressIndicator";
+
 import "./LinearProgress.css";
-import { LinearProgressProps, ProgressColor } from "./types";
-import { trimWhiteSpaces } from "../utils";
-import { Icon } from "../Icon";
-
-const getFinalClassName = (
-    color: ProgressColor | undefined,
-    error: boolean | undefined,
-    value: number
-) => {
-    const colorClassNames = {
-        orange: "linear-progress--orange",
-        blue: "linear-progress--blue",
-        green: "linear-progress--green",
-        red: "linear-progress--red"
-    };
-
-    const colorClassName = color ? colorClassNames[color] : "";
-    const isCompleted = value === 100;
-
-    if (error) {
-        return `${colorClassName} linear-progress--error`;
-    }
-
-    if (isCompleted) {
-        return `${colorClassName} linear-progress--completed`;
-    }
-
-    return colorClassName;
-};
 
 const LinearProgress: React.FC<LinearProgressProps> = ({
     color,
     value,
     error,
     className,
-    shape
+    shape,
+    size
 }) => {
-    const shapeClassName = shape ? "linear-progress--rounded" : "";
-    const finalClassName = trimWhiteSpaces(
-        `linear-progress ${shapeClassName} ${getFinalClassName(
-            color,
-            error,
-            value
-        )} ${className || ""}`
-    );
+    const finalClassName = getFinalClassName(color, shape, size, className);
 
-    const renderIndicator = () => {
-        if (error) return <Icon iconName="info-in-circle" />;
-        if (value === 100) return <Icon iconName="check-in-circle" />;
-
-        return <span>{value}</span>;
-    };
     return (
         <div className={finalClassName}>
             <div className="linear-progress__max">
@@ -61,7 +24,11 @@ const LinearProgress: React.FC<LinearProgressProps> = ({
                 ></div>
             </div>
             <div className="linear-progress__progress-indicator">
-                {renderIndicator()}
+                <LinearProgressIndicator
+                    error={error}
+                    value={value}
+                    shape={shape}
+                />
             </div>
         </div>
     );

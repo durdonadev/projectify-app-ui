@@ -45,10 +45,20 @@ const App = () => {
                     error
                     shape="rounded"
                 />
-                <LinearProgress value={40} color="blue" />
-                <LinearProgress value={100} color="green" />
-                <LinearProgress value={40} color="red" />
-                <LinearProgress value={100} />
+                <LinearProgress
+                    value={40}
+                    color="blue"
+                    shape="rounded"
+                    size="md"
+                />
+                <LinearProgress
+                    value={100}
+                    color="green"
+                    shape="rounded"
+                    size="lg"
+                />
+                <LinearProgress value={40} color="red" error shape="rounded" />
+                <LinearProgress value={99} />
             </div>
         </Base>
     );
