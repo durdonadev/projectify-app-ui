@@ -68,6 +68,7 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
             </ModalTitle>
             <Inputs>
                 <Input
+                    type="text"
                     placeholder="First Name"
                     value={firstName}
                     onChange={handleOnChangeFirstName}
@@ -76,6 +77,7 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
                     disabled={isFormSubmitting}
                 />
                 <Input
+                    type="text"
                     placeholder="Last Name"
                     value={lastName}
                     onChange={handleOnChangeLastName}
@@ -84,6 +86,7 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
                     disabled={isFormSubmitting}
                 />
                 <Input
+                    type="text"
                     placeholder="Position"
                     value={position}
                     onChange={handleOnChangePosition}
@@ -91,6 +94,14 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
                     size="lg"
                     disabled={isFormSubmitting}
                 />
+                <DatePickerV1
+                    inputSize="lg"
+                    shape="rounded"
+                    placeholder="Joined Date"
+                    selected={joinDate}
+                    onChange={(date) => setJoinDate(date)}
+                />
+
                 <Input
                     type="email"
                     placeholder="Email"
