@@ -86,6 +86,15 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
                     disabled={isFormSubmitting}
                 />
                 <Input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleOnChangeEmail}
+                    shape="rounded"
+                    size="lg"
+                    disabled={isFormSubmitting}
+                />
+                <Input
                     type="text"
                     placeholder="Position"
                     value={position}
@@ -100,16 +109,6 @@ const CreateTeamMemberModal: React.FC<ModalProps> = ({ show, closeModal }) => {
                     placeholder="Joined Date"
                     selected={joinDate}
                     onChange={(date) => setJoinDate(date)}
-                />
-
-                <Input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={handleOnChangeEmail}
-                    shape="rounded"
-                    size="lg"
-                    disabled={isFormSubmitting}
                 />
             </Inputs>
             <Buttons>
