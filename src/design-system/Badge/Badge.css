@@ -33,6 +33,7 @@
     height: 0.6rem;
     width: 0.6rem;
 }
+
 .badge-rounded .badge__status {
     border-radius: var(--border-radius-2);
 }
