@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { NoDataPlaceholder, Page, PageContent } from "../../components";
+import {
+    NoDataPlaceholder,
+    Page,
+    PageContent,
+    PageHeader
+} from "../../components";
 import { adminTasksService } from "../../../api";
 import { useStore } from "../../../hooks";
 import { Actions, PopulateTasksAction } from "../../../store";
 import { groupTasksByStatus } from "../../../utils";
 import { CreateTaskModal } from "./CreateTaskModal";
 import { Kanban } from "./Kanban";
-import { PageHeader } from "./PageHeader";
 import noTask from "../../../assets/illustrations/no-task.svg";
 
 const AdminTasksPage = () => {
@@ -54,7 +58,9 @@ const AdminTasksPage = () => {
             ) : (
                 <PageContent>
                     <PageHeader
-                        openCreateTaskModal={() => setShowCreateTaskModal(true)}
+                        pageTitle="Tasks"
+                        actionButtonText="Create A Task"
+                        actionButtonOnClick={() => setShowCreateTaskModal(true)}
                     />
                     <Kanban groupedTasks={groupedTasks} />
                 </PageContent>
