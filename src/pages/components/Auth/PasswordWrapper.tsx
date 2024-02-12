@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Toaster, Typography } from "../../design-system";
+import { Toaster, Typography } from "../../../design-system";
 import styled from "styled-components";
 
 type PasswordWrapperProps = {

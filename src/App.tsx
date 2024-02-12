@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
-import { LinearProgress } from "./design-system/Progress";
+import { TableBodyCell } from "./design-system";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -34,32 +33,7 @@ const App = () => {
                 Team Member Reset Password
             </Link>
             <Link to="team-member/platform">Team Member Platform</Link>
-            <div>
-                <LinearProgress value={50} color="orange" error />
-                <LinearProgress value={40} color="blue" />
-                <LinearProgress value={40} color="green" />
-                <LinearProgress value={40} color="red" />
-                <LinearProgress
-                    value={50}
-                    color="orange"
-                    error
-                    shape="rounded"
-                />
-                <LinearProgress
-                    value={40}
-                    color="blue"
-                    shape="rounded"
-                    size="md"
-                />
-                <LinearProgress
-                    value={100}
-                    color="green"
-                    shape="rounded"
-                    size="lg"
-                />
-                <LinearProgress value={40} color="red" error shape="rounded" />
-                <LinearProgress value={99} />
-            </div>
+            <TableBodyCell align="center">Hello</TableBodyCell>
         </Base>
     );
 };

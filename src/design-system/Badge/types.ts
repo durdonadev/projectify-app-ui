@@ -1,7 +1,6 @@
-import React from "react";
 import { IconName } from "../Icon";
 
-type BadgeColors =
+export type BadgeColors =
     | "violet"
     | "orange"
     | "green"
@@ -21,14 +20,11 @@ interface BadgePropsBase {
     variant?: BadgeVariant;
     status?: boolean;
     className?: string;
-    icon?: React.ReactNode;
-
     iconName?: IconName;
 }
 
 type ExclusiveBadgeProps =
-    | { status?: BadgePropsBase["status"]; icon?: never; iconName?: never }
-    | { icon?: BadgePropsBase["icon"]; status?: never; iconName?: never }
-    | { iconName?: BadgePropsBase["iconName"]; status?: never; icon?: never };
+    | { status?: BadgePropsBase["status"]; iconName?: never }
+    | { iconName?: BadgePropsBase["iconName"]; status?: never };
 
 export type BadgeProps = BadgePropsBase & ExclusiveBadgeProps;
