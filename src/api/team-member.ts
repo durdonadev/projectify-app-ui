@@ -206,6 +206,30 @@ class TeamMemberService {
             throw error;
         }
     }
+
+    async deactivate(teamMemberId: string) {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(
+                `${this.url}/${teamMemberId}/deactivate`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${authToken}`
+                    }
+                }
+            );
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export const teamMemberService = new TeamMemberService();
