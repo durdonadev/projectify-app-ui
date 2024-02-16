@@ -14,9 +14,12 @@ import {
     TableHeadCell,
     TableRow
 } from "../../../design-system/Table";
-import { TeamMember, TeamMemberStatus } from "../../../types";
+import { TeamMember } from "../../../types";
 import { useState } from "react";
 import { DeleteTeamMemberModal } from "./DeleteTeamMemberModal";
+import { DeactivateTeamMemberModal } from "./DeactivateTeamMemberModal";
+import { ReactivateTeamMemberModal } from "./ReactivateTeamMemberModal";
+import { EditTeamMemberModal } from "./EditTeamMemberModal";
 
 type TeamMembersTableProps = {
     data: TeamMember[];
@@ -61,7 +64,13 @@ const mapsStatusToBadgeColors = {
 
 const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
     const [selectedTeamMemberId, setSelectedTeamMemberId] = useState("");
+    const [showEditTeamMemberModal, setShowEditTeamMemberModal] =
+        useState(false);
     const [showDeleteTeamMemberModal, setShowDeleteTeamMemberModal] =
+        useState(false);
+    const [showDeactivateTeamMemberModal, setShowDeactivateTeamMemberModal] =
+        useState(false);
+    const [showReactivateTeamMemberModal, setShowReactivateTeamMemberModal] =
         useState(false);
 
     const onSelectActionCellMenu = (
@@ -69,8 +78,17 @@ const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
         action: TeamMemberActions
     ) => {
         setSelectedTeamMemberId(teamMemberId);
+        if (action === "edit") {
+            setShowEditTeamMemberModal(true);
+        }
         if (action === "delete") {
             setShowDeleteTeamMemberModal(true);
+        }
+        if (action === "deactivate") {
+            setShowDeactivateTeamMemberModal(true);
+        }
+        if (action === "reactivate") {
+            setShowReactivateTeamMemberModal(true);
         }
     };
     return (
@@ -165,10 +183,25 @@ const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
                     })}
                 </TableBody>
             </Table>
+            <EditTeamMemberModal
+                show={showEditTeamMemberModal}
+                closeModal={() => setShowEditTeamMemberModal(false)}
+                teamMemberId={selectedTeamMemberId}
+            />
             <DeleteTeamMemberModal
                 show={showDeleteTeamMemberModal}
                 teamMemberId={selectedTeamMemberId}
                 closeModal={() => setShowDeleteTeamMemberModal(false)}
+            />
+            <DeactivateTeamMemberModal
+                show={showDeactivateTeamMemberModal}
+                teamMemberId={selectedTeamMemberId}
+                closeModal={() => setShowDeactivateTeamMemberModal(false)}
+            />
+            <ReactivateTeamMemberModal
+                show={showReactivateTeamMemberModal}
+                teamMemberId={selectedTeamMemberId}
+                closeModal={() => setShowReactivateTeamMemberModal(false)}
             />
         </>
     );

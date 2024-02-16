@@ -6,6 +6,14 @@ interface CreatePasswordInput {
     passwordConfirm: string;
 }
 
+export type TeamMemberUpdateInput = {
+    firstName?: string;
+    lastName?: string;
+    position?: string;
+    email?: string;
+    joinDate?: Date;
+};
+
 type SignInInput = {
     email: string;
     password: string;
@@ -198,6 +206,76 @@ class TeamMemberService {
                 }
             });
 
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async deactivate(teamMemberId: string) {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(
+                `${this.url}/${teamMemberId}/deactivate`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${authToken}`
+                    }
+                }
+            );
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async reactivate(teamMemberId: string) {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(
+                `${this.url}/${teamMemberId}/reactivate`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${authToken}`
+                    }
+                }
+            );
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async update(teamMemberId: string, input: TeamMemberUpdateInput) {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(`${this.url}/${teamMemberId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${authToken}`
+                },
+                body: JSON.stringify(input)
+            });
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message);
