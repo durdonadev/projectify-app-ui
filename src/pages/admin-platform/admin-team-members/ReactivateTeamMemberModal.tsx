@@ -1,32 +1,32 @@
 import toast from "react-hot-toast";
 import { teamMemberService } from "../../../api";
 import { useStore } from "../../../hooks";
-import { Actions, AdminDeactivateTeamMemberAction } from "../../../store";
+import { Actions, AdminReactivateTeamMemberAction } from "../../../store";
 import { ConfirmationModal } from "../../components";
 
-type DeactivateTeamMemberModalProps = {
+type ReactivateTeamMemberModalProps = {
     show: boolean;
     teamMemberId: string;
     closeModal: () => void;
 };
 
-const DeactivateTeamMemberModal: React.FC<DeactivateTeamMemberModalProps> = ({
+const ReactivateTeamMemberModal: React.FC<ReactivateTeamMemberModalProps> = ({
     show,
     closeModal,
     teamMemberId
 }) => {
     const { dispatch } = useStore();
-    const deactivateTeamMember = () => {
+    const reactivateTeamMember = () => {
         teamMemberService
-            .deactivate(teamMemberId)
+            .reactivate(teamMemberId)
             .then((_) => {
-                const action: AdminDeactivateTeamMemberAction = {
-                    type: Actions.ADMIN_DEACTIVATE_TEAM_MEMBER,
-                    payload: { id: teamMemberId, status: "DEACTIVATED" }
+                const action: AdminReactivateTeamMemberAction = {
+                    type: Actions.ADMIN_REACTIVATE_TEAM_MEMBER,
+                    payload: { id: teamMemberId, status: "ACTIVE" }
                 };
                 dispatch(action);
                 closeModal();
-                toast.success("Team Member has been successfully deactivated");
+                toast.success("Team Member has been successfully reactivated");
             })
             .catch((e) => {
                 closeModal();
@@ -36,12 +36,12 @@ const DeactivateTeamMemberModal: React.FC<DeactivateTeamMemberModalProps> = ({
     };
     return (
         <ConfirmationModal
-            confirmationMessage="Are you sure you want to deactivate a team member?"
+            confirmationMessage="Are you sure you want to reactivate a team member?"
             show={show}
             cancel={closeModal}
-            onConfirm={deactivateTeamMember}
+            onConfirm={reactivateTeamMember}
         />
     );
 };
 
-export { DeactivateTeamMemberModal };
+export { ReactivateTeamMemberModal };

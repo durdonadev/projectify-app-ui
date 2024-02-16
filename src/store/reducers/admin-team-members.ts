@@ -6,7 +6,8 @@ import {
     AdminPopulateTeamMembersAction,
     AdminAddTeamMemberAction,
     AdminRemoveTeamMemberAction,
-    AdminDeactivateTeamMemberAction
+    AdminDeactivateTeamMemberAction,
+    AdminReactivateTeamMemberAction
 } from "../actions";
 
 const adminTeamMembersReducer = produce(
@@ -35,14 +36,27 @@ const adminTeamMembersReducer = produce(
                 const payload =
                     action.payload as AdminDeactivateTeamMemberAction["payload"];
 
-                    for (let i = 0; i < draft.length; i++) {
-                        const teamMember = draft[i];
-                        if (teamMember.id === payload.id) {
-                            teamMember.status = payload.status;
-                            break;
-                        }
+                for (let i = 0; i < draft.length; i++) {
+                    const teamMember = draft[i];
+                    if (teamMember.id === payload.id) {
+                        teamMember.status = payload.status;
+                        break;
                     }
-                    return draft;
+                }
+                return draft;
+            }
+            case Actions.ADMIN_REACTIVATE_TEAM_MEMBER: {
+                const payload =
+                    action.payload as AdminReactivateTeamMemberAction["payload"];
+
+                for (let i = 0; i < draft.length; i++) {
+                    const teamMember = draft[i];
+                    if (teamMember.id === payload.id) {
+                        teamMember.status = payload.status;
+                        break;
+                    }
+                }
+                return draft;
             }
             default:
                 return draft;
