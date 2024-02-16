@@ -51,7 +51,7 @@ const AdminTasksPage = () => {
             {!adminPersonalTasks.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noTask}
-                    text="You don’t have any tasks yet!"
+                    text="You don't have any tasks yet!"
                     buttonText="Add a Task"
                     buttonAction={() => setShowCreateTaskModal(true)}
                 />

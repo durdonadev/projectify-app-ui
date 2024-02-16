@@ -7,7 +7,8 @@ import {
     AdminAddTeamMemberAction,
     AdminRemoveTeamMemberAction,
     AdminDeactivateTeamMemberAction,
-    AdminReactivateTeamMemberAction
+    AdminReactivateTeamMemberAction,
+    AdminUpdateTeamMemberAction
 } from "../actions";
 
 const adminTeamMembersReducer = produce(
@@ -53,6 +54,19 @@ const adminTeamMembersReducer = produce(
                     const teamMember = draft[i];
                     if (teamMember.id === payload.id) {
                         teamMember.status = payload.status;
+                        break;
+                    }
+                }
+                return draft;
+            }
+            case Actions.ADMIN_UPDATE_TEAM_MEMBER: {
+                const payload =
+                    action.payload as AdminUpdateTeamMemberAction["payload"];
+
+                for (let i = 0; i < draft.length; i++) {
+                    const teamMember = draft[i];
+                    if (teamMember.id === payload.id) {
+                        draft[i] = payload;
                         break;
                     }
                 }
