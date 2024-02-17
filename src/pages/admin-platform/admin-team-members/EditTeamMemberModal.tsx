@@ -7,7 +7,8 @@ import {
     Button,
     Input,
     DatePickerV1,
-    Select
+    Select,
+    Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
 import { TeamMemberStatus } from "../../../types";
@@ -15,6 +16,7 @@ import { TeamMemberUpdateInput, teamMemberService } from "../../../api";
 import toast from "react-hot-toast";
 import { Actions, AdminUpdateTeamMemberAction } from "../../../store";
 import { positions } from "./CreateTeamMemberModal";
+import { ChangePasswordModal } from "./ChangePasswordModal";
 
 type EditTeamMemberModalProps = {
     show: boolean;
@@ -31,6 +33,25 @@ const Inputs = styled.div`
     flex-direction: column;
     gap: var(--space-16);
     margin-bottom: var(--space-24);
+`;
+
+const ActionLink = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-24);
+    align-items: center;
+    cursor: pointer;
+
+    .plus-icon {
+        fill: var(--primary-500);
+        height: 1.6rem;
+        width: 1.6rem;
+        margin-right: 0.6rem;
+    }
+
+    .update-password__link {
+        color: var(--primary-500);
+    }
 `;
 
 const Buttons = styled.div`
@@ -54,10 +75,11 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     const [position, setPosition] = useState("");
     const [status, setStatus] = useState<TeamMemberStatus>();
     const [joinDate, setJoinDate] = useState<Date>();
-    // const [password, setPassword] = useState("");
-    // const [newassword, setNewPassword] = useState("");
-    // const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+
+    const [selectedTeamMemberId, setSelectedTeamMemberId] = useState("");
+    const [showChangePasswordModal, setShowChangePasswordModal] =
+        useState(false);
 
     useEffect(() => {
         const teamMember = adminTeamMembers.find(
@@ -73,6 +95,11 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
             setJoinDate(parseISO((teamMember?.joinDate).toString()));
         }
     }, [teamMemberId]);
+
+    const handleOnClickUpdatePassword = (teamMemberId: string) => {
+        setSelectedTeamMemberId(teamMemberId);
+        setShowChangePasswordModal(true);
+    };
 
     const updateTeamMember = () => {
         const updatedTeamMember: TeamMemberUpdateInput = {
@@ -149,6 +176,22 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                     onChange={(date) => setJoinDate(date)}
                 />
             </Inputs>
+            <ActionLink
+                onClick={() => handleOnClickUpdatePassword(teamMemberId)}
+            >
+                <Icon iconName="plus" className="plus-icon" />
+                <Typography
+                    variant="paragraphSM"
+                    className="update-password__link"
+                >
+                    Update Password
+                </Typography>
+                <ChangePasswordModal
+                    show={showChangePasswordModal}
+                    teamMemberId={selectedTeamMemberId}
+                    closeModal={() => setShowChangePasswordModal(false)}
+                />
+            </ActionLink>
             <Buttons>
                 <Button
                     color="secondary"

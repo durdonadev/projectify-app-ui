@@ -14,6 +14,11 @@ export type TeamMemberUpdateInput = {
     joinDate?: Date;
 };
 
+export type TeamMemberChangePasswordInput = {
+    newPassword: string;
+    newPasswordConfirm: string;
+};
+
 type SignInInput = {
     email: string;
     password: string;
@@ -276,6 +281,35 @@ class TeamMemberService {
                 },
                 body: JSON.stringify(input)
             });
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async changePasswordByAdmin(
+        teamMemberId: string,
+        input: TeamMemberChangePasswordInput
+    ) {
+        console.log(teamMemberId);
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(
+                `${this.url}/${teamMemberId}/change-password`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(input)
+                }
+            );
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message);

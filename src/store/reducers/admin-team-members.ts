@@ -8,7 +8,8 @@ import {
     AdminRemoveTeamMemberAction,
     AdminDeactivateTeamMemberAction,
     AdminReactivateTeamMemberAction,
-    AdminUpdateTeamMemberAction
+    AdminUpdateTeamMemberAction,
+    AdminChanePasswordTeamMemberAction
 } from "../actions";
 
 const adminTeamMembersReducer = produce(
@@ -67,6 +68,19 @@ const adminTeamMembersReducer = produce(
                     const teamMember = draft[i];
                     if (teamMember.id === payload.id) {
                         draft[i] = payload;
+                        break;
+                    }
+                }
+                return draft;
+            }
+            case Actions.ADMIN_CHANGE_PASSWORD_TEAM_MEMBER: {
+                const payload =
+                    action.payload as AdminChanePasswordTeamMemberAction["payload"];
+
+                for (let i = 0; i < draft.length; i++) {
+                    const teamMember = draft[i];
+                    if (teamMember.id === payload.id) {
+                        teamMember.password = payload.password;
                         break;
                     }
                 }

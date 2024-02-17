@@ -21,7 +21,8 @@ export enum Actions {
     ADMIN_REMOVE_TEAM_MEMBER = "ADMIN_REMOVE_TEAM_MEMBER",
     ADMIN_DEACTIVATE_TEAM_MEMBER = "ADMIN_DEACTIVATE_TEAM_MEMBER",
     ADMIN_REACTIVATE_TEAM_MEMBER = "ADMIN_REACTIVATE_TEAM_MEMBER",
-    ADMIN_UPDATE_TEAM_MEMBER = "ADMIN_UPDATE_TEAM_MEMBER"
+    ADMIN_UPDATE_TEAM_MEMBER = "ADMIN_UPDATE_TEAM_MEMBER",
+    ADMIN_CHANGE_PASSWORD_TEAM_MEMBER = "ADMIN_CHANGE_PASSWORD_TEAM_MEMBER"
 }
 
 export interface InitUserAction {
@@ -101,6 +102,14 @@ export type AdminUpdateTeamMemberAction = {
     payload: TeamMember;
 };
 
+export type AdminChanePasswordTeamMemberAction = {
+    type: Actions.ADMIN_CHANGE_PASSWORD_TEAM_MEMBER;
+    payload: {
+        id: string;
+        password: string;
+    };
+};
+
 export type ActionType =
     | InitUserAction
     | ResetStateAction
@@ -114,4 +123,5 @@ export type ActionType =
     | AdminRemoveTeamMemberAction
     | AdminDeactivateTeamMemberAction
     | AdminReactivateTeamMemberAction
-    | AdminUpdateTeamMemberAction;
+    | AdminUpdateTeamMemberAction
+    | AdminChanePasswordTeamMemberAction;
