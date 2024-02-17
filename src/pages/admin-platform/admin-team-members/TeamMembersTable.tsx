@@ -91,6 +91,7 @@ const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
             setShowReactivateTeamMemberModal(true);
         }
     };
+
     return (
         <>
             <Table>

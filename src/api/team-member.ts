@@ -14,6 +14,11 @@ export type TeamMemberUpdateInput = {
     joinDate?: Date;
 };
 
+export type TeamMemberChangePasswordInput = {
+    newPassword: string;
+    newPasswordConfirm: string;
+};
+
 type SignInInput = {
     email: string;
     password: string;
@@ -285,7 +290,11 @@ class TeamMemberService {
         }
     }
 
-    async changePasswordByAdmin(teamMemberId: string) {
+    async changePasswordByAdmin(
+        teamMemberId: string,
+        input: TeamMemberChangePasswordInput
+    ) {
+        console.log(teamMemberId);
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
@@ -297,7 +306,8 @@ class TeamMemberService {
                     headers: {
                         "Content-Type": "application/json",
                         authorization: `Bearer ${authToken}`
-                    }
+                    },
+                    body: JSON.stringify(input)
                 }
             );
             if (!response.ok) {
