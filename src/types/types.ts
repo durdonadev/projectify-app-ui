@@ -46,6 +46,7 @@ export interface TeamMember {
     position: string;
     email: string;
     joinDate: Date;
+    password?: string;
 }
 
 export interface Project {
