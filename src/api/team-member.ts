@@ -1,18 +1,15 @@
-import { TeamMember, TeamMemberUser } from "../types";
+import {
+    AdminTeamMemberStatusChange,
+    TeamMember,
+    TeamMemberUpdate,
+    TeamMemberUser
+} from "../types";
 
 interface CreatePasswordInput {
     email: string;
     password: string;
     passwordConfirm: string;
 }
-
-export type TeamMemberUpdateInput = {
-    firstName?: string;
-    lastName?: string;
-    position?: string;
-    email?: string;
-    joinDate?: Date;
-};
 
 export type TeamMemberChangePasswordInput = {
     newPassword: string;
@@ -220,21 +217,23 @@ class TeamMemberService {
         }
     }
 
-    async deactivate(teamMemberId: string) {
+    async changeStatus(
+        teamMemberId: string,
+        changeStatus: AdminTeamMemberStatusChange
+    ) {
+        const rawAuthToken = localStorage.getItem("authToken");
+        const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
         try {
-            const rawAuthToken = localStorage.getItem("authToken");
-            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-
             const response = await fetch(
-                `${this.url}/${teamMemberId}/deactivate`,
+                `${this.url}/${teamMemberId}/${changeStatus}`,
                 {
                     method: "PATCH",
                     headers: {
-                        "Content-Type": "application/json",
                         authorization: `Bearer ${authToken}`
                     }
                 }
             );
+
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message);
@@ -244,43 +243,20 @@ class TeamMemberService {
         }
     }
 
-    async reactivate(teamMemberId: string) {
+    async update(teamMemberId: string, updateData: TeamMemberUpdate) {
+        const rawAuthToken = localStorage.getItem("authToken");
+        const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
         try {
-            const rawAuthToken = localStorage.getItem("authToken");
-            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-
-            const response = await fetch(
-                `${this.url}/${teamMemberId}/reactivate`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        authorization: `Bearer ${authToken}`
-                    }
-                }
-            );
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message);
-            }
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async update(teamMemberId: string, input: TeamMemberUpdateInput) {
-        try {
-            const rawAuthToken = localStorage.getItem("authToken");
-            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-
-            const response = await fetch(`${this.url}/${teamMemberId}`, {
+            const response = await fetch(`${this.url}/${teamMemberId}/update`, {
                 method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json",
-                    authorization: `Bearer ${authToken}`
+                    authorization: `Bearer ${authToken}`,
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(input)
+                body: JSON.stringify(updateData)
             });
+
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message);
