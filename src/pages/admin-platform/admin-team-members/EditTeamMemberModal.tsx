@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 import { parseISO } from "date-fns";
 import {
     Modal,
@@ -7,15 +8,12 @@ import {
     Button,
     Input,
     DatePickerV1,
-    Select,
     Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
 import { TeamMemberStatus } from "../../../types";
-import { TeamMemberUpdateInput, teamMemberService } from "../../../api";
-import toast from "react-hot-toast";
+import { teamMemberService } from "../../../api";
 import { Actions, AdminUpdateTeamMemberAction } from "../../../store";
-import { positions } from "./CreateTeamMemberModal";
 import { ChangePasswordModal } from "./ChangePasswordModal";
 
 type EditTeamMemberModalProps = {
@@ -64,33 +62,25 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     closeModal,
     teamMemberId
 }) => {
-    const {
-        dispatch,
-        state: { adminTeamMembers }
-    } = useStore();
-
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
     const [position, setPosition] = useState("");
-    const [status, setStatus] = useState<TeamMemberStatus>();
     const [joinDate, setJoinDate] = useState<Date>();
-    const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+    const {
+        dispatch,
+        state: { teamMembers }
+    } = useStore();
 
     const [selectedTeamMemberId, setSelectedTeamMemberId] = useState("");
     const [showChangePasswordModal, setShowChangePasswordModal] =
         useState(false);
 
     useEffect(() => {
-        const teamMember = adminTeamMembers.find(
-            (teamMember) => teamMember.id === teamMemberId
-        );
+        const teamMember = teamMembers[teamMemberId];
 
         if (teamMember) {
             setFirstName(teamMember.firstName);
             setLastName(teamMember.lastName);
-            setEmail(teamMember.email);
-            setStatus(teamMember.status);
             setPosition(teamMember.position);
             setJoinDate(parseISO((teamMember?.joinDate).toString()));
         }
@@ -102,36 +92,26 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     };
 
     const updateTeamMember = () => {
-        const updatedTeamMember: TeamMemberUpdateInput = {
+        const updatedTeamMember = {
             firstName: firstName,
             lastName: lastName,
             position: position,
-            email: email,
             joinDate: joinDate
         };
-        setIsFormSubmitting(true);
+
         teamMemberService
             .update(teamMemberId, updatedTeamMember)
             .then((_) => {
-                setIsFormSubmitting(false);
                 const action: AdminUpdateTeamMemberAction = {
                     type: Actions.ADMIN_UPDATE_TEAM_MEMBER,
-                    payload: {
-                        id: teamMemberId,
-                        status: status!,
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        position: position,
-                        joinDate: joinDate as Date
-                    }
+                    payload: { data: updatedTeamMember, id: teamMemberId }
                 };
                 dispatch(action);
                 closeModal();
+                toast.success("Team Member has been successfully updated");
             })
             .catch((e) => {
                 const err = e as Error;
-                setIsFormSubmitting(true);
                 toast.error(err.message);
             });
     };
@@ -143,30 +123,28 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
             </EditTeamMemberModalTitle>
             <Inputs>
                 <Input
+                    type="text"
+                    placeholder="First Name"
                     value={firstName}
                     onChange={(value) => setFirstName(value)}
                     shape="rounded"
                     size="lg"
                 />
                 <Input
+                    type="text"
+                    placeholder="Last Name"
                     value={lastName}
                     onChange={(value) => setLastName(value)}
                     shape="rounded"
                     size="lg"
                 />
                 <Input
-                    value={email}
-                    onChange={(value) => setEmail(value)}
-                    shape="rounded"
-                    size="lg"
-                />
-                <Select
-                    options={positions}
-                    onSelect={(option) => setPosition(option.label)}
+                    type="text"
+                    placeholder="Position"
                     value={position}
-                    size="lg"
+                    onChange={(value) => setPosition(value)}
                     shape="rounded"
-                    headerPlaceholder="Select Position"
+                    size="lg"
                 />
                 <DatePickerV1
                     inputSize="lg"
@@ -200,7 +178,6 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                     variant="outlined"
                     fullWidth
                     onClick={closeModal}
-                    disabled={isFormSubmitting}
                 >
                     Cancel
                 </Button>
@@ -210,9 +187,8 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                     color="primary"
                     fullWidth
                     onClick={updateTeamMember}
-                    disabled={isFormSubmitting}
                 >
-                    Update
+                    Save
                 </Button>
             </Buttons>
         </Modal>
