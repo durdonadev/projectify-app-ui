@@ -42,20 +42,9 @@
     list-style-type: none;
     border: 0.15rem solid var(--jaguar-100);
     width: 100%;
-    padding: var(--space-4);
+    padding: var(--space-8) var(--space-4);
     background-color: var(--white);
     z-index: 2;
-
-    max-height: 14.5rem;
-    overflow-y: auto;
-}
-
-.select-medium .select__body {
-    max-height: 16.1rem;
-}
-
-.select-large .select__body {
-    max-height: 17.7rem;
 }
 
 .select-rounded .select__body {

@@ -89,6 +89,7 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     const handleOnClickUpdatePassword = (teamMemberId: string) => {
         setSelectedTeamMemberId(teamMemberId);
         setShowChangePasswordModal(true);
+        // closeModal();
     };
 
     const updateTeamMember = () => {
