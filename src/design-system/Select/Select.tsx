@@ -107,7 +107,6 @@ const Select: React.FC<SelectProps> = (props) => {
                             <li className="select__search">
                                 <Input
                                     shape={shape}
-                                    size="sm"
                                     value={searchText}
                                     onChange={(value) => setSearchText(value)}
                                     placeholder="Search"
