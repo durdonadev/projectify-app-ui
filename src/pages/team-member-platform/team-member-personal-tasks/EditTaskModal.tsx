@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { parseISO } from "date-fns";
+import toast from "react-hot-toast";
 import {
     Modal,
     Typography,
@@ -11,10 +11,10 @@ import {
     Option
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { TaskStatus } from "../../../types";
-import { TaskUpdateInput, teamMemberTasksService } from "../../../api";
-import toast from "react-hot-toast";
+import { TaskStatus, TaskUpdate } from "../../../types";
+import { teamMemberTasksService } from "../../../api";
 import { Actions, UpdateTaskAction } from "../../../store";
+import { toDateObj, toIso8601 } from "../../../utils";
 
 type EditTaskModalProps = {
     show: boolean;
@@ -66,10 +66,10 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
     useEffect(() => {
-        const task = teamMemberPersonalTasks.find((task) => task.id === taskId);
+        const task = teamMemberPersonalTasks[taskId];
 
         if (task) {
-            setTaskDue(parseISO((task?.due).toString()));
+            setTaskDue(toDateObj(task.due));
             setTaskDescription(task.description);
             setTaskTitle(task?.title);
             setSelectedStatus({ value: task.status, label: task.status });
@@ -79,25 +79,22 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({
     }, [taskId]);
 
     const updateTask = () => {
-        const updatedTask: TaskUpdateInput = {
+        const updateData: TaskUpdate = {
             title: taskTitle,
             description: taskDescription,
-            due: taskDue,
+            due: toIso8601(taskDue!),
             status: selectedStatus?.value as TaskStatus
         };
         setIsFormSubmitting(true);
         teamMemberTasksService
-            .updateTask(taskId, updatedTask)
+            .updateTask(taskId, updateData)
             .then((_) => {
                 setIsFormSubmitting(false);
                 const action: UpdateTaskAction = {
                     type: Actions.UPDATE_TASK,
                     payload: {
                         id: taskId,
-                        title: taskTitle,
-                        description: taskDescription,
-                        due: taskDue as Date,
-                        status: selectedStatus?.value as TaskStatus
+                        data: updateData
                     }
                 };
                 dispatch(action);

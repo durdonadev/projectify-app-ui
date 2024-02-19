@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-    NoDataPlaceholder,
-    Page,
-    PageContent,
-    PageHeader
-} from "../../components";
+import { NoDataPlaceholder, PageHeader } from "../../components";
 import { adminTasksService } from "../../../api";
 import { useStore } from "../../../hooks";
 import { Actions, PopulateTasksAction } from "../../../store";
@@ -12,6 +7,7 @@ import { groupTasksByStatus } from "../../../utils";
 import { CreateTaskModal } from "./CreateTaskModal";
 import { Kanban } from "./Kanban";
 import noTask from "../../../assets/illustrations/no-task.svg";
+import toast from "react-hot-toast";
 
 const AdminTasksPage = () => {
     const [isTasksFetching, setIsTasksFetching] = useState(true);
@@ -34,9 +30,10 @@ const AdminTasksPage = () => {
                 };
                 dispatch(action);
             })
-            .catch((error) => {
+            .catch((e) => {
+                const err = e as Error;
                 setIsTasksFetching(false);
-                console.log(error);
+                toast.error(err.message);
             });
     }, []);
 
@@ -44,11 +41,13 @@ const AdminTasksPage = () => {
         return null;
     }
 
-    const groupedTasks = groupTasksByStatus(adminPersonalTasks);
+    const tasksArray = Object.values(adminPersonalTasks);
+
+    const groupedTasks = groupTasksByStatus(tasksArray);
 
     return (
-        <Page>
-            {!adminPersonalTasks.length ? (
+        <>
+            {!tasksArray.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noTask}
                     text="You don't have any tasks yet!"
@@ -56,20 +55,20 @@ const AdminTasksPage = () => {
                     buttonAction={() => setShowCreateTaskModal(true)}
                 />
             ) : (
-                <PageContent>
+                <>
                     <PageHeader
                         pageTitle="Tasks"
                         actionButtonText="Create A Task"
                         actionButtonOnClick={() => setShowCreateTaskModal(true)}
                     />
                     <Kanban groupedTasks={groupedTasks} />
-                </PageContent>
+                </>
             )}
             <CreateTaskModal
                 show={showCreateTaskModal}
                 closeModal={() => setShowCreateTaskModal(false)}
             />
-        </Page>
+        </>
     );
 };
 

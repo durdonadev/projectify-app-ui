@@ -39,6 +39,8 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
+    const isFormSubmittable = newPassword && newPasswordConfirm;
+
     const changePassword = () => {
         const updatedTeamMember: TeamMemberChangePasswordInput = {
             newPassword: newPassword,
@@ -110,7 +112,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
                     color="primary"
                     fullWidth
                     onClick={changePassword}
-                    disabled={isFormSubmitting}
+                    disabled={isFormSubmitting || !isFormSubmittable}
                 >
                     Update
                 </Button>

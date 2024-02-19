@@ -12,6 +12,7 @@ import {
 import { TaskCreateInput, teamMemberTasksService } from "../../../api";
 import { useStore } from "../../../hooks";
 import { Actions, AddTaskAction } from "../../../store";
+import { toIso8601 } from "../../../utils";
 
 type CreateTaskModalProps = {
     show: boolean;
@@ -47,10 +48,11 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
 
     const createTask = () => {
         setIsFormSubmitting(true);
+
         const input: TaskCreateInput = {
             title: taskTitle,
             description: taskDescription,
-            due: taskDue!
+            due: toIso8601(taskDue!)
         };
 
         teamMemberTasksService
@@ -75,7 +77,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
     const closeCreateTaskModal = () => {
         setTaskTitle("");
         setTaskDescription("");
-        setTaskDue(undefined);
+        setTaskDue(new Date());
         closeModal();
     };
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-import { parseISO } from "date-fns";
 import {
     Modal,
     Typography,
@@ -11,10 +10,10 @@ import {
     Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { TeamMemberStatus } from "../../../types";
 import { teamMemberService } from "../../../api";
 import { Actions, AdminUpdateTeamMemberAction } from "../../../store";
 import { ChangePasswordModal } from "./ChangePasswordModal";
+import { toDateObj, toIso8601 } from "../../../utils";
 
 type EditTeamMemberModalProps = {
     show: boolean;
@@ -82,29 +81,30 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
             setFirstName(teamMember.firstName);
             setLastName(teamMember.lastName);
             setPosition(teamMember.position);
-            setJoinDate(parseISO((teamMember?.joinDate).toString()));
+            setJoinDate(toDateObj(teamMember.joinDate));
         }
     }, [teamMemberId]);
 
     const handleOnClickUpdatePassword = (teamMemberId: string) => {
         setSelectedTeamMemberId(teamMemberId);
         setShowChangePasswordModal(true);
+        // closeModal();
     };
 
     const updateTeamMember = () => {
-        const updatedTeamMember = {
+        const updateData = {
             firstName: firstName,
             lastName: lastName,
             position: position,
-            joinDate: joinDate
+            joinDate: toIso8601(joinDate!)
         };
 
         teamMemberService
-            .update(teamMemberId, updatedTeamMember)
+            .update(teamMemberId, updateData)
             .then((_) => {
                 const action: AdminUpdateTeamMemberAction = {
                     type: Actions.ADMIN_UPDATE_TEAM_MEMBER,
-                    payload: { data: updatedTeamMember, id: teamMemberId }
+                    payload: { data: updateData, id: teamMemberId }
                 };
                 dispatch(action);
                 closeModal();
