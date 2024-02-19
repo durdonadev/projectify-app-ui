@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-import { parseISO } from "date-fns";
 import {
     Modal,
     Typography,
@@ -11,10 +10,10 @@ import {
     Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { TeamMemberStatus } from "../../../types";
 import { teamMemberService } from "../../../api";
 import { Actions, AdminUpdateTeamMemberAction } from "../../../store";
 import { ChangePasswordModal } from "./ChangePasswordModal";
+import { formatISO, parseISO } from "date-fns";
 
 type EditTeamMemberModalProps = {
     show: boolean;
@@ -82,7 +81,7 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
             setFirstName(teamMember.firstName);
             setLastName(teamMember.lastName);
             setPosition(teamMember.position);
-            setJoinDate(parseISO((teamMember?.joinDate).toString()));
+            setJoinDate(parseISO(teamMember.joinDate));
         }
     }, [teamMemberId]);
 
