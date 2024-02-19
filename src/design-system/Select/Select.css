@@ -73,7 +73,6 @@
     width: calc(100% - var(--space-2));
     height: 3.2rem;
 }
-
 /* Select Item */
 .select__item {
     height: 3.2rem;
@@ -87,7 +86,6 @@
     cursor: pointer;
     width: calc(100% - var(--space-2));
 }
-
 .select__item:not(:last-child) {
     margin-bottom: var(--space-2);
 }
@@ -151,7 +149,7 @@
 }
 
 .select__items::-webkit-scrollbar {
-    width: 0.6rem;
+    width: 0.4rem;
     border-radius: var(--border-radius-0);
 }
 
@@ -159,6 +157,7 @@
     background: transparent;
     border-radius: var(--border-radius-0);
 }
+
 .select__items::-webkit-scrollbar-thumb {
     background: var(--jaguar-100);
     border-radius: var(--border-radius-0);
