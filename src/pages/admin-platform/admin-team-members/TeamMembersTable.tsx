@@ -1,3 +1,4 @@
+import { useState } from "react";
 import format from "date-fns/format";
 import {
     Badge,
@@ -19,11 +20,10 @@ import {
     AdminTeamMemberActions,
     AdminTeamMemberStatusChange
 } from "../../../types";
-import { useState } from "react";
 import { DeleteTeamMemberModal } from "./DeleteTeamMemberModal";
 import { EditTeamMemberModal } from "./EditTeamMemberModal";
 import { ChangeTeamMemberStatusModal } from "./ChangeTeamMemberStatusModal";
-import { parseISO } from "date-fns";
+import { toDateObj } from "../../../utils";
 
 type TeamMembersTableProps = {
     data: TeamMember[];
@@ -146,7 +146,7 @@ const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
                                         weight="medium"
                                     >
                                         {format(
-                                            parseISO(teamMember.joinDate),
+                                            toDateObj(teamMember.joinDate),
                                             "MMM d, yyyy"
                                         )}
                                     </Typography>
