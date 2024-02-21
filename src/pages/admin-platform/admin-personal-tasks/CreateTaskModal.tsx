@@ -76,7 +76,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
     const closeCreateTaskModal = () => {
         setTaskTitle("");
         setTaskDescription("");
-        setTaskDue(new Date());
+        setTaskDue(undefined);
         closeModal();
     };
 
