@@ -10,9 +10,12 @@ import {
     Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { teamMemberService } from "../../../api";
-import { Actions, AdminUpdateTeamMemberAction } from "../../../store";
-import { ChangePasswordModal } from "./ChangePasswordModal";
+import { TeamMemberChangePasswordInput, teamMemberService } from "../../../api";
+import {
+    Actions,
+    AdminChanePasswordTeamMemberAction,
+    AdminUpdateTeamMemberAction
+} from "../../../store";
 import { toDateObj, toIso8601 } from "../../../utils";
 
 type EditTeamMemberModalProps = {
@@ -65,14 +68,15 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     const [lastName, setLastName] = useState("");
     const [position, setPosition] = useState("");
     const [joinDate, setJoinDate] = useState<Date>();
+    const [newPassword, setNewPassword] = useState("");
+    const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const {
         dispatch,
         state: { teamMembers }
     } = useStore();
 
     const [selectedTeamMemberId, setSelectedTeamMemberId] = useState("");
-    const [showChangePasswordModal, setShowChangePasswordModal] =
-        useState(false);
+    const [showPasswordInputs, setShowPasswordInputs] = useState(false);
 
     useEffect(() => {
         const teamMember = teamMembers[teamMemberId];
@@ -87,8 +91,7 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
 
     const handleOnClickUpdatePassword = (teamMemberId: string) => {
         setSelectedTeamMemberId(teamMemberId);
-        setShowChangePasswordModal(true);
-        // closeModal();
+        setShowPasswordInputs(true);
     };
 
     const updateTeamMember = () => {
@@ -109,6 +112,33 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                 dispatch(action);
                 closeModal();
                 toast.success("Team Member has been successfully updated");
+            })
+            .catch((e) => {
+                const err = e as Error;
+                toast.error(err.message);
+            });
+    };
+
+    const changePassword = () => {
+        const updatedTeamMember: TeamMemberChangePasswordInput = {
+            newPassword: newPassword,
+            newPasswordConfirm: newPasswordConfirm
+        };
+        teamMemberService
+            .changePasswordByAdmin(teamMemberId, updatedTeamMember)
+            .then((_) => {
+                const action: AdminChanePasswordTeamMemberAction = {
+                    type: Actions.ADMIN_CHANGE_PASSWORD_TEAM_MEMBER,
+                    payload: {
+                        id: teamMemberId,
+                        password: newPassword
+                    }
+                };
+                dispatch(action);
+                closeModal();
+                toast.success(
+                    "Team Member Password has been successfully updated"
+                );
             })
             .catch((e) => {
                 const err = e as Error;
@@ -156,6 +186,7 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
             </Inputs>
             <ActionLink
                 onClick={() => handleOnClickUpdatePassword(teamMemberId)}
+                style={{ display: showPasswordInputs ? "none" : "flex" }}
             >
                 <Icon iconName="plus" className="plus-icon" />
                 <Typography
@@ -164,12 +195,27 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                 >
                     Update Password
                 </Typography>
-                <ChangePasswordModal
-                    show={showChangePasswordModal}
-                    teamMemberId={selectedTeamMemberId}
-                    closeModal={() => setShowChangePasswordModal(false)}
-                />
             </ActionLink>
+            {showPasswordInputs && (
+                <Inputs>
+                    <Input
+                        type="password"
+                        value={newPassword}
+                        placeholder="New Password"
+                        onChange={(value) => setNewPassword(value)}
+                        shape="rounded"
+                        size="lg"
+                    />
+                    <Input
+                        type="password"
+                        value={newPasswordConfirm}
+                        placeholder="New Password Confirm"
+                        onChange={(value) => setNewPasswordConfirm(value)}
+                        shape="rounded"
+                        size="lg"
+                    />
+                </Inputs>
+            )}
             <Buttons>
                 <Button
                     color="secondary"
@@ -186,7 +232,12 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
                     shape="rounded"
                     color="primary"
                     fullWidth
-                    onClick={updateTeamMember}
+                    onClick={() => {
+                        updateTeamMember();
+                        if (showPasswordInputs) {
+                            changePassword();
+                        }
+                    }}
                 >
                     Save
                 </Button>
