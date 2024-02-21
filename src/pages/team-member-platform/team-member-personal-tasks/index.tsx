@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { NoDataPlaceholder } from "../../components";
+import { NoDataPlaceholder, PageHeader } from "../../components";
 import noTask from "../../../assets/illustrations/no-task.svg";
 import { teamMemberTasksService } from "../../../api";
 import { useStore } from "../../../hooks";
@@ -8,7 +8,6 @@ import { Actions, PopulateTasksAction } from "../../../store";
 import { groupTasksByStatus } from "../../../utils";
 import { CreateTaskModal } from "./CreateTaskModal";
 import { Kanban } from "./Kanban";
-import { PageHeader } from "./PageHeader";
 import toast from "react-hot-toast";
 
 const PageBase = styled.main`
@@ -70,7 +69,9 @@ const TeamMemberTasksPage = () => {
             ) : (
                 <PageContent>
                     <PageHeader
-                        openCreateTaskModal={() => setShowCreateTaskModal(true)}
+                        pageTitle="Tasks"
+                        actionButtonText="Create A Task"
+                        actionButtonOnClick={() => setShowCreateTaskModal(true)}
                     />
                     <Kanban groupedTasks={groupedTasks} />
                 </PageContent>
