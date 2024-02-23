@@ -8,7 +8,7 @@ import {
     Modal
 } from "../../../design-system";
 import { useState } from "react";
-import { adminProjectsService } from "../../../api";
+import { projectService } from "../../../api";
 import toast from "react-hot-toast";
 import { toIso8601 } from "../../../utils";
 import { Actions, AdminAddProjectAction } from "../../../store";
@@ -59,11 +59,16 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
 
     const isFormSubmittable = name && description && startDate && endDate;
 
-    const resetFields = () => {
+    const clearFields = () => {
         setName("");
         setDescription("");
-        setStartDate(undefined);
-        setEndDate(undefined);
+        setStartDate(null);
+        setEndDate(null);
+    };
+
+    const cancel = () => {
+        clearFields();
+        closeModal();
     };
 
     const createProject = () => {
@@ -73,24 +78,18 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
             startDate: toIso8601(startDate!),
             endDate: toIso8601(endDate!)
         };
-        try {
-            adminProjectsService
-                .create(input)
-                .then((data) => {
-                    const action: AdminAddProjectAction = {
-                        type: Actions.ADMIN_ADD_PROJECT,
-                        payload: data.data
-                    };
-                    dispatch(action);
-                    resetFields();
-                    closeModal();
-                    toast.success("Project has been successfully created");
-                })
-                .catch((e) => {
-                    const err = e as Error;
-                    toast.error(err.message);
-                });
-        } catch (error) {}
+
+        projectService
+            .create(input)
+            .then((data) => {
+                clearFields();
+                closeModal();
+                toast.success("Project has been successfully created"!);
+            })
+            .catch((e) => {
+                const err = e as Error;
+                toast.error(err.message);
+            });
     };
 
     return (
@@ -137,7 +136,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
                     shape="rounded"
                     variant="outlined"
                     fullWidth
-                    onClick={() => closeModal()}
+                    onClick={cancel}
                 >
                     Cancel
                 </Button>
