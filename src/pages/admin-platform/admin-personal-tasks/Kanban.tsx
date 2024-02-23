@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import toast from "react-hot-toast";
 import { GroupedTasks } from "../../../utils";
 import { useStore } from "../../../hooks";
@@ -37,10 +37,10 @@ const TasksColumns = styled.div`
 const TasksColumn = styled.div`
     height: 100%;
     padding: var(--space-24) 0 var(--space-10) var(--space-10);
-    background-color: var(--jaguar-25);
     border-radius: var(--border-radius-16);
     border: 0.15rem solid var(--jaguar-100);
     overflow: auto;
+    background-color: var(--jaguar-25);
 `;
 
 const TasksColumnTitle = styled(Typography)<{ color: string }>`
@@ -110,7 +110,6 @@ const Kanban: React.FC<KanbanProps> = ({ groupedTasks }) => {
                                 {StatusToTitle[groupName as TaskStatus]}{" "}
                                 <span>({groupedTasks[groupName].length})</span>
                             </TasksColumnTitle>
-
                             <KanbanCards>
                                 {groupedTasks[groupName]
                                     .slice(0)
