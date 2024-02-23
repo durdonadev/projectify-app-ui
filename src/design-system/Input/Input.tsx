@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { sizeClassNames, shapeClassNames } from "./clasnames";
 import { trimWhiteSpaces } from "../utils";
 import { Label } from "../Label";
