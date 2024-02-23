@@ -74,7 +74,9 @@ export interface Project {
     id: string;
     name: string;
     description: string;
+    startDate?: string;
+    endDate?: string;
     status: ProjectStatus;
 }
 
-export type ProjectStatus = "ACTIVE" | "ARCHIVED";
+export type ProjectStatus = "ACTIVE" | "ARCHIVED" | "COMPLETED";
