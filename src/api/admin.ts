@@ -18,7 +18,7 @@ type SignInInput = {
     password: string;
 };
 
-export type GetMeResponseType = {
+export type GetMeAPIResponse = {
     data: AdminUser;
 };
 
@@ -119,7 +119,7 @@ class Admin {
         }
     }
 
-    async getMe(): Promise<GetMeResponseType> {
+    async getMe(): Promise<GetMeAPIResponse> {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";

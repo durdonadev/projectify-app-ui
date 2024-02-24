@@ -10,7 +10,7 @@ import {
     Icon
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { TeamMemberChangePasswordInput, teamMemberService } from "../../../api";
+import { ChangePasswordInput, teamMemberService } from "../../../api";
 import {
     Actions,
     AdminChanePasswordTeamMemberAction,
@@ -120,7 +120,7 @@ const EditTeamMemberModal: React.FC<EditTeamMemberModalProps> = ({
     };
 
     const changePassword = () => {
-        const updatedTeamMember: TeamMemberChangePasswordInput = {
+        const updatedTeamMember: ChangePasswordInput = {
             newPassword: newPassword,
             newPasswordConfirm: newPasswordConfirm
         };

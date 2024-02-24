@@ -9,7 +9,7 @@ import {
     Button
 } from "../../../design-system";
 
-import { TaskCreateInput, teamMemberTasksService } from "../../../api";
+import { CreateInput, teamMemberTasksService } from "../../../api";
 import { useStore } from "../../../hooks";
 import { Actions, AddTaskAction } from "../../../store";
 import { toIso8601 } from "../../../utils";
@@ -49,7 +49,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
     const createTask = () => {
         setIsFormSubmitting(true);
 
-        const input: TaskCreateInput = {
+        const input: CreateInput = {
             title: taskTitle,
             description: taskDescription,
             due: toIso8601(taskDue!)
