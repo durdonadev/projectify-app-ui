@@ -8,10 +8,7 @@ const adminProjectsReducer = produce(
             case Actions.ADMIN_ADD_PROJECT: {
                 const payload =
                     action.payload as AdminAddProjectAction["payload"];
-                console.log(payload);
-                console.log(draft);
                 draft[payload.id] = payload;
-
                 return draft;
             }
 

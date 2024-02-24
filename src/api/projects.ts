@@ -6,9 +6,7 @@ type CreateAPIResponse = {
 };
 
 interface GetAllProjectsResponse {
-    data: {
-        projects: Project[];
-    };
+    projects: Project[];
 }
 
 class ProjectService {

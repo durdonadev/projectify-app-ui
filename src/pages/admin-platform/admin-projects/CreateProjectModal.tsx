@@ -78,18 +78,24 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
             startDate: toIso8601(startDate!),
             endDate: toIso8601(endDate!)
         };
-
-        projectService
-            .create(input)
-            .then((data) => {
-                clearFields();
-                closeModal();
-                toast.success("Project has been successfully created"!);
-            })
-            .catch((e) => {
-                const err = e as Error;
-                toast.error(err.message);
-            });
+        try {
+            projectService
+                .create(input)
+                .then((data) => {
+                    const action: AdminAddProjectAction = {
+                        type: Actions.ADMIN_ADD_PROJECT,
+                        payload: data.data
+                    };
+                    dispatch(action);
+                    clearFields();
+                    closeModal();
+                    toast.success("Project has been successfully created");
+                })
+                .catch((e) => {
+                    const err = e as Error;
+                    toast.error(err.message);
+                });
+        } catch (error) {}
     };
 
     return (
