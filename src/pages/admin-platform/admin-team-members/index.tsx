@@ -79,7 +79,7 @@ const AdminTeamMembersPage = () => {
             {!teamMembersArr.length ? (
                 <NoDataPlaceholder
                     illustrationUrl={noTeamMember}
-                    text="You don’t have any team members yet!"
+                    text="You don't have any team members yet!"
                     buttonText="Add a Team Member"
                     buttonAction={() => setShowCreateTeamMemberModal(true)}
                 ></NoDataPlaceholder>
