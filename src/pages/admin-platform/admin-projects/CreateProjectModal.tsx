@@ -11,7 +11,7 @@ import { useState } from "react";
 import { projectService } from "../../../api";
 import toast from "react-hot-toast";
 import { toIso8601 } from "../../../utils";
-import { Actions, AdminAddProjectAction } from "../../../store";
+import { Actions, AdminAddProjectsAction } from "../../../store";
 import { useStore } from "../../../hooks";
 
 type CreateProjectModalProps = {
@@ -39,7 +39,6 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
     show,
     closeModal
 }) => {
-    const [showCreateProjectModal, setShowCreateProjectModal] = useState(false);
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [startDate, setStartDate] = useState<Date | null>();
@@ -78,18 +77,24 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
             startDate: toIso8601(startDate!),
             endDate: toIso8601(endDate!)
         };
-
-        projectService
-            .create(input)
-            .then((data) => {
-                clearFields();
-                closeModal();
-                toast.success("Project has been successfully created"!);
-            })
-            .catch((e) => {
-                const err = e as Error;
-                toast.error(err.message);
-            });
+        try {
+            projectService
+                .create(input)
+                .then((data) => {
+                    const action: AdminAddProjectsAction = {
+                        type: Actions.ADMIN_ADD_PROJECT,
+                        payload: data.data
+                    };
+                    dispatch(action);
+                    clearFields();
+                    closeModal();
+                    toast.success("Project has been successfully created");
+                })
+                .catch((e) => {
+                    const err = e as Error;
+                    toast.error(err.message);
+                });
+        } catch (error) {}
     };
 
     return (

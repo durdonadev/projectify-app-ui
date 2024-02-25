@@ -1,15 +1,13 @@
-import { Project } from "../types";
+import { Project, ProjectWithContributors } from "../types";
 
 type CreateInput = Omit<Project, "id" | "status">;
 type CreateAPIResponse = {
     data: Project;
 };
 
-interface GetAllProjectsResponse {
-    data: {
-        projects: Project[];
-    };
-}
+type GetAllAPIResponse = {
+    data: ProjectWithContributors[];
+};
 
 class ProjectService {
     url: string;
@@ -43,7 +41,7 @@ class ProjectService {
         }
     }
 
-    async getAll(): Promise<{ data: GetAllProjectsResponse }> {
+    async getAll(): Promise<GetAllAPIResponse> {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";

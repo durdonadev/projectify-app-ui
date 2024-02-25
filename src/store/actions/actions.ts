@@ -1,6 +1,7 @@
 import {
     AdminUser,
     Project,
+    ProjectWithContributors,
     Task,
     TaskStatus,
     TaskUpdate,
@@ -26,7 +27,8 @@ export enum Actions {
     ADMIN_UPDATE_TEAM_MEMBER = "ADMIN_UPDATE_TEAM_MEMBER",
     ADMIN_CHANGE_PASSWORD_TEAM_MEMBER = "ADMIN_CHANGE_PASSWORD_TEAM_MEMBER",
 
-    ADMIN_ADD_PROJECT = "ADMIN_ADD_PROJECT"
+    ADMIN_ADD_PROJECT = "ADMIN_ADD_PROJECT",
+    ADMIN_POPULATE_PROJECTS = "ADMIN_POPULATE_PROJECTS"
 }
 
 export interface InitUserAction {
@@ -112,9 +114,14 @@ export type AdminChanePasswordTeamMemberAction = {
     };
 };
 
-export type AdminAddProjectAction = {
+export type AdminAddProjectsAction = {
     type: Actions.ADMIN_ADD_PROJECT;
     payload: Project;
+};
+
+export type AdminPopulateProjectsAction = {
+    type: Actions.ADMIN_POPULATE_PROJECTS;
+    payload: ProjectWithContributors[];
 };
 
 export type ActionType =
@@ -131,4 +138,5 @@ export type ActionType =
     | AdminChangeTeamMemberStatusAction
     | AdminUpdateTeamMemberAction
     | AdminChanePasswordTeamMemberAction
-    | AdminAddProjectAction;
+    | AdminAddProjectsAction
+    | AdminPopulateProjectsAction;
