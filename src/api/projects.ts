@@ -1,13 +1,13 @@
-import { Project } from "../types";
+import { Project, ProjectWithContributors } from "../types";
 
 type CreateInput = Omit<Project, "id" | "status">;
 type CreateAPIResponse = {
     data: Project;
 };
 
-interface GetAllAPIResponse {
-    data: Project[];
-}
+type GetAllAPIResponse = {
+    data: ProjectWithContributors[];
+};
 
 class ProjectService {
     url: string;

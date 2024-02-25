@@ -6,26 +6,40 @@ import {
     BadgeColors,
     Menu,
     MenuOption,
-    Typography
-} from "../../../design-system";
-import {
+    Typography,
     Table,
     TableBody,
     TableBodyCell,
     TableHead,
     TableHeadCell,
-    TableRow
-} from "../../../design-system/Table";
-import { AdminProjectActions, Project } from "../../../types";
-import { toDateObj } from "../../../utils";
+    TableRow,
+    LinearProgress
+} from "../../../design-system";
+import { AdminProjectActions, ProjectWithContributors } from "../../../types";
+import { formatAsMMMddYYYY, toDateObj } from "../../../utils";
 import { Scrollable } from "../../components";
 
 type ProjectsTableProps = {
-    data: Project[];
+    data: ProjectWithContributors[];
 };
 
 const TableContainer = styled(Scrollable)`
     height: calc(100% - 13rem);
+`;
+
+const ProjectDescription = styled(Typography)`
+    color: var(--jaguar-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+const AboutProject = styled.div`
+    width: 90%;
+`;
+
+const ProgressWrapper = styled.div`
+    width: 80%;
 `;
 
 const options: MenuOption[] = [
@@ -52,8 +66,8 @@ const allowedActions = {
     COMPLETED: [options[0], options[1]]
 };
 
-const columns = ["30%", "15%", "20%", "30%", "5%"];
-const mapsStatusToBadgeColors = {
+const columns = ["20%", "10%", "20%", "15%", "15%", "10%", "10%"];
+const statusToBadgeColors = {
     ACTIVE: "violet",
     ONHOLD: "orange",
     ARCHIVED: "gray",
@@ -62,11 +76,7 @@ const mapsStatusToBadgeColors = {
 
 const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
     const [selectedProjectId, setSelectedProjectId] = useState("");
-    const [showCompleteProjectModal, setShowECompleteProjectModal] =
-        useState(false);
     const [showEditProjectModal, setShowEditProjectModal] = useState(false);
-    const [showArchiveProjectModal, setShowArchiveProjectModal] =
-        useState(false);
     const [showDeleteProjectModal, setShowDeleteProjectModal] = useState(false);
     const [changeStatus, setChangeStatus] = useState();
     const [showChangeProjectStatusModal, setShowChangeProjectStatusModal] =
@@ -95,12 +105,12 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
             <Table>
                 <TableHead>
                     <TableRow columns={columns}>
-                        <TableHeadCell>
-                            Project name and description
-                        </TableHeadCell>
+                        <TableHeadCell>About</TableHeadCell>
                         <TableHeadCell>Status</TableHeadCell>
-                        <TableHeadCell>Due date</TableHeadCell>
-                        <TableHeadCell>Team members</TableHeadCell>
+                        <TableHeadCell>Progress</TableHeadCell>
+                        <TableHeadCell>Start Date</TableHeadCell>
+                        <TableHeadCell>Deadline</TableHeadCell>
+                        <TableHeadCell>Contributors</TableHeadCell>
                         <TableHeadCell> </TableHeadCell>
                     </TableRow>
                 </TableHead>
@@ -109,23 +119,25 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                         return (
                             <TableRow key={project.id} columns={columns}>
                                 <TableBodyCell>
-                                    <Typography
-                                        variant="paragraphSM"
-                                        weight="medium"
-                                    >
-                                        {project.name}
-                                    </Typography>
-                                    {/* <Typography
-                                        variant="subtitleSM"
-                                        weight="medium"
-                                    >
-                                        {project.description}
-                                    </Typography> */}
+                                    <AboutProject>
+                                        <Typography
+                                            variant="paragraphSM"
+                                            weight="medium"
+                                        >
+                                            {project.name}
+                                        </Typography>
+                                        <ProjectDescription
+                                            variant="subtitleSM"
+                                            weight="medium"
+                                        >
+                                            {project.description}
+                                        </ProjectDescription>
+                                    </AboutProject>
                                 </TableBodyCell>
                                 <TableBodyCell>
                                     <Badge
                                         color={
-                                            mapsStatusToBadgeColors[
+                                            statusToBadgeColors[
                                                 project.status
                                             ] as BadgeColors
                                         }
@@ -136,14 +148,20 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                                     />
                                 </TableBodyCell>
                                 <TableBodyCell>
+                                    <ProgressWrapper>
+                                        <LinearProgress
+                                            value={75}
+                                            color="blue"
+                                            shape="rounded"
+                                        />
+                                    </ProgressWrapper>
+                                </TableBodyCell>
+                                <TableBodyCell>
                                     <Typography
                                         variant="paragraphSM"
                                         weight="medium"
                                     >
-                                        {format(
-                                            toDateObj(project.endDate),
-                                            "MMM d, yyyy"
-                                        )}
+                                        {formatAsMMMddYYYY(project.startDate)}
                                     </Typography>
                                 </TableBodyCell>
                                 <TableBodyCell>
@@ -151,18 +169,21 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                                         variant="paragraphSM"
                                         weight="medium"
                                     >
-                                        Team Members
+                                        {formatAsMMMddYYYY(project.endDate)}
+                                    </Typography>
+                                </TableBodyCell>
+                                <TableBodyCell>
+                                    <Typography
+                                        variant="paragraphSM"
+                                        weight="medium"
+                                    >
+                                        {project.contributers?.length || 0}
                                     </Typography>
                                 </TableBodyCell>
                                 <TableBodyCell>
                                     <Menu
                                         options={allowedActions[project.status]}
-                                        onSelect={(value) =>
-                                            onSelectActionCellMenu(
-                                                project.id,
-                                                value as AdminProjectActions
-                                            )
-                                        }
+                                        onSelect={(value) => console.log(value)}
                                     />
                                 </TableBodyCell>
                             </TableRow>

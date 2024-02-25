@@ -1,6 +1,7 @@
 import {
     AdminUser,
     Project,
+    ProjectWithContributors,
     Task,
     TaskStatus,
     TaskUpdate,
@@ -120,7 +121,7 @@ export type AdminAddProjectsAction = {
 
 export type AdminPopulateProjectsAction = {
     type: Actions.ADMIN_POPULATE_PROJECTS;
-    payload: Project[];
+    payload: ProjectWithContributors[];
 };
 
 export type ActionType =

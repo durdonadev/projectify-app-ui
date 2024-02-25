@@ -95,7 +95,6 @@ export interface Project {
     startDate: string;
     endDate: string;
 }
-
 export interface ProjectWithContributors extends Project {
-    contributers: ProjectContributor[];
+    contributers?: ProjectContributor[];
 }

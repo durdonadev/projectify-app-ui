@@ -17,6 +17,7 @@ const AdminProjectsPage = () => {
     const [isProjectsFetching, setIsProjectsFetching] = useState(true);
     const [statusFilter, setStatusFilter] = useState("");
     const [searchText, setSearchText] = useState("");
+    const [sortedBy, setSortedBy] = useState("");
 
     const {
         state: { projects },
@@ -43,6 +44,10 @@ const AdminProjectsPage = () => {
 
     const handleSetStatusFilter = (filter: Option) => {
         setStatusFilter(filter.value as ProjectStatus);
+    };
+
+    const handleSetSortBy = (sortedBy: Option) => {
+        setSortedBy(sortedBy.value as string);
     };
 
     if (isProjectsFetching) return null;
@@ -92,10 +97,10 @@ const AdminProjectsPage = () => {
                         }
                     />
                     <ProjectFilters
-                        setSelectedStatus={handleSetStatusFilter}
+                        sortedBy={sortedBy}
+                        setSortedBy={handleSetSortBy}
                         selectedStatus={statusFilter}
-                        searchText={searchText}
-                        setSearchText={setSearchText}
+                        setSelectedStatus={handleSetStatusFilter}
                     />
                     <ProjectsTable data={filteredProjects} />
                 </>
