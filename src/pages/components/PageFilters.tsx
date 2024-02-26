@@ -5,6 +5,7 @@ const PageFilters = styled.section`
     align-items: center;
     gap: var(--space-16);
     margin-bottom: var(--space-20);
+
     > * {
         flex-basis: 20rem;
     }

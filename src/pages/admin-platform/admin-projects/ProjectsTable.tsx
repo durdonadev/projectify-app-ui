@@ -16,7 +16,7 @@ import {
     LinearProgress
 } from "../../../design-system";
 import { AdminProjectActions, ProjectWithContributors } from "../../../types";
-import { formatAsMMMddYYYY, toDateObj } from "../../../utils";
+import { formatAsMMMddYYYY, formatDeadline } from "../../../utils";
 import { Scrollable } from "../../components";
 
 type ProjectsTableProps = {
@@ -41,6 +41,31 @@ const AboutProject = styled.div`
 const ProgressWrapper = styled.div`
     width: 80%;
 `;
+
+const Deadline = styled(Typography)`
+    &.green {
+        color: var(--green-600);
+    }
+    &.red {
+        color: var(--red-orange-600);
+    }
+`;
+
+const renderDeadline = (isoDate: string) => {
+    const formattedDeadline = formatDeadline(isoDate);
+    let className = "";
+    if (formattedDeadline.includes("left")) {
+        className = "red";
+    } else {
+        className = "green";
+    }
+
+    return (
+        <Deadline variant="paragraphSM" weight="medium" className={className}>
+            {formattedDeadline}
+        </Deadline>
+    );
+};
 
 const options: MenuOption[] = [
     {
@@ -169,7 +194,7 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                                         variant="paragraphSM"
                                         weight="medium"
                                     >
-                                        {formatAsMMMddYYYY(project.endDate)}
+                                        {renderDeadline(project.endDate)}
                                     </Typography>
                                 </TableBodyCell>
                                 <TableBodyCell>

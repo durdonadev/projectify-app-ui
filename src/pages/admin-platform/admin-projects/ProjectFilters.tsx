@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input, Option, Select } from "../../../design-system";
+import { Option, Select } from "../../../design-system";
 import React from "react";
 import { PageFilters } from "../../components/PageFilters";
 
@@ -11,7 +11,7 @@ type ProjectFiltersProps = {
 };
 
 const Filters = styled(PageFilters)`
-    .search {
+    .status-filter {
         margin-right: auto;
     }
 `;
@@ -44,7 +44,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
                 shape="rounded"
                 size="md"
                 headerPlaceholder="Filter By Status"
-                className="filter-by-status"
+                className="status-filter"
             />
             <Select
                 value={sortedBy}
@@ -52,7 +52,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({
                 options={sortOptions}
                 shape="rounded"
                 size="md"
-                className="filter-by-due-date"
+                headerPlaceholder="Sort By"
             />
         </Filters>
     );
