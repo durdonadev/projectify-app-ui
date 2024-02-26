@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import format from "date-fns/format";
 import {
     Badge,
-    BadgeColors,
     Menu,
     MenuOption,
     Typography,
@@ -15,13 +13,10 @@ import {
     TableRow,
     LinearProgress
 } from "../../../design-system";
-import {
-    AdminProjectActions,
-    ProjectActions,
-    ProjectWithContributors
-} from "../../../types";
+import { ProjectStatus, ProjectWithContributors } from "../../../types";
 import { formatAsMMMddYYYY, formatDeadline } from "../../../utils";
 import { Scrollable } from "../../components";
+import { ChangeProjectStatusModal } from "./ChangeProjectStatusModal";
 
 type ProjectsTableProps = {
     data: ProjectWithContributors[];
@@ -43,30 +38,32 @@ const renderDeadline = (isoDate: string) => {
     );
 };
 
+const statuses = ["ACTIVE", "COMPLETED", "ARCHIVED", "ONHOLD"];
+
 const options: MenuOption[] = [
     { label: "Edit", iconName: "edit", value: "edit", color: "primary" },
     {
         label: "Reactivate",
         iconName: "play-in-circle",
-        value: "reactivate",
+        value: statuses[0],
         color: "primary"
     },
     {
         label: "Complete",
         iconName: "check-in-circle",
-        value: "complete",
+        value: statuses[1],
         color: "primary"
     },
     {
         label: "Archive",
         iconName: "archive",
-        value: "archive",
+        value: statuses[2],
         color: "danger"
     },
     {
         label: "Put On Hold",
         iconName: "pause-in-circle",
-        value: "onhold",
+        value: statuses[3],
         color: "danger"
     }
 ];
@@ -79,12 +76,12 @@ const allowedActions = {
 };
 
 const columns = ["20%", "10%", "20%", "15%", "15%", "10%", "10%"];
-const statusToBadgeColors = {
-    ACTIVE: "violet",
-    ARCHIVED: "gray",
-    COMPLETED: "green",
-    ONHOLD: "red"
-};
+enum StatusToBadgeColors {
+    ACTIVE = "violet",
+    ARCHIVED = "gray",
+    COMPLETED = "green",
+    ONHOLD = "red"
+}
 
 const TableContainer = styled(Scrollable)`
     height: calc(100% - 13rem);
@@ -118,130 +115,130 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
     const [selectedProjectId, setSelectedProjectId] = useState("");
     const [showEditProjectModal, setShowEditProjectModal] = useState(false);
     const [showDeleteProjectModal, setShowDeleteProjectModal] = useState(false);
-    const [changeStatus, setChangeStatus] = useState();
+    const [changeStatusTo, setChangeStatusTo] = useState<ProjectStatus>();
     const [showChangeProjectStatusModal, setShowChangeProjectStatusModal] =
         useState(false);
 
     const handleOnSelectCellMenu = (
         projectId: string,
-        value: ProjectActions
+        value: ProjectStatus
     ) => {
         setSelectedProjectId(projectId);
+        if (statuses.includes(value)) {
+            setShowChangeProjectStatusModal(true);
+            setChangeStatusTo(value);
+        }
     };
 
     return (
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow columns={columns}>
-                        <TableHeadCell>About</TableHeadCell>
-                        <TableHeadCell>Status</TableHeadCell>
-                        <TableHeadCell>Progress</TableHeadCell>
-                        <TableHeadCell>Start Date</TableHeadCell>
-                        <TableHeadCell>Deadline</TableHeadCell>
-                        <TableHeadCell>Contributors</TableHeadCell>
-                        <TableHeadCell> </TableHeadCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map((project) => {
-                        return (
-                            <TableRow key={project.id} columns={columns}>
-                                <TableBodyCell>
-                                    <AboutProject>
+        <>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow columns={columns}>
+                            <TableHeadCell>About</TableHeadCell>
+                            <TableHeadCell>Status</TableHeadCell>
+                            <TableHeadCell>Progress</TableHeadCell>
+                            <TableHeadCell>Start Date</TableHeadCell>
+                            <TableHeadCell>Deadline</TableHeadCell>
+                            <TableHeadCell>Contributors</TableHeadCell>
+                            <TableHeadCell> </TableHeadCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {data.map((project) => {
+                            console.log(project);
+                            return (
+                                <TableRow key={project.id} columns={columns}>
+                                    <TableBodyCell>
+                                        <AboutProject>
+                                            <Typography
+                                                variant="paragraphSM"
+                                                weight="medium"
+                                            >
+                                                {project.name}
+                                            </Typography>
+                                            <ProjectDescription
+                                                variant="subtitleSM"
+                                                weight="medium"
+                                            >
+                                                {project.description}
+                                            </ProjectDescription>
+                                        </AboutProject>
+                                    </TableBodyCell>
+                                    <TableBodyCell>
+                                        <Badge
+                                            label={project.status}
+                                            color={
+                                                StatusToBadgeColors[
+                                                    project.status
+                                                ]
+                                            }
+                                            variant="outlined"
+                                            shape="rounded"
+                                        />
+                                    </TableBodyCell>
+                                    <TableBodyCell>
+                                        <ProgressWrapper>
+                                            <LinearProgress
+                                                value={project.progress}
+                                                color="blue"
+                                                shape="rounded"
+                                            />
+                                        </ProgressWrapper>
+                                    </TableBodyCell>
+                                    <TableBodyCell>
                                         <Typography
                                             variant="paragraphSM"
                                             weight="medium"
                                         >
-                                            {project.name}
+                                            {formatAsMMMddYYYY(
+                                                project.startDate
+                                            )}
                                         </Typography>
-                                        <ProjectDescription
-                                            variant="subtitleSM"
+                                    </TableBodyCell>
+                                    <TableBodyCell>
+                                        <Typography
+                                            variant="paragraphSM"
                                             weight="medium"
                                         >
-                                            {project.description}
-                                        </ProjectDescription>
-                                    </AboutProject>
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <Badge
-                                        color={
-                                            statusToBadgeColors[
-                                                project.status
-                                            ] as BadgeColors
-                                        }
-                                        label={project.status}
-                                        variant="outlined"
-                                        shape="rounded"
-                                        status
-                                    />
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <ProgressWrapper>
-                                        <LinearProgress
-                                            value={project.progress}
-                                            color="blue"
-                                            shape="rounded"
+                                            {renderDeadline(project.endDate)}
+                                        </Typography>
+                                    </TableBodyCell>
+                                    <TableBodyCell>
+                                        <Typography
+                                            variant="paragraphSM"
+                                            weight="medium"
+                                        >
+                                            {project.contributers?.length || 0}
+                                        </Typography>
+                                    </TableBodyCell>
+                                    <TableBodyCell>
+                                        <Menu
+                                            options={
+                                                allowedActions[project.status]
+                                            }
+                                            onSelect={(value) =>
+                                                handleOnSelectCellMenu(
+                                                    project.id,
+                                                    value as ProjectStatus
+                                                )
+                                            }
                                         />
-                                    </ProgressWrapper>
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <Typography
-                                        variant="paragraphSM"
-                                        weight="medium"
-                                    >
-                                        {formatAsMMMddYYYY(project.startDate)}
-                                    </Typography>
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <Typography
-                                        variant="paragraphSM"
-                                        weight="medium"
-                                    >
-                                        {renderDeadline(project.endDate)}
-                                    </Typography>
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <Typography
-                                        variant="paragraphSM"
-                                        weight="medium"
-                                    >
-                                        {project.contributers?.length || 0}
-                                    </Typography>
-                                </TableBodyCell>
-                                <TableBodyCell>
-                                    <Menu
-                                        options={allowedActions[project.status]}
-                                        onSelect={(value) =>
-                                            handleOnSelectCellMenu(
-                                                project.id,
-                                                value as ProjectActions
-                                            )
-                                        }
-                                    />
-                                </TableBodyCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-            {/* <EditProjectModal
-                show={showEditProjectModal}
-                closeModal={() => setShowEditProjectModal(false)}
-                projectId={selectedProjectId}
-            />
-            <DeleteProjectModal
-                show={showDeleteProjectModal}
-                projectId={selectedProjectId}
-                closeModal={() => setShowDeleteProjectModal(false)}
-            />
+                                    </TableBodyCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             <ChangeProjectStatusModal
                 show={showChangeProjectStatusModal}
+                changeStatusTo={changeStatusTo!}
                 projectId={selectedProjectId}
                 closeModal={() => setShowChangeProjectStatusModal(false)}
-                changeStatus={changeStatus!}
-            /> */}
-        </TableContainer>
+            />
+        </>
     );
 };
 

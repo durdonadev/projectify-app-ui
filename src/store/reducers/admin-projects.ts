@@ -24,6 +24,17 @@ const adminProjectsReducer = produce(
                     return acc;
                 }, {});
             }
+            case Actions.CHANGE_PROJECT_STATUS: {
+                const payload =
+                    action.payload as ChangeProjectStatusAction["payload"];
+                const project = draft[payload.id];
+
+                if (project) {
+                    project.status = payload.status;
+                }
+
+                return draft;
+            }
 
             default:
                 return draft;
