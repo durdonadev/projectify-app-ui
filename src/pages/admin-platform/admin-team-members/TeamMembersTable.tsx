@@ -35,6 +35,12 @@ const TableContainer = styled(Scrollable)`
     height: calc(100% - 13rem);
 `;
 
+const Email = styled(Typography)`
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
 const JoinedDate = styled(Typography)`
     color: var(--blue-ribbon-600);
 `;
@@ -143,12 +149,12 @@ const TeamMembersTable: React.FC<TeamMembersTableProps> = ({ data }) => {
                                     </Typography>
                                 </TableBodyCell>
                                 <TableBodyCell>
-                                    <Typography
+                                    <Email
                                         variant="paragraphSM"
                                         weight="medium"
                                     >
                                         {teamMember.email}
-                                    </Typography>
+                                    </Email>
                                 </TableBodyCell>
                                 <TableBodyCell>
                                     <JoinedDate
