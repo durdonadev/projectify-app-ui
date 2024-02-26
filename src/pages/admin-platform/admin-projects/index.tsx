@@ -5,7 +5,7 @@ import noProject from "../../../assets/illustrations/no-project.svg";
 import { CreateProjectModal } from "./CreateProjectModal";
 import { useStore } from "../../../hooks";
 import { projectService } from "../../../api";
-import { Actions, AdminPopulateProjectsAction } from "../../../store";
+import { Actions, PopulateProjectsAction } from "../../../store";
 import toast from "react-hot-toast";
 import { ProjectStatus } from "../../../types";
 import { Option } from "../../../design-system";
@@ -28,8 +28,8 @@ const AdminProjectsPage = () => {
         projectService
             .getAll()
             .then((data) => {
-                const action: AdminPopulateProjectsAction = {
-                    type: Actions.ADMIN_POPULATE_PROJECTS,
+                const action: PopulateProjectsAction = {
+                    type: Actions.POPULATE_PROJECTS,
                     payload: data.data
                 };
                 dispatch(action);

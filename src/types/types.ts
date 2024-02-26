@@ -56,8 +56,20 @@ export enum AdminProjectActions {
     complete = "complete"
 }
 
+export enum ProjectActions {
+    edit = "edit",
+    archive = "archive",
+    reactivate = "reactivate",
+    complete = "complete",
+    onhold = "onhold"
+}
 export type TeamMemberStatus = "ACTIVE" | "INACTIVE" | "DEACTIVATED";
 export type AdminTeamMemberStatusChange = "reactivate" | "deactivate";
+export type ProjectStatusChange =
+    | "reactivate"
+    | "onhold"
+    | "complete"
+    | "archive";
 
 export interface TeamMember {
     id: string;
@@ -92,6 +104,7 @@ export interface Project {
     name: string;
     description: string;
     status: ProjectStatus;
+    progress: number;
     startDate: string;
     endDate: string;
 }

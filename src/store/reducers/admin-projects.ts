@@ -3,22 +3,22 @@ import { ProjectState } from "../state";
 import {
     ActionType,
     Actions,
-    AdminAddProjectsAction,
-    AdminPopulateProjectsAction
+    AddProjectsAction,
+    ChangeProjectStatusAction,
+    PopulateProjectsAction
 } from "../actions";
 
 const adminProjectsReducer = produce(
     (draft: ProjectState, action: ActionType) => {
         switch (action.type) {
-            case Actions.ADMIN_ADD_PROJECT: {
-                const payload =
-                    action.payload as AdminAddProjectsAction["payload"];
+            case Actions.ADD_PROJECT: {
+                const payload = action.payload as AddProjectsAction["payload"];
                 draft[payload.id] = payload;
                 return draft;
             }
-            case Actions.ADMIN_POPULATE_PROJECTS: {
+            case Actions.POPULATE_PROJECTS: {
                 const payload =
-                    action.payload as AdminPopulateProjectsAction["payload"];
+                    action.payload as PopulateProjectsAction["payload"];
                 return payload.reduce((acc: ProjectState, project) => {
                     acc[project.id] = project;
                     return acc;
