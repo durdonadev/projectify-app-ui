@@ -13,10 +13,15 @@ import {
     TableRow,
     LinearProgress
 } from "../../../design-system";
-import { ProjectStatus, ProjectWithContributors } from "../../../types";
+import {
+    ProjectActions,
+    ProjectStatus,
+    ProjectWithContributors
+} from "../../../types";
 import { formatAsMMMddYYYY, formatDeadline } from "../../../utils";
 import { Scrollable } from "../../components";
 import { ChangeProjectStatusModal } from "./ChangeProjectStatusModal";
+import { EditProjectModal } from "./EditProjectModal";
 
 type ProjectsTableProps = {
     data: ProjectWithContributors[];
@@ -114,7 +119,6 @@ const Deadline = styled(Typography)`
 const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
     const [selectedProjectId, setSelectedProjectId] = useState("");
     const [showEditProjectModal, setShowEditProjectModal] = useState(false);
-    const [showDeleteProjectModal, setShowDeleteProjectModal] = useState(false);
     const [changeStatusTo, setChangeStatusTo] = useState<ProjectStatus>();
     const [showChangeProjectStatusModal, setShowChangeProjectStatusModal] =
         useState(false);
@@ -126,7 +130,10 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
         setSelectedProjectId(projectId);
         if (statuses.includes(value)) {
             setShowChangeProjectStatusModal(true);
-            setChangeStatusTo(value);
+        }
+
+        if (options[0].value) {
+            setShowEditProjectModal(true);
         }
     };
 
@@ -232,6 +239,11 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <EditProjectModal
+                show={showEditProjectModal}
+                closeModal={() => setShowEditProjectModal(false)}
+                projectId={selectedProjectId}
+            />
             <ChangeProjectStatusModal
                 show={showChangeProjectStatusModal}
                 changeStatusTo={changeStatusTo!}

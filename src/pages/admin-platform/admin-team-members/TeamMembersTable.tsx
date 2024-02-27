@@ -24,7 +24,7 @@ import {
 import { DeleteTeamMemberModal } from "./DeleteTeamMemberModal";
 import { EditTeamMemberModal } from "./EditTeamMemberModal";
 import { ChangeTeamMemberStatusModal } from "./ChangeTeamMemberStatusModal";
-import { formatAsMMMddYYYY, toDateObj } from "../../../utils";
+import { formatAsMMMddYYYY } from "../../../utils";
 import { Scrollable } from "../../components";
 
 type TeamMembersTableProps = {
