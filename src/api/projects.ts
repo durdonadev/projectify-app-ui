@@ -2,6 +2,7 @@ import {
     Project,
     ProjectStatus,
     ProjectStatusChange,
+    ProjectUpdate,
     ProjectWithContributors
 } from "../types";
 
@@ -81,6 +82,29 @@ class ProjectService {
                     body: JSON.stringify({ status })
                 }
             );
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async update(projectId: string, updateData: ProjectUpdate) {
+        const rawAuthToken = localStorage.getItem("authToken");
+        const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+        try {
+            const response = await fetch(`${this.url}/${projectId}/update`, {
+                method: "PATCH",
+                headers: {
+                    authorization: `Bearer ${authToken}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updateData)
+            });
 
             if (!response.ok) {
                 const data = await response.json();
