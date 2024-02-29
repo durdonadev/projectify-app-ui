@@ -47,8 +47,13 @@ export const formatDeadline = (targetDate: string) => {
     const targetDateObj = toDateObj(targetDate);
 
     const diff = differenceInCalendarDays(targetDateObj, today);
-    if (diff <= 13) {
+    if (diff === 0) {
+        return `0 day left`;
+    } else if (diff === 1) {
+        return `1 day left`;
+    } else if (diff <= 13 && diff > 1) {
         return `${diff} ${pluralize("day", diff)} left`;
+    } else {
+        return formatAsMMMddYYYY(targetDate);
     }
-    return formatAsMMMddYYYY(targetDate);
 };
