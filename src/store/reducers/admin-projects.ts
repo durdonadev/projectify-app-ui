@@ -29,7 +29,6 @@ const adminProjectsReducer = produce(
                 const payload =
                     action.payload as ChangeProjectStatusAction["payload"];
                 const project = draft[payload.id];
-
                 if (project) {
                     project.status = payload.status;
                 }

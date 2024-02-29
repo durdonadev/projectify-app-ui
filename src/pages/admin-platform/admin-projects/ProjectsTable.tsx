@@ -13,11 +13,7 @@ import {
     TableRow,
     LinearProgress
 } from "../../../design-system";
-import {
-    ProjectActions,
-    ProjectStatus,
-    ProjectWithContributors
-} from "../../../types";
+import { ProjectStatus, ProjectWithContributors } from "../../../types";
 import { formatAsMMMddYYYY, formatDeadline } from "../../../utils";
 import { Scrollable } from "../../components";
 import { ChangeProjectStatusModal } from "./ChangeProjectStatusModal";
@@ -125,14 +121,13 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
 
     const handleOnSelectCellMenu = (
         projectId: string,
-        value: ProjectStatus
+        value: ProjectStatus | string
     ) => {
         setSelectedProjectId(projectId);
-        if (statuses.includes(value)) {
+        if (statuses.includes(value as ProjectStatus)) {
             setShowChangeProjectStatusModal(true);
-        }
-
-        if (options[0].value) {
+            setChangeStatusTo(value as ProjectStatus);
+        } else if (options[0].value === "edit") {
             setShowEditProjectModal(true);
         }
     };
@@ -154,7 +149,6 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                     </TableHead>
                     <TableBody>
                         {data.map((project) => {
-                            console.log(project);
                             return (
                                 <TableRow key={project.id} columns={columns}>
                                     <TableBodyCell>
@@ -228,7 +222,7 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ data }) => {
                                             onSelect={(value) =>
                                                 handleOnSelectCellMenu(
                                                     project.id,
-                                                    value as ProjectStatus
+                                                    value
                                                 )
                                             }
                                         />

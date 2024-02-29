@@ -82,6 +82,8 @@ class ProjectService {
                     body: JSON.stringify({ status })
                 }
             );
+            console.log(projectId);
+            console.log("project satus:" + status);
 
             if (!response.ok) {
                 const data = await response.json();

@@ -6,17 +6,11 @@ import {
     Typography,
     Button,
     Input,
-    DatePickerV1,
-    Icon
+    DatePickerV1
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
-import { ChangePasswordInput, projectService } from "../../../api";
-import {
-    Actions,
-    AdminChanePasswordTeamMemberAction,
-    AdminUpdateTeamMemberAction,
-    UpdateProjectAction
-} from "../../../store";
+import { projectService } from "../../../api";
+import { Actions, UpdateProjectAction } from "../../../store";
 import { toDateObj, toIso8601 } from "../../../utils";
 
 type EditProjectModalProps = {
@@ -55,8 +49,6 @@ const EditProjectModal: React.FC<EditProjectModalProps> = ({
         dispatch,
         state: { projects }
     } = useStore();
-
-    const [selectedProjectId, setSelectedProjectId] = useState("");
 
     useEffect(() => {
         const project = projects[projectId];
@@ -97,7 +89,7 @@ const EditProjectModal: React.FC<EditProjectModalProps> = ({
     return (
         <Modal show={show} position="center">
             <EditProjectModalTitle variant="paragraphLG" weight="medium">
-                Edit Team Member
+                Edit Project
             </EditProjectModalTitle>
             <Inputs>
                 <Input
