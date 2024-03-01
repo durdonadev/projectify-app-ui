@@ -10,7 +10,7 @@ const SideBar: React.FC<SideBarProps> = ({ children }) => {
     return (
         <nav className="side-bar">
             <div className="side-bar__logo-wrapper">
-                <Logo size="sm" layout="horizontal" />
+                <Logo size="md" layout="horizontal" />
             </div>
             {children}
         </nav>

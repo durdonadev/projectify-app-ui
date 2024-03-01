@@ -6,7 +6,7 @@ import "./Logo.css";
 
 type LogoProps = {
     layout: "horizontal" | "vertical";
-    size: "lg" | "sm";
+    size: "lg" | "md" | "sm";
     className?: string;
     customText?: string;
 };
@@ -18,6 +18,7 @@ const layoutClassNames = {
 
 const sizeClassNames = {
     lg: "logo-large",
+    md: "logo-medium",
     sm: "logo-small"
 };
 

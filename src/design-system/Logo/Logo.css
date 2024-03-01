@@ -4,8 +4,12 @@
     align-content: center;
 }
 
-.logo.logo-small {
+.logo.logo-medium {
     height: 4rem;
+}
+
+.logo.logo-small {
+    height: 3rem;
 }
 
 .logo__text {
@@ -35,16 +39,34 @@
     line-height: var(--line-heigh-40);
 }
 
-.logo-small img {
+.logo-medium img {
     height: 4rem;
     width: 4.2rem;
 }
 
-.logo-small .logo__text {
+.logo-medium .logo__text {
     font-size: var(--font-size-24);
     line-height: var(--line-heigh-28);
     height: 4rem;
 
     display: flex;
     align-items: center;
+}
+
+.logo-small img {
+    height: 3rem;
+    width: 3.15rem;
+}
+
+.logo-small .logo__text {
+    font-size: var(--font-size-20);
+    line-height: var(--line-heigh-24);
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.logo-small.logo-horizontal {
+    gap: var(--space-10);
 }
