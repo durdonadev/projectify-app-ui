@@ -1,6 +1,7 @@
 import React from "react";
 import { TopNavigation } from "./sections/top-navigation/TopNavigation";
 import styled from "styled-components";
+import { FeaturesCard } from "../components/FeaturesCard";
 
 const Base = styled.div`
     max-width: 144rem;
@@ -14,6 +15,7 @@ const HomePage = () => {
         <Base>
             <h1>Welcome to the Home Page</h1>
             <TopNavigation />
+            <FeaturesCard />
         </Base>
     );
 };
