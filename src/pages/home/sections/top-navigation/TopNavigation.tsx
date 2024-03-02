@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavigationLink } from "./Links";
+import { NavigationLink } from "./NavigationLinks";
 import { Button, Logo } from "../../../../design-system";
 
 const links = [
