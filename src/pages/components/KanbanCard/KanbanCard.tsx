@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { KanbanCardProps } from "./types";
 import { Badge, Bar, Menu, Typography } from "../../../design-system";
-import { formatAsMMMMd, toDateObj } from "../../../utils";
+import { formatAsMMMMd } from "../../../utils";
 
 export const KanbanCardBase = styled.div<{ $isDragging: boolean }>`
     background-color: var(--white);
