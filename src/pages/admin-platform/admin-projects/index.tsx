@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { NoDataPlaceholder, PageHeader } from "../../components";
 import noProject from "../../../assets/illustrations/no-project.svg";
 import { CreateProjectModal } from "./CreateProjectModal";
