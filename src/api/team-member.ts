@@ -270,7 +270,6 @@ class TeamMemberService {
         teamMemberId: string,
         input: ChangePasswordInput
     ) {
-        console.log(teamMemberId);
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
