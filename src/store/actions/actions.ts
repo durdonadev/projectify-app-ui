@@ -3,6 +3,7 @@ import {
     ContributorStatus,
     Project,
     ProjectContributor,
+    ProjectContributorBase,
     ProjectStatus,
     ProjectUpdate,
     ProjectWithContributors,
@@ -36,7 +37,8 @@ export enum Actions {
     ADMIN_CHANGE_PROJECT_STATUS = "ADMIN_CHANGE_PROJECT_STATUS",
     ADMIN_UPDATE_PROJECT = "ADMIN_UPDATE_PROJECT",
     ADMIN_POPULATE_PROJECT_CONTRIBUTORS = "ADMIN_POPULATE_PROJECT_CONTRIBUTORS",
-    ADMIN_UPDATE_PROJECT_CONTRIBUTOR_STATUS = "ADMIN_UPDATE_PROJECT_CONTRIBUTOR_STATUS"
+    ADMIN_UPDATE_PROJECT_CONTRIBUTOR_STATUS = "ADMIN_UPDATE_PROJECT_CONTRIBUTOR_STATUS",
+    ADMIN_UPDATE_PROJECT_CONTRIBUTORS_LIST = "ADMIN_UPDATE_PROJECT_CONTRIBUTORS_LIST"
 }
 
 export interface InitUserAction {
@@ -147,7 +149,13 @@ export type AdminUpdateProjectAction = {
 
 export type AdminPopulateProjectContributorsAction = {
     type: Actions.ADMIN_POPULATE_PROJECT_CONTRIBUTORS;
-    payload: { id: string; data: ProjectContributor };
+    payload: {
+        id: string;
+        data: {
+            assignedContributors: ProjectContributor[];
+            notAssignedContributors: ProjectContributorBase[];
+        };
+    };
 };
 
 export type AdminUpdateProjectContributorStatus = {
@@ -156,6 +164,18 @@ export type AdminUpdateProjectContributorStatus = {
         id: string;
         status: ContributorStatus;
         teamMemberId: string;
+    };
+};
+
+export type AdminUpdateProjectContributorsList = {
+    type: Actions.ADMIN_UPDATE_PROJECT_CONTRIBUTORS_LIST;
+    payload: {
+        id: string;
+        newContributors: {
+            teamMemberId: string;
+            status: ContributorStatus;
+            joinedAt: string;
+        }[];
     };
 };
 
@@ -178,4 +198,5 @@ export type ActionType =
     | AdminChangeProjectStatusAction
     | AdminUpdateProjectAction
     | AdminPopulateProjectContributorsAction
-    | AdminUpdateProjectContributorStatus;
+    | AdminUpdateProjectContributorStatus
+    | AdminUpdateProjectContributorsList;

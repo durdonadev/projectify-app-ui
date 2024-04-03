@@ -190,7 +190,7 @@ const AssignedContributors: React.FC<Props> = ({
                     size="lg"
                     fullWidth
                 >
-                    Add Contriibutor
+                    Add Contributor
                 </Button>
             </AddButtonWrapper>
         </>

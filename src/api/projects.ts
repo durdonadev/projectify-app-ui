@@ -1,10 +1,9 @@
 import {
     ContributorStatus,
+    ProjectContributorBase,
     Project,
     ProjectContributor,
-    ProjectContributors,
     ProjectStatus,
-    ProjectStatusChange,
     ProjectUpdate,
     ProjectWithContributors
 } from "../types";
@@ -19,7 +18,18 @@ type GetAllAPIResponse = {
 };
 
 type GetContributorsAPIResponse = {
-    data: ProjectContributors;
+    data: {
+        assignedContributors: ProjectContributor[];
+        notAssignedContributors: ProjectContributorBase[];
+    };
+};
+
+type AddContributorAPIResponse = {
+    data: {
+        status: ContributorStatus;
+        teamMemberId: string;
+        joinedAt: string;
+    };
 };
 
 class ProjectService {
@@ -58,7 +68,7 @@ class ProjectService {
         try {
             const rawAuthToken = localStorage.getItem("authToken");
             const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
-            const response = await fetch(`${this.url}`, {
+            const response = await fetch(`${this.url}/`, {
                 headers: {
                     authorization: `Bearer ${authToken}`
                 }
@@ -171,6 +181,58 @@ class ProjectService {
                 const data = await response.json();
                 throw new Error(data.message);
             }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    private async addContributor(
+        teamMemberId: string,
+        projectId: string
+    ): Promise<AddContributorAPIResponse> {
+        try {
+            const rawAuthToken = localStorage.getItem("authToken");
+            const authToken = rawAuthToken ? JSON.parse(rawAuthToken) : "";
+
+            const response = await fetch(
+                `${this.url}/${projectId}/contributors/add`,
+                {
+                    method: "POST",
+                    headers: {
+                        authorization: `Bearer ${authToken}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ teamMemberId })
+                }
+            );
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+
+            return response.json();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async addContributors(teamMemberIds: string[], projectId: string) {
+        try {
+            const promises = teamMemberIds.map((teamMemberId) =>
+                this.addContributor(teamMemberId, projectId)
+            );
+
+            const results = await Promise.allSettled(promises);
+
+            const fulfilledResults: AddContributorAPIResponse["data"][] = [];
+
+            results.forEach((result) => {
+                if (result.status === "fulfilled") {
+                    fulfilledResults.push(result.value.data);
+                }
+            });
+
+            return fulfilledResults;
         } catch (error) {
             throw error;
         }

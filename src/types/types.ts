@@ -96,11 +96,6 @@ export interface ProjectContributor extends ProjectContributorBase {
     status: ContributorStatus;
 }
 
-export interface ProjectContributors {
-    assignedContributors: ProjectContributor[];
-    notAssignedContributors: Omit<ProjectContributor, "joinedAt" | "status">[];
-}
-
 export interface AssignedContrubtorsState {
     [projectId: string]: ProjectContributor;
 }
@@ -131,8 +126,4 @@ export interface ProjectUpdate {
     description?: string;
     startDate?: string;
     endDate?: string;
-}
-
-export interface ProjectWithContributors extends Project {
-    contributers?: ProjectContributor[];
 }
