@@ -22,6 +22,9 @@ const Description = styled(Typography)`
 `;
 
 const FeaturesCardsWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-30);
     margin-bottom: var(--space-50);
 `;
 

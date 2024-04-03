@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import { features } from "./features";
+import styled from "styled-components";
 import { Typography } from "../../../../../design-system";
 
 import frameIcon from "../../../../../assets/illustrations/frame-icon.svg";

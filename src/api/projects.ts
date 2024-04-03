@@ -1,7 +1,6 @@
 import {
     Project,
     ProjectStatus,
-    ProjectStatusChange,
     ProjectUpdate,
     ProjectWithContributors
 } from "../types";

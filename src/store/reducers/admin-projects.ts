@@ -38,16 +38,10 @@ const adminProjectsReducer = produce(
             case Actions.UPDATE_PROJECT: {
                 const payload =
                     action.payload as UpdateProjectAction["payload"];
-                const { id, data } = payload;
-                const project = draft[id];
-
-                if (project) {
-                    project.name = data.name || project.name;
-                    project.description =
-                        data.description || project.description;
-                    project.startDate = data.startDate || project.startDate;
-                    project.endDate = data.endDate || project.endDate;
-                }
+                draft[payload.id] = {
+                    ...draft[payload.id],
+                    ...payload.data
+                };
                 return draft;
             }
 
