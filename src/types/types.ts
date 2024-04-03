@@ -1,3 +1,9 @@
+export interface ApiError {
+    message: string;
+    isOperational: boolean;
+    success: boolean;
+}
+
 export enum UserRole {
     admin = "admin",
     teamMember = "teamMember"
@@ -76,14 +82,26 @@ export interface TeamMemberUpdate {
 }
 
 export type ProjectStatus = "ACTIVE" | "ONHOLD" | "ARCHIVED" | "COMPLETED";
-type ContributorStatus = "ACTIVE" | "INACTIVE";
+export type ContributorStatus = "ACTIVE" | "INACTIVE";
 
-export interface ProjectContributor {
+export interface ProjectContributorBase {
     id: string;
     firstName: string;
     lastName: string;
+    position: string;
+}
+
+export interface ProjectContributor extends ProjectContributorBase {
     joinedAt: string;
     status: ContributorStatus;
+}
+
+export interface AssignedContrubtorsState {
+    [projectId: string]: ProjectContributor;
+}
+
+export interface NotAssignedContributorsState {
+    [projectId: string]: ProjectContributorBase;
 }
 export interface Project {
     id: string;
@@ -93,6 +111,14 @@ export interface Project {
     progress: number;
     startDate: string;
     endDate: string;
+}
+
+export interface ProjectWithContributors extends Project {
+    numberOfContributors: number;
+    contributors: {
+        assignedContributors: AssignedContrubtorsState;
+        notAssignedContributors: NotAssignedContributorsState;
+    };
 }
 
 export interface ProjectUpdate {
