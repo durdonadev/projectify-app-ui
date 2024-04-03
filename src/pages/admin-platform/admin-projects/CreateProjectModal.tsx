@@ -11,7 +11,7 @@ import { useState } from "react";
 import { projectService } from "../../../api";
 import toast from "react-hot-toast";
 import { toIso8601 } from "../../../utils";
-import { Actions, AddProjectsAction } from "../../../store";
+import { Actions, AddProjectAction } from "../../../store";
 import { useStore } from "../../../hooks";
 
 type CreateProjectModalProps = {
@@ -81,8 +81,8 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
             projectService
                 .create(input)
                 .then((data) => {
-                    const action: AddProjectsAction = {
-                        type: Actions.ADD_PROJECT,
+                    const action: AddProjectAction = {
+                        type: Actions.ADMIN_ADD_PROJECT,
                         payload: data.data
                     };
                     dispatch(action);

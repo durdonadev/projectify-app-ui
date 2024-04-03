@@ -10,8 +10,9 @@ import {
 } from "../../../design-system";
 import { useStore } from "../../../hooks";
 import { projectService } from "../../../api";
-import { Actions, UpdateProjectAction } from "../../../store";
+import { Actions, AdminUpdateProjectAction } from "../../../store";
 import { toDateObj, toIso8601 } from "../../../utils";
+import { ProjectUpdate } from "../../../types";
 
 type EditProjectModalProps = {
     show: boolean;
@@ -40,19 +41,15 @@ const EditProjectModal: React.FC<EditProjectModalProps> = ({
     closeModal,
     projectId
 }) => {
+    const { state, dispatch } = useStore();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [startDate, setStartDate] = useState<Date>();
-    const [endDate, setEndDate] = useState<Date>();
-
-    const {
-        dispatch,
-        state: { projects }
-    } = useStore();
+    const [startDate, setStartDate] = useState<Date | null>();
+    const [endDate, setEndDate] = useState<Date | null>();
+    const { projects } = state;
+    const project = projects[projectId];
 
     useEffect(() => {
-        const project = projects[projectId];
-
         if (project) {
             setName(project.name);
             setDescription(project.description);
@@ -61,24 +58,44 @@ const EditProjectModal: React.FC<EditProjectModalProps> = ({
         }
     }, [projectId]);
 
-    const updateProject = () => {
-        const updateData = {
-            name: name,
-            description: description,
-            startDate: toIso8601(startDate!),
-            endDate: toIso8601(endDate!)
-        };
+    const clearFiealds = () => {
+        setName("");
+        setDescription("");
+        setStartDate(null);
+        setEndDate(null);
+    };
 
+    const done = () => {
+        clearFiealds();
+        closeModal();
+    };
+
+    const updateProject = () => {
+        const input: ProjectUpdate = {};
+        if (name) {
+            input.name = name;
+        }
+        if (description) {
+            input.description = description;
+        }
+        if (startDate && endDate) {
+            input.startDate = toIso8601(startDate);
+            input.endDate = toIso8601(endDate);
+        }
         projectService
-            .update(projectId, updateData)
+            .update(projectId, input)
             .then((_) => {
-                const action: UpdateProjectAction = {
-                    type: Actions.UPDATE_PROJECT,
-                    payload: { data: updateData, id: projectId }
+                const action: AdminUpdateProjectAction = {
+                    type: Actions.ADMIN_UPDATE_PROJECT,
+                    payload: {
+                        id: projectId,
+                        data: input
+                    }
                 };
                 dispatch(action);
-                closeModal();
-                toast.success("Project has been successfully updated");
+                done();
+
+                toast.success("Project has been successfully updated"!);
             })
             .catch((e) => {
                 const err = e as Error;
@@ -131,7 +148,7 @@ const EditProjectModal: React.FC<EditProjectModalProps> = ({
                     shape="rounded"
                     variant="outlined"
                     fullWidth
-                    onClick={closeModal}
+                    onClick={done}
                 >
                     Cancel
                 </Button>

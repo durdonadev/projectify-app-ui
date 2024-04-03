@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-
 import { NoDataPlaceholder, PageHeader } from "../../components";
 import noProject from "../../../assets/illustrations/no-project.svg";
 import { CreateProjectModal } from "./CreateProjectModal";
 import { useStore } from "../../../hooks";
 import { projectService } from "../../../api";
-import { Actions, PopulateProjectsAction } from "../../../store";
+import { Actions, AdminPopulateProjectsAction } from "../../../store";
 import toast from "react-hot-toast";
 import { ProjectStatus } from "../../../types";
 import { Option } from "../../../design-system";
@@ -15,7 +14,7 @@ import { ProjectsTable } from "./ProjectsTable";
 const AdminProjectsPage = () => {
     const [showCreateProjectModal, setShowCreateProjectModal] = useState(false);
     const [isProjectsFetching, setIsProjectsFetching] = useState(true);
-    const [statusFilter, setStatusFilter] = useState("");
+    const [statusFilter, setStatusFilter] = useState("all");
     const [searchText, setSearchText] = useState("");
     const [sortedBy, setSortedBy] = useState("");
 
@@ -28,8 +27,8 @@ const AdminProjectsPage = () => {
         projectService
             .getAll()
             .then((data) => {
-                const action: PopulateProjectsAction = {
-                    type: Actions.POPULATE_PROJECTS,
+                const action: AdminPopulateProjectsAction = {
+                    type: Actions.ADMIN_POPULATE_PROJECTS,
                     payload: data.data
                 };
                 dispatch(action);
@@ -54,29 +53,11 @@ const AdminProjectsPage = () => {
 
     const projectsArr = Object.values(projects);
 
-    const filterProjects = () => {
-        let filteredProjects = projectsArr;
-        if (statusFilter && statusFilter !== "all") {
-            filteredProjects = filteredProjects.filter(
-                (project) => project.status === statusFilter
-            );
-        }
-        if (searchText) {
-            filteredProjects = filteredProjects.filter(
-                (project) =>
-                    project.name
-                        .toLowerCase()
-                        .includes(searchText.toLowerCase()) ||
-                    project.description
-                        .toLowerCase()
-                        .includes(searchText.toLowerCase())
-            );
-        }
-
-        return filteredProjects;
+    const filterProjects = (value: string) => {
+        if (value === "all") return projectsArr;
+        return projectsArr.filter((project) => project.status === value);
     };
-
-    const filteredProjects = filterProjects();
+    const filteredProjects = filterProjects(statusFilter);
 
     return (
         <>

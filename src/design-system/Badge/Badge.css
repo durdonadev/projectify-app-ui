@@ -1,7 +1,5 @@
 .badge {
     height: 2.8rem;
-    padding: 0 var(--space-12);
-
     width: max-content;
     display: inline-flex;
     align-items: center;
@@ -20,6 +18,11 @@
 .badge-outlined {
     border-width: 1px;
     border-style: solid;
+    padding: 0 var(--space-12);
+}
+
+.badge-contained {
+    padding: 0 var(--space-12);
 }
 
 .badge__text {
