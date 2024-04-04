@@ -56,8 +56,12 @@ const DatePickerV1: React.FC<DataPickerProps> = ({
         return "v1-date-picker__day-wrapper";
     };
 
-    const renderDayContents = (_: number, date: Date) => {
-        return <div className="v1-date-picker__day">{getDate(date)}</div>;
+    const renderDayContents = (dayOfMonth: number, date?: Date) => {
+        if (date) {
+            return <div className="v1-date-picker__day">{date.getDate()}</div>;
+        } else {
+            return <div className="v1-date-picker__day">{dayOfMonth}</div>;
+        }
     };
 
     const inputSizeClassName = inputSize ? inputSizeClassNames[inputSize] : "";
