@@ -15,11 +15,7 @@ interface CreateAPIResponse {
 class TeamMemberTasksService {
     url: string;
     constructor() {
-        this.url = `${
-            process.env.NODE_ENV === "development"
-                ? process.env.REACT_APP_PROJECTIFY_API_URL_LOCAL
-                : process.env.REACT_APP_PROJECTIFY_API_URL
-        }/team-members/me`;
+        this.url = `${process.env.REACT_APP_PROJECTIFY_API_URL}/team-members/me`;
     }
 
     async createTask(input: CreateInput): Promise<CreateAPIResponse> {
