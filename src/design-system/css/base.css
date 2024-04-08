@@ -9,7 +9,15 @@
 }
 
 html {
-    font-size: 62.5%; /* it sets base font size to 10px */
+    font-size: 62.5%; /* 10px */
+    scroll-behavior: smooth;
+    scroll-padding: 7.2rem;
+}
+
+@media screen and (max-width: 80em) {
+    html {
+        font-size: 56.25%; /* 9px */
+    }
 }
 
 body {
