@@ -23,7 +23,7 @@ export const SectionSidePadding = css`
 `;
 
 export const SectionBase = styled.section`
-    padding: var(--space-96);
+    padding: var(--space-100);
 
     @media screen and (max-width: 70em) {
         padding-top: var(--space-80);

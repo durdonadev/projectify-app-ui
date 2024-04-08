@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 import { TableBodyCell } from "./design-system";
-import { HomePage } from "./pages/home/HomePage";
+import { LandingPage } from "./pages/landing-page/LandingPage";
 
 const Base = styled.div`
     font-size: 1.6rem;
@@ -16,7 +16,7 @@ const App = () => {
     return (
         <>
             {" "}
-            <HomePage></HomePage>
+            <LandingPage />
             <Base>
                 <h1>Welcome </h1>
 
