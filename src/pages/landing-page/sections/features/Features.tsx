@@ -1,22 +1,20 @@
 import styled from "styled-components";
 import { Button, Typography } from "../../../../design-system";
 import { FeaturesCard } from "./FeaturesCard";
-import { features } from "./FeaturesCard/features";
+import { features } from "./FeaturesCard/data";
 import { Container, SectionBase } from "../../components";
 
-const FeaturesContainer = styled(Container)``;
-
-const FeaturesTextWrapper = styled.div`
-    text-align: center;
-    margin-bottom: var(--space-50);
+const FeaturesContainer = styled(Container)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
-const Title = styled(Typography)`
-    color: var(--jaguar-900);
-`;
+const Title = styled(Typography)``;
 
 const Description = styled(Typography)`
     color: var(--jaguar-500);
+    margin-bottom: var(--space-50);
 `;
 
 const FeaturesCardsWrapper = styled.div`
@@ -26,7 +24,7 @@ const FeaturesCardsWrapper = styled.div`
     margin-bottom: var(--space-50);
 `;
 
-const ButtonWrapper = styled.div`
+const StyledButton = styled(Button)`
     margin: 0 auto;
     max-width: 27rem;
 `;
@@ -35,31 +33,40 @@ const Features = () => {
     return (
         <SectionBase>
             <FeaturesContainer>
-                <FeaturesTextWrapper>
-                    <Title variant="h5" weight="bold">
-                        Get the best for your team
-                    </Title>
-                    <Description variant="paragraphSM" weight="medium">
-                        Our solution provides simple yet effective project
-                        management
-                    </Description>
-                </FeaturesTextWrapper>
+                <Title variant="h5" weight="bold">
+                    Get the best for your team
+                </Title>
+                <Description variant="paragraphSM" weight="medium">
+                    Our solution provides simple yet effective project
+                    management
+                </Description>
+
                 <FeaturesCardsWrapper>
-                    {features.map((feature, index) => (
-                        <FeaturesCard key={index} feature={feature} />
+                    {features.map((feature, idx) => (
+                        <FeaturesCard
+                            key={idx}
+                            title={feature.title}
+                            description={feature.description}
+                            iconName={feature.iconName}
+                            cardBackgroundColor={feature.cardBackgroundColor}
+                            iconWrapperBackgroundColor={
+                                feature.iconWrapperBackgroundColor
+                            }
+                            iconWrapperBorderColor={
+                                feature.iconWrapperBorderColor
+                            }
+                        />
                     ))}
                 </FeaturesCardsWrapper>
-                <ButtonWrapper>
-                    <Button
-                        size="md"
-                        shape="rounded"
-                        color="primary"
-                        fullWidth
-                        onClick={() => {}}
-                    >
-                        Try a Demo
-                    </Button>
-                </ButtonWrapper>
+                <StyledButton
+                    size="md"
+                    shape="rounded"
+                    color="primary"
+                    fullWidth
+                    onClick={() => {}}
+                >
+                    Try a Demo
+                </StyledButton>
             </FeaturesContainer>
         </SectionBase>
     );
