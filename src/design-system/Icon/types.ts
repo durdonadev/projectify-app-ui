@@ -1,4 +1,10 @@
 export type IconName =
+    | "management"
+    | "collaboration"
+    | "ui"
+    | "workflow"
+    | "analytics"
+    | "reminders"
     | "tasks"
     | "support"
     | "stories"
