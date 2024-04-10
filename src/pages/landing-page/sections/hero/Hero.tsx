@@ -7,6 +7,10 @@ import google from "../../../../assets/images/hero/google.svg";
 import { Container, SectionBase } from "../../components";
 import { Typography, Button } from "../../../../design-system";
 
+const HeroSectionBase = styled(SectionBase)`
+    padding-bottom: 0;
+`;
+
 const HeroContainer = styled(Container)`
     display: flex;
     flex-direction: column;
@@ -68,7 +72,7 @@ const GoogleImage = styled.img`
 
 const Hero = () => {
     return (
-        <SectionBase>
+        <HeroSectionBase>
             <HeroContainer>
                 <HeroHeading variant="h1" align="center">
                     Unleash the Power of Projectify
@@ -97,7 +101,7 @@ const Hero = () => {
                     <GoogleImage src={google} alt="" />
                 </HeroImgWrapper>
             </HeroContainer>
-        </SectionBase>
+        </HeroSectionBase>
     );
 };
 
