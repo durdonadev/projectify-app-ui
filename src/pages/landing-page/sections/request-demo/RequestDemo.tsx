@@ -18,11 +18,11 @@ const Header = styled(Typography)`
 
 const ContentWrapper = styled.div`
     max-width: 97.4rem;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-34);
-    margin-bottom: var(--space-80);
 `;
 
 const ImageWrapper = styled.div`

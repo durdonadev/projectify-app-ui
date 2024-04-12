@@ -4,6 +4,7 @@ import { Hero } from "./sections/hero/Hero";
 import Brands from "./sections/brands/Brands";
 import { PricePlans } from "./sections/price-plan/PricePlans";
 import { RequestDemo } from "./sections/request-demo/RequestDemo";
+import { Contact } from "./sections/contact/Contact";
 
 const LandingPage = () => {
     return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
             <Features />
             <PricePlans />
             <RequestDemo />
+            <Contact />
         </>
     );
 };
