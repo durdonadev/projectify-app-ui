@@ -20,7 +20,6 @@ const HeaderWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin-bottom: var(--space-30);
 `;
 
@@ -37,7 +36,7 @@ const IconWrapper = styled.div<{ $type: string }>`
 
     background-color: ${(props) =>
         props.$type === "primary" ? "var(--sunglow-400)" : "var(--primary-50)"};
-    border: 0.1rem solid
+    border: 1px solid
         ${(props) =>
             props.$type === "primary"
                 ? "var(--sunglow-400)"
@@ -45,12 +44,16 @@ const IconWrapper = styled.div<{ $type: string }>`
 `;
 
 const PlanIcon = styled(Icon)`
-    width: var(--space-50);
-    height: var(--space-50);
+    width: 5rem;
+    height: 5rem;
 `;
 
 const Title = styled(Typography)<{ $type: string }>`
     color: ${(props) => (props.$type === "primary" ? "var(--white)" : "")};
+
+    @media screen and (max-width: 60em) {
+        font-size: var(--font-size-32);
+    }
 `;
 
 const PriceWrapper = styled.div`
@@ -71,7 +74,6 @@ const ServicesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--space-12);
-
     margin-bottom: var(--space-30);
 `;
 

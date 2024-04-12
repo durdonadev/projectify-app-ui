@@ -3,6 +3,7 @@ import { Features } from "./sections/features/Features";
 import { Hero } from "./sections/hero/Hero";
 import Brands from "./sections/brands/Brands";
 import { PricePlans } from "./sections/price-plan/PricePlans";
+import { RequestDemo } from "./sections/request-demo/RequestDemo";
 
 const LandingPage = () => {
     return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
             <Brands />
             <Features />
             <PricePlans />
+            <RequestDemo />
         </>
     );
 };
