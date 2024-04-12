@@ -17,7 +17,7 @@ interface ToggleProps {
     shape?: SwitchShape;
     onSwitch: (value: boolean) => void;
     label?: string;
-    id: string;
+    id?: string;
     position?: "end";
 }
 

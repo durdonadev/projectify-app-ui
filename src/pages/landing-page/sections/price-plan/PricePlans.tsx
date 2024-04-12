@@ -72,13 +72,13 @@ const PricePlans = () => {
                         <ToggleTextLeft variant="paragraphSM" weight="medium">
                             Billed yearly
                         </ToggleTextLeft>
-                        {/* <Switch
+                        <Switch
                             checked={monthly}
                             shape="circle"
                             onSwitch={() => {
                                 setMonthly(!monthly);
                             }}
-                        /> */}
+                        />
                         <Typography variant="paragraphSM" weight="medium">
                             Billed Monthly
                         </Typography>
