@@ -38,7 +38,6 @@ const Buttons = styled.div`
 const TopNavigation = () => {
     return (
         <Base>
-            {" "}
             <TopNavigationContainer>
                 <Logo size="sm" layout="horizontal" />
                 <NavigationLinks>
