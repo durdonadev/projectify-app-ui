@@ -10,6 +10,8 @@ export type IconName =
     | "rocket"
     | "check-orange"
     | "check-green"
+    | "arrow-left"
+    | "star"
     | "user"
     | "email"
     | "company"
