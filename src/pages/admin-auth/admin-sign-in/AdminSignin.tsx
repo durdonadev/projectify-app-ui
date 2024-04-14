@@ -4,7 +4,7 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
-import teamWork from "../../../assets/images/team-work.jpg";
+import office from "../../../assets/images/office.jpg";
 import { adminService } from "../../../api";
 import { useLocalStorage } from "../../../hooks";
 
@@ -69,7 +69,7 @@ const AdminSignin = () => {
 
     return (
         <>
-            <AuthWrapper imageUrl={teamWork} pageTitle="Sign In">
+            <AuthWrapper imageUrl={office} pageTitle="Sign In">
                 <Form onSubmit={signIn} noValidate>
                     <Input
                         type="email"

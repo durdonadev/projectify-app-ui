@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, Icon, Typography } from "../../../../design-system";
-import paperPlane from "../../../../assets/images/paper-plane.svg";
+import paperPlane from "../../../../assets/images/request-demo/paper-plane.svg";
 import { Container, SectionBase } from "../../components";
 
 const RequestDemoSection = styled(SectionBase)`

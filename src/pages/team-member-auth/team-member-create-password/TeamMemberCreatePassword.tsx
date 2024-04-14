@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMemberService } from "../../../api";
-import teamWork from "../../../assets/images/team-work.jpg";
+import office from "../../../assets/images/office.jpg";
 
 const Form = styled.form`
     width: 100%;
@@ -76,7 +76,7 @@ const TeamMemberCreatePassword = () => {
     };
 
     return (
-        <AuthWrapper imageUrl={teamWork} pageTitle="Create Password">
+        <AuthWrapper imageUrl={office} pageTitle="Create Password">
             <Form onSubmit={createPassword} noValidate>
                 <StyledEmailInput
                     type="email"

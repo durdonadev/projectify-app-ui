@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { adminService } from "../../../api";
-import teamWork from "../../../assets/images/team-work.jpg";
+import office from "../../../assets/images/office.jpg";
 
 const Form = styled.form`
     width: 100%;
@@ -112,7 +112,7 @@ const AdminSignup = () => {
 
     return (
         <>
-            <AuthWrapper imageUrl={teamWork} pageTitle="Sign Up">
+            <AuthWrapper imageUrl={office} pageTitle="Sign Up">
                 <Form onSubmit={createAccount} noValidate>
                     <Input
                         type="text"

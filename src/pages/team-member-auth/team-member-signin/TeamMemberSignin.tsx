@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Button, Input } from "../../../design-system";
 import { AuthActionLink, AuthWrapper } from "../../components";
 import { teamMemberService } from "../../../api";
-import teamWork from "../../../assets/images/team-work.jpg";
+import office from "../../../assets/images/office.jpg";
 import { useLocalStorage } from "../../../hooks";
 
 const Form = styled.form`
@@ -76,7 +76,7 @@ const TeamMemberSignin = () => {
     };
 
     return (
-        <AuthWrapper imageUrl={teamWork} pageTitle="Sign In">
+        <AuthWrapper imageUrl={office} pageTitle="Sign In">
             <Form onSubmit={signin} noValidate>
                 <Input
                     type="email"
