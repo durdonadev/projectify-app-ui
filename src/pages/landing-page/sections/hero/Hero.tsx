@@ -19,12 +19,50 @@ const HeroContainer = styled(Container)`
 
 const HeroHeading = styled(Typography)`
     color: var(--jaguar-900);
+
+    @media screen and (max-width: 70em) {
+        font-size: var(--font-size-56);
+        line-height: var(--line-height-64);
+    }
+
+    @media screen and (max-width: 60em) {
+        font-size: var(--font-size-48);
+        line-height: var(--line-height-56);
+    }
+
+    @media screen and (max-width: 50em) {
+        font-size: var(--font-size-40);
+        line-height: var(--line-height-48);
+    }
+
+    @media screen and (max-width: 40em) {
+        font-size: var(--font-size-32);
+        line-height: var(--line-height-40);
+    }
+
+    @media screen and (max-width: 35em) {
+        font-size: var(--font-size-28);
+        line-height: var(--line-height-40);
+    }
 `;
 
 const HeroDescription = styled(Typography)`
-    width: 60%;
     color: var(--jaguar-500);
     margin-bottom: var(--space-30);
+    max-width: calc(var(--font-size-64) * 12);
+
+    @media screen and (max-width: 70em) {
+        max-width: calc(var(--font-size-56) * 12);
+    }
+
+    @media screen and (max-width: 60em) {
+        max-width: calc(var(--font-size-48) * 12);
+    }
+
+    @media screen and (max-width: 35em) {
+        font-size: var(--font-size-14);
+        line-height: var(--line-height-20);
+    }
 `;
 
 const StyledButton = styled(Button)`
@@ -82,7 +120,6 @@ const Hero = () => {
                     your project management journey and supercharge your
                     success.
                 </HeroDescription>
-
                 <StyledButton
                     size="md"
                     shape="rounded"
