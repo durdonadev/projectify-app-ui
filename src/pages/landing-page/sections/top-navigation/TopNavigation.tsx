@@ -81,7 +81,7 @@ const MobileButton = styled(Button)`
 `;
 
 const TopNavigation = () => {
-    const [showMobileMenu, setShowMobileMenu] = useState(true);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
         <Base>

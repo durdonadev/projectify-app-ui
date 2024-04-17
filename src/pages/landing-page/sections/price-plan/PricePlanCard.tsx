@@ -7,7 +7,7 @@ const PlanCardWrapper = styled.div<{ $type: string }>`
     flex-direction: column;
     flex: 1;
     padding: var(--space-30);
-    border: 0.1rem solid var(--jaguar-100);
+    border: 1px solid var(--jaguar-100);
     border-radius: var(--space-40);
 
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
