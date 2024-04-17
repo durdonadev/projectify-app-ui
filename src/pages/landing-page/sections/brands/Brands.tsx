@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Container, SectionBase } from "../../components";
-import google from "../../../../assets/images/companies/google.svg";
-import airbnb from "../../../../assets/images/companies/airbnb.svg";
-import creative from "../../../../assets/images/companies/creative.svg";
-import shopify from "../../../../assets/images/companies/shopify.svg";
-import amazon from "../../../../assets/images/companies/amazon.svg";
+import google from "../../../../assets/images/brands/google.svg";
+import airbnb from "../../../../assets/images/brands/airbnb.svg";
+import creative from "../../../../assets/images/brands/creative.svg";
+import shopify from "../../../../assets/images/brands/shopify.svg";
+import amazon from "../../../../assets/images/brands/amazon.svg";
 
 const companies = [google, airbnb, creative, shopify, amazon];
 
@@ -17,6 +17,7 @@ const BrandsSectionContainer = styled(Container)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-30);
 `;
 
 const ImageWrapper = styled.div`
