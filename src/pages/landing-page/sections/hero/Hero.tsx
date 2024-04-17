@@ -73,6 +73,7 @@ const StyledButton = styled(Button)`
 
 const HeroImgWrapper = styled.div`
     position: relative;
+    z-index: -1;
 `;
 
 const HeroImg = styled.img`
@@ -84,6 +85,11 @@ const DateBadge = styled.img`
     top: 18%;
     left: -3%;
     width: 11%;
+
+    @media (max-width: 90em) {
+        top: 49%;
+        left: 4%;
+    }
 `;
 const MembersImage = styled.img`
     position: absolute;
@@ -91,6 +97,11 @@ const MembersImage = styled.img`
     left: -12%;
     width: 25%;
     height: auto;
+
+    @media (max-width: 90em) {
+        bottom: -10%;
+        left: 14%;
+    }
 `;
 
 const StatusBadge = styled.img`
@@ -98,6 +109,11 @@ const StatusBadge = styled.img`
     top: 40%;
     right: -4%;
     width: 12.5%;
+
+    @media (max-width: 90em) {
+        top: 70%;
+        right: 14%;
+    }
 `;
 const GoogleImage = styled.img`
     position: absolute;
@@ -106,6 +122,11 @@ const GoogleImage = styled.img`
     width: 27%;
     max-width: 100%;
     height: auto;
+
+    @media (max-width: 90em) {
+        bottom: 40%;
+        right: 2%;
+    }
 `;
 
 const Hero = () => {
