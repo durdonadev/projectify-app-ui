@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { NavigationLink } from "./NavigationLinks";
 import { Button, Logo } from "../../../../design-system";
 import { Container, SectionSidePadding } from "../../components";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import burgerIcon from "../../../../assets/images/burger-icon.svg";
+import { MobileNavigation } from "./MobileNavigation";
 
 const links = [
     { text: "About", link: "#about" },
@@ -28,18 +32,58 @@ const TopNavigationContainer = styled(Container)`
 const NavigationLinks = styled.div`
     display: flex;
     gap: var(--space-40);
+
+    @media screen and (max-width: 60em) {
+        & {
+            display: none;
+        }
+    }
+`;
+
+const MobileActions = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
 `;
 
 const Buttons = styled.div`
     display: flex;
     gap: var(--space-10);
+
+    @media screen and (max-width: 60em) {
+        & {
+            display: none;
+        }
+    }
+`;
+
+const LogoLink = styled(Link)``;
+
+const MenuButton = styled(Button)`
+    display: none;
+    padding: 0;
+    background-color: transparent;
+
+    @media screen and (max-width: 60em) {
+        & {
+            display: flex;
+        }
+    }
+    img {
+        height: 2.4rem;
+        width: 2.4rem;
+    }
 `;
 
 const TopNavigation = () => {
+    const [showMobileMenu, setShowMobileMenu] = useState(true);
+
     return (
         <Base>
             <TopNavigationContainer>
-                <Logo size="sm" layout="horizontal" />
+                <LogoLink to="/">
+                    <Logo size="sm" layout="horizontal" />
+                </LogoLink>
                 <NavigationLinks>
                     {links.map((link, index) => (
                         <NavigationLink
@@ -68,7 +112,46 @@ const TopNavigation = () => {
                         Sign In
                     </Button>
                 </Buttons>
+                <MenuButton
+                    variant="contained"
+                    size="sm"
+                    onClick={() => setShowMobileMenu(true)}
+                >
+                    <img src={burgerIcon} alt="" />
+                </MenuButton>
             </TopNavigationContainer>
+            <MobileNavigation
+                show={showMobileMenu}
+                onClose={() => setShowMobileMenu(false)}
+            >
+                <MobileActions>
+                    {links.map((link, index) => (
+                        <NavigationLink
+                            key={index}
+                            linkText={link.text}
+                            linkTo={link.link}
+                        />
+                    ))}
+
+                    <Button
+                        variant="outlined"
+                        size="md"
+                        shape="rounded"
+                        color="primary"
+                        onClick={() => {}}
+                    >
+                        Sign Up
+                    </Button>
+                    <Button
+                        size="md"
+                        shape="rounded"
+                        color="primary"
+                        onClick={() => {}}
+                    >
+                        Sign In
+                    </Button>
+                </MobileActions>
+            </MobileNavigation>
         </Base>
     );
 };
