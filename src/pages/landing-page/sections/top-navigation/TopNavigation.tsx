@@ -75,6 +75,11 @@ const MenuButton = styled(Button)`
     }
 `;
 
+const MobileButton = styled(Button)`
+    margin-right: auto;
+    width: 11rem;
+`;
+
 const TopNavigation = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(true);
 
@@ -133,7 +138,7 @@ const TopNavigation = () => {
                         />
                     ))}
 
-                    <Button
+                    <MobileButton
                         variant="outlined"
                         size="md"
                         shape="rounded"
@@ -141,15 +146,15 @@ const TopNavigation = () => {
                         onClick={() => {}}
                     >
                         Sign Up
-                    </Button>
-                    <Button
+                    </MobileButton>
+                    <MobileButton
                         size="md"
                         shape="rounded"
                         color="primary"
                         onClick={() => {}}
                     >
                         Sign In
-                    </Button>
+                    </MobileButton>
                 </MobileActions>
             </MobileNavigation>
         </Base>
