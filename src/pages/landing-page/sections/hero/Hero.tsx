@@ -39,11 +39,6 @@ const HeroHeading = styled(Typography)`
         font-size: var(--font-size-32);
         line-height: var(--line-height-40);
     }
-
-    @media screen and (max-width: 35em) {
-        font-size: var(--font-size-28);
-        line-height: var(--line-height-40);
-    }
 `;
 
 const HeroDescription = styled(Typography)`
@@ -60,7 +55,7 @@ const HeroDescription = styled(Typography)`
     }
 
     @media screen and (max-width: 35em) {
-        font-size: var(--font-size-14);
+        font-size: var(--font-size-16);
         line-height: var(--line-height-20);
     }
 `;

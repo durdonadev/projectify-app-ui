@@ -20,6 +20,12 @@ html {
     }
 }
 
+@media screen and (max-width: 30em) {
+    html {
+        font-size: 50%; /* 8px */
+    }
+}
+
 body {
     font-family: "Inter", sans-serif;
 }

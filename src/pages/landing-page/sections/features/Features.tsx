@@ -10,18 +10,29 @@ const FeaturesContainer = styled(Container)`
     align-items: center;
 `;
 
-const Title = styled(Typography)``;
+const Title = styled(Typography)`
+    text-align: center;
+`;
 
 const Description = styled(Typography)`
     color: var(--jaguar-500);
     margin-bottom: var(--space-50);
+    text-align: center;
 `;
 
 const FeaturesCardsWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-30);
     margin-bottom: var(--space-50);
+
+    @media screen and (max-width: 60em) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 25em) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 const StyledButton = styled(Button)`

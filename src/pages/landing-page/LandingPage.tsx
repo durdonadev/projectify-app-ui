@@ -11,11 +11,11 @@ import Testimonials from "./sections/testimonials/Testimonials";
 const LandingPage = () => {
     return (
         <>
-            {/* <TopNavigation /> */}
+            <TopNavigation />
             <Hero />
-            {/* <Brands />
+            <Brands />
             <Features />
-            <PricePlans />
+            {/* <PricePlans />
             <Testimonials />
             <RequestDemo />
             <Contact />

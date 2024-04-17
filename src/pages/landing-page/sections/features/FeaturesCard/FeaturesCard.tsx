@@ -22,13 +22,18 @@ const IconWrapper = styled.div<{
     padding: var(--space-24);
     margin-bottom: var(--space-40);
     border: 1px solid ${(props) => props.$iconWrapperBorderColor};
-    border-radius: var(--space-32);
+    border-radius: var(--border-radius-32);
     background-color: ${(props) => props.$iconWrapperBackgroundColor};
 `;
 
 const FeatureIcon = styled(Icon)`
     width: 6rem;
     height: 6rem;
+
+    @media screen and (max-width: 40em) {
+        width: 4.6rem;
+        height: 4.6rem;
+    }
 `;
 
 const FeatureTextWrapper = styled.div`
