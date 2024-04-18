@@ -72,6 +72,10 @@ const Description = styled(Typography)`
     max-width: 70%;
     margin: 0 auto;
     margin-bottom: var(--space-50);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3; /* Number of lines to display */
 `;
 
 const PageCountWrapper = styled.div`
@@ -117,11 +121,22 @@ const PrevButton = styled.button`
             fill: var(--white);
         }
     }
+
+    @media screen and (max-width: 60em) {
+        width: 5.4rem;
+        height: 5.4rem;
+        border-radius: var(--border-radius-18);
+    }
 `;
 
 const PrevIcon = styled(Icon)`
     width: 3.6rem;
     height: 3.6rem;
+
+    @media screen and (max-width: 60em) {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
 `;
 
 const NextButton = styled.button`
@@ -150,12 +165,23 @@ const NextButton = styled.button`
             fill: var(--white);
         }
     }
+
+    @media screen and (max-width: 60em) {
+        width: 5.4rem;
+        height: 5.4rem;
+        border-radius: var(--border-radius-18);
+    }
 `;
 
 const NextIcon = styled(Icon)`
     transform: rotate(180deg);
     width: 3.6rem;
     height: 3.6rem;
+
+    @media screen and (max-width: 60em) {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
 `;
 
 const Testimonials = () => {
