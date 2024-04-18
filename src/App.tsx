@@ -15,9 +15,8 @@ const Base = styled.div`
 const App = () => {
     return (
         <>
-            {" "}
             <LandingPage />
-            <Base>
+            {/* <Base>
                 <h1>Welcome </h1>
 
                 <Link to="admin/sign-up">Admin Sign up</Link>
@@ -37,7 +36,7 @@ const App = () => {
                     Team Member Reset Password
                 </Link>
                 <Link to="team-member/platform">Team Member Platform</Link>
-            </Base>
+            </Base> */}
         </>
     );
 };

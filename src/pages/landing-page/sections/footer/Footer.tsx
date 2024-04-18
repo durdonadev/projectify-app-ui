@@ -4,6 +4,7 @@ import { Container, SectionSidePadding } from "../../components";
 
 const FooterSection = styled.footer`
     padding: var(--space-20) var(--space-100);
+    border-top: 1px solid var(--jaguar-200);
 
     ${SectionSidePadding}
 `;
@@ -12,6 +13,11 @@ const FooterContainer = styled(Container)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 50em) {
+        flex-direction: column;
+        gap: var(--space-12);
+    }
 `;
 
 const CopyrightText = styled(Typography)`
