@@ -33,7 +33,7 @@ const NavigationLinks = styled.div`
     display: flex;
     gap: var(--space-40);
 
-    @media screen and (max-width: 60em) {
+    @media screen and (max-width: 50em) {
         & {
             display: none;
         }
@@ -50,7 +50,7 @@ const Buttons = styled.div`
     display: flex;
     gap: var(--space-10);
 
-    @media screen and (max-width: 60em) {
+    @media screen and (max-width: 50em) {
         & {
             display: none;
         }
@@ -64,7 +64,7 @@ const MenuButton = styled(Button)`
     padding: 0;
     background-color: transparent;
 
-    @media screen and (max-width: 60em) {
+    @media screen and (max-width: 50em) {
         & {
             display: flex;
         }

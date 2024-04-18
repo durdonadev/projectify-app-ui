@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
-import { Button, Logo } from "../../../../design-system";
+import { Logo } from "../../../../design-system";
 import { Link } from "react-router-dom";
 import closeIcon from "../../../../assets/images/close.svg";
 
@@ -19,19 +19,14 @@ const CloseButton = styled.button`
 `;
 
 const Padding = css`
-    @media screen and (max-width: 60em) {
-        padding-right: var(--space-32);
-        padding-left: var(--space-32);
-    }
-
     @media screen and (max-width: 50em) {
-        padding-right: var(--space-24);
-        padding-left: var(--space-24);
+        padding-right: var(--space-12);
+        padding-left: var(--space-12);
     }
 
     @media screen and (max-width: 30em) {
-        padding-right: var(--space-16);
-        padding-left: var(--space-16);
+        padding-right: var(--space-10);
+        padding-left: var(--space-10);
     }
 `;
 
@@ -57,7 +52,7 @@ const MobileNavOverlay = styled.div<{ show: boolean }>`
     display: flex;
     justify-content: flex-end;
 
-    @media screen and (min-width: 961px) {
+    @media screen and (min-width: 50em) {
         display: none;
     }
 `;
@@ -83,6 +78,7 @@ const MobileNavHeader = styled.div`
     border-top-left-radius: var(--border-radius-10);
 
     ${Padding}
+    padding-left: var(--space-16);
 
     @media screen and (max-width: 40em) {
         justify-content: space-between;
@@ -92,10 +88,10 @@ const MobileNavHeader = styled.div`
 const MobileNavLinks = styled.div`
     padding-top: var(--space-32);
     padding-bottom: var(--space-32);
+
     list-style-type: none;
 
-    ${Padding}
-
+    padding-left: var(--space-16);
     li:not(:last-child) {
         margin-bottom: var(--space-16);
     }
