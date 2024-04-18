@@ -24,6 +24,11 @@ const IconWrapper = styled.div<{
     border: 1px solid ${(props) => props.$iconWrapperBorderColor};
     border-radius: var(--border-radius-32);
     background-color: ${(props) => props.$iconWrapperBackgroundColor};
+
+    @media screen and (max-width: 40em) {
+        padding: var(--space-20);
+        border-radius: var(--border-radius-24);
+    }
 `;
 
 const FeatureIcon = styled(Icon)`

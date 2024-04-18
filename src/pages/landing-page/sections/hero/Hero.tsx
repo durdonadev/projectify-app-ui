@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import hero from "../../../../assets/images/hero/hero.svg";
+import hero from "../../../../assets/images/hero/hero.png";
 import date from "../../../../assets/images/hero/date.svg";
 import status from "../../../../assets/images/hero/status-badge.svg";
 import members from "../../../../assets/images/hero/members.svg";
@@ -19,6 +19,7 @@ const HeroContainer = styled(Container)`
 
 const HeroHeading = styled(Typography)`
     color: var(--jaguar-900);
+    margin-bottom: var(--space-16);
 
     @media screen and (max-width: 70em) {
         font-size: var(--font-size-56);
