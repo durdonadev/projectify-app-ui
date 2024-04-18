@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { Button, Logo } from "../../../../design-system";
 import { Container, SectionSidePadding } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import burgerIcon from "../../../../assets/images/burger-icon.svg";
 import { MobileNavigation } from "./MobileNavigation";
+import { SignInModal } from "../../components/SignInModal";
 
 const links = [
-    { text: "Price", link: "#price-plan" },
+    { text: "About", link: "#about" },
     { text: "Testimonials", link: "#testimonials" },
     { text: "Contact", link: "#contact" }
 ];
@@ -88,6 +89,13 @@ const MobileButton = styled(Button)`
 
 const TopNavigation = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+    const navigate = useNavigate();
+    const [showSignInModal, setShowSignInModal] = useState(false);
+
+    const closeModal = () => {
+        setShowSignInModal(false);
+    };
 
     return (
         <Base>
@@ -108,7 +116,9 @@ const TopNavigation = () => {
                         size="md"
                         shape="rounded"
                         color="primary"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("admin/sign-up");
+                        }}
                     >
                         Sign Up
                     </Button>
@@ -116,7 +126,9 @@ const TopNavigation = () => {
                         size="md"
                         shape="rounded"
                         color="primary"
-                        onClick={() => {}}
+                        onClick={() => {
+                            setShowSignInModal(true);
+                        }}
                     >
                         Sign In
                     </Button>
@@ -145,7 +157,9 @@ const TopNavigation = () => {
                         size="md"
                         shape="rounded"
                         color="primary"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("admin/sign-up");
+                        }}
                     >
                         Sign Up
                     </MobileButton>
@@ -153,12 +167,15 @@ const TopNavigation = () => {
                         size="md"
                         shape="rounded"
                         color="primary"
-                        onClick={() => {}}
+                        onClick={() => {
+                            setShowSignInModal(true);
+                        }}
                     >
                         Sign In
                     </MobileButton>
                 </MobileActions>
             </MobileNavigation>
+            <SignInModal show={showSignInModal} closeModal={closeModal} />
         </Base>
     );
 };

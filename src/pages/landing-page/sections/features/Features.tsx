@@ -47,7 +47,7 @@ const StyledButton = styled(Button)`
 
 const Features = () => {
     return (
-        <SectionBase>
+        <SectionBase id="about">
             <FeaturesContainer>
                 <Title variant="h5" weight="bold">
                     Get the best for your team
