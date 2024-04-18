@@ -41,6 +41,10 @@ const FeatureTextWrapper = styled.div`
     border-radius: var(--border-radius-32);
     background-color: var(--white);
     height: 100%;
+
+    @media screen and (max-width: 40em) {
+        padding: var(--space-18);
+    }
 `;
 
 const FeatureTitle = styled(Typography)`

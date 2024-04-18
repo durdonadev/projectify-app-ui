@@ -26,8 +26,13 @@ const FeaturesCardsWrapper = styled.div`
     gap: var(--space-30);
     margin-bottom: var(--space-50);
 
-    @media screen and (max-width: 60em) {
+    @media screen and (max-width: 52em) {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-20);
+    }
+
+    @media screen and (max-width: 40em) {
+        gap: var(--space-14);
     }
 
     @media screen and (max-width: 25em) {
