@@ -17,6 +17,7 @@ const Header = styled(Typography)`
 
 const ContentWrapper = styled.div`
     height: 50rem;
+    position: relative;
     overflow: hidden;
 `;
 

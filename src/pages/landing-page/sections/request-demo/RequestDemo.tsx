@@ -23,10 +23,28 @@ const ContentWrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: var(--space-34);
+
+    @media screen and (max-width: 1020px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 40em) {
+        display: block;
+    }
 `;
 
 const ImageWrapper = styled.div`
     width: 50%;
+
+    @media screen and (max-width: 40em) {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: var(--space-50);
+    }
+
+    @media screen and (max-width: 30em) {
+        width: 100%;
+    }
 `;
 
 const Image = styled.img`
@@ -39,6 +57,15 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: var(--space-20);
+
+    @media screen and (max-width: 40em) {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 30em) {
+        width: 100%;
+    }
 `;
 
 const InputWrapper = styled.div`
