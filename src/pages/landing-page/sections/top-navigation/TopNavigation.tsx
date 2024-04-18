@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import { NavigationLink } from "./NavigationLinks";
 import { Button, Logo } from "../../../../design-system";
 import { Container, SectionSidePadding } from "../../components";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 import burgerIcon from "../../../../assets/images/burger-icon.svg";
 import { MobileNavigation } from "./MobileNavigation";
 
 const links = [
-    { text: "About", link: "#about" },
+    { text: "Price", link: "#price-plan" },
     { text: "Testimonials", link: "#testimonials" },
     { text: "Contact", link: "#contact" }
 ];
@@ -75,6 +74,13 @@ const MenuButton = styled(Button)`
     }
 `;
 
+const NavLink = styled.a`
+    color: var(--jaguar-900);
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-24);
+    font-weight: var(--font-weight-500);
+`;
+
 const MobileButton = styled(Button)`
     margin-right: auto;
     width: 11rem;
@@ -91,11 +97,9 @@ const TopNavigation = () => {
                 </LogoLink>
                 <NavigationLinks>
                     {links.map((link, index) => (
-                        <NavigationLink
-                            key={index}
-                            linkText={link.text}
-                            linkTo={link.link}
-                        />
+                        <NavLink key={index} href={link.link}>
+                            {link.text}
+                        </NavLink>
                     ))}
                 </NavigationLinks>
                 <Buttons>
@@ -131,11 +135,9 @@ const TopNavigation = () => {
             >
                 <MobileActions>
                     {links.map((link, index) => (
-                        <NavigationLink
-                            key={index}
-                            linkText={link.text}
-                            linkTo={link.link}
-                        />
+                        <NavLink key={index} href={link.link}>
+                            {link.text}
+                        </NavLink>
                     ))}
 
                     <MobileButton
