@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import hero from "../../../../assets/images/hero/hero.png";
-import date from "../../../../assets/images/hero/date.svg";
-import status from "../../../../assets/images/hero/status-badge.svg";
-import members from "../../../../assets/images/hero/members.svg";
-import google from "../../../../assets/images/hero/google.svg";
+import date from "../../../../assets/images/hero/date-badge.png";
+import status from "../../../../assets/images/hero/status-badge.png";
+import members from "../../../../assets/images/hero/members.png";
+import google from "../../../../assets/images/hero/google.png";
 import { Container, SectionBase } from "../../components";
 import { Typography, Button } from "../../../../design-system";
 
