@@ -35,8 +35,8 @@ const Brands = () => {
         <BrandsSectionBase id="brands">
             <BrandsSectionContainer>
                 {companies.map((company, idx) => (
-                    <ImageWrapper>
-                        <CompanyLogo key={idx} src={company} />
+                    <ImageWrapper key={idx}>
+                        <CompanyLogo src={company} />
                     </ImageWrapper>
                 ))}
             </BrandsSectionContainer>
