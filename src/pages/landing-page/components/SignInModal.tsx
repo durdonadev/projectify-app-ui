@@ -7,6 +7,8 @@ type CreateTaskModalProps = {
     closeModal: () => void;
 };
 
+const StyledModal = styled(Modal)``;
+
 const ModalTitle = styled(Typography)`
     text-align: center;
     margin-bottom: var(--space-24);
@@ -15,16 +17,20 @@ const ModalTitle = styled(Typography)`
 const Buttons = styled.div`
     display: flex;
     gap: var(--space-30);
-    margin-bottom: var(--space-30);
 `;
 
 const SignInModal: React.FC<CreateTaskModalProps> = ({ show, closeModal }) => {
     const navigate = useNavigate();
 
     return (
-        <Modal show={show} position="center">
+        <StyledModal
+            show={show}
+            position="center"
+            closeIcon="true"
+            onClose={closeModal}
+        >
             <ModalTitle variant="paragraphLG" weight="medium">
-                Sign In as
+                To begin, please select your role and sign in:
             </ModalTitle>
             <Buttons>
                 <Button
@@ -52,17 +58,7 @@ const SignInModal: React.FC<CreateTaskModalProps> = ({ show, closeModal }) => {
                     Team Member
                 </Button>
             </Buttons>
-            <Button
-                color="secondary"
-                size="lg"
-                shape="rounded"
-                variant="outlined"
-                fullWidth
-                onClick={closeModal}
-            >
-                Cancel
-            </Button>
-        </Modal>
+        </StyledModal>
     );
 };
 

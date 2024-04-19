@@ -70,8 +70,8 @@ const MenuButton = styled(Button)`
         }
     }
     img {
-        height: 2.4rem;
-        width: 2.4rem;
+        height: 3rem;
+        width: 3rem;
     }
 `;
 

@@ -13,8 +13,8 @@ const CloseButton = styled.button`
     align-items: center;
 
     img {
-        height: 2.4rem;
-        width: 2.4rem;
+        height: 3rem;
+        width: 3rem;
     }
 `;
 
