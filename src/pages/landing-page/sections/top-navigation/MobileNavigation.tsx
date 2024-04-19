@@ -51,6 +51,7 @@ const MobileNavOverlay = styled.div<{ show: boolean }>`
     transition: all ease-in-out 0.3s;
     display: flex;
     justify-content: flex-end;
+    z-index: 4;
 
     @media screen and (min-width: 50em) {
         display: none;
@@ -86,12 +87,10 @@ const MobileNavHeader = styled.div`
 `;
 
 const MobileNavLinks = styled.div`
-    padding-top: var(--space-32);
-    padding-bottom: var(--space-32);
-
+    padding: var(--space-32) var(--space-16);
     list-style-type: none;
+    border-top: 1px solid var(--jaguar-100);
 
-    padding-left: var(--space-16);
     li:not(:last-child) {
         margin-bottom: var(--space-16);
     }
@@ -112,6 +111,10 @@ interface MobileNavProps {
     show: boolean;
 }
 const MobileNavigation: FC<MobileNavProps> = ({ children, onClose, show }) => {
+    const handleLinkClick = () => {
+        onClose();
+    };
+
     return (
         <MobileNavOverlay show={show}>
             <MobileNavContent>
@@ -124,7 +127,13 @@ const MobileNavigation: FC<MobileNavProps> = ({ children, onClose, show }) => {
                         <img src={closeIcon} alt="Close" />
                     </CloseButton>
                 </MobileNavHeader>
-                <MobileNavLinks>{children}</MobileNavLinks>
+                <MobileNavLinks>
+                    {React.Children.map(children, (child) =>
+                        React.cloneElement(child, {
+                            onClick: handleLinkClick
+                        })
+                    )}
+                </MobileNavLinks>
             </MobileNavContent>
         </MobileNavOverlay>
     );

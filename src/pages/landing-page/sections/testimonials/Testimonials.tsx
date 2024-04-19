@@ -76,7 +76,7 @@ const Description = styled(Typography)`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-line-clamp: 3;
 `;
 
 const PageCountWrapper = styled.div`
