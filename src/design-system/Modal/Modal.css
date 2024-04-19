@@ -34,3 +34,18 @@
     border-radius: 0;
     width: 40rem;
 }
+
+.close-btn {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+    margin-bottom: var(--space-12);
+}
+
+.colose-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}

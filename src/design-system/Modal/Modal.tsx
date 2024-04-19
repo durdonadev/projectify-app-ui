@@ -2,10 +2,13 @@ import React from "react";
 import { positionClassNames } from "./classNames";
 import "./Modal.css";
 import { trimWhiteSpaces } from "../utils";
+import xIcon from "../../assets/images/close.svg";
 
 interface ModalProps {
     show: boolean;
     position: "center" | "right";
+    closeIcon?: string;
+    onClose?: () => void;
     children: React.ReactNode;
     className?: string;
 }
@@ -13,6 +16,8 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({
     show,
     position,
+    closeIcon,
+    onClose,
     className,
     children
 }) => {
@@ -23,11 +28,22 @@ const Modal: React.FC<ModalProps> = ({
 
     return (
         <>
-            {show ? (
+            {show && (
                 <div className={finalOverlayClassNames}>
-                    <div className="modal">{children}</div>
+                    <div className="modal">
+                        {closeIcon && (
+                            <button onClick={onClose} className="close-btn">
+                                <img
+                                    className="close-icon"
+                                    src={xIcon}
+                                    alt="Close"
+                                />
+                            </button>
+                        )}
+                        {children}
+                    </div>
                 </div>
-            ) : null}
+            )}
         </>
     );
 };
