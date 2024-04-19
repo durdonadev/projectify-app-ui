@@ -1,7 +1,14 @@
 import styled from "styled-components";
-import { Button, Icon, Typography } from "../../../../design-system";
+import { Button, Typography } from "../../../../design-system";
 import paperPlane from "../../../../assets/images/request-demo/paper-plane.svg";
+import userIcon from "../../../../assets/images/request-demo/user.svg";
+import emailIcon from "../../../../assets/images/request-demo/email.svg";
+import companyIcon from "../../../../assets/images/request-demo/building.svg";
 import { Container, SectionBase } from "../../components";
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    icon?: string;
+}
 
 const RequestDemoSection = styled(SectionBase)`
     background: linear-gradient(to right, #6826f7, #bb9cfb);
@@ -68,27 +75,22 @@ const Form = styled.form`
     }
 `;
 
-const InputWrapper = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-`;
-
-const Input = styled.input`
+const Input = styled.input<InputProps>`
     width: 100%;
-    padding: var(--space-16) var(--space-48) !important;
+    padding: var(--space-16) var(--space-48);
     border: 0.3rem solid var(--jaguar-100);
     border-radius: var(--space-16);
+    background-color: var(--white);
+    background-image: url(${(props) => props.icon});
+    background-size: 2.4rem;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    transition: border-color 0.3s ease;
 
     &:focus {
         outline: none;
-        border: 0.3rem solid var(--primary-500);
+        border-color: var(--primary-500);
     }
-`;
-
-const InputIcon = styled(Icon)`
-    position: absolute;
-    left: var(--space-14);
 `;
 
 const RequestButton = styled(Button)`
@@ -108,18 +110,20 @@ const RequestDemo = () => {
                         <Image src={paperPlane} alt="PaperPlane Image" />
                     </ImageWrapper>
                     <Form>
-                        <InputWrapper>
-                            <InputIcon iconName="user" />
-                            <Input placeholder="Name" type="text"></Input>
-                        </InputWrapper>
-                        <InputWrapper>
-                            <InputIcon iconName="email" />
-                            <Input placeholder="Email" type="email"></Input>
-                        </InputWrapper>
-                        <InputWrapper>
-                            <InputIcon iconName="company" />
-                            <Input placeholder="Company" type="text"></Input>
-                        </InputWrapper>
+                        <Input icon={userIcon} placeholder="Name" type="text" />
+
+                        <Input
+                            icon={emailIcon}
+                            placeholder="Email"
+                            type="email"
+                        />
+
+                        <Input
+                            icon={companyIcon}
+                            placeholder="Company"
+                            type="text"
+                        />
+
                         <RequestButton fullWidth shape="circle" size="lg">
                             Request a Demo
                         </RequestButton>
