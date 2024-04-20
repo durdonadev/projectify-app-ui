@@ -44,7 +44,7 @@ const ToggleTextLeft = styled(Typography)`
 
 const PricePlansWrapper = styled.div`
     display: flex;
-    overflow-x: hidden;
+    overflow-x: auto;
     justify-content: space-between;
     gap: var(--space-20);
 `;
