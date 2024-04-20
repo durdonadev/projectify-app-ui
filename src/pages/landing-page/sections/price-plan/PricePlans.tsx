@@ -43,13 +43,10 @@ const ToggleTextLeft = styled(Typography)`
 `;
 
 const PricePlansWrapper = styled.div`
-    display: grid;
-    gap: var(--space-30);
-
-    @media (min-width: 600px) {
-        display: flex;
-        flex-wrap: wrap;
-    }
+    display: flex;
+    overflow-x: hidden;
+    justify-content: space-between;
+    gap: var(--space-20);
 `;
 
 const PricePlans = () => {

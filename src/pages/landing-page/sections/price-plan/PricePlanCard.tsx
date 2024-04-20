@@ -3,9 +3,11 @@ import { Button, Icon, Typography } from "../../../../design-system";
 import { PlanProps } from "./data";
 
 const PlanCardWrapper = styled.div<{ $type: string }>`
+    width: 370px;
+    min-width: 280px;
     display: flex;
     flex-direction: column;
-    flex: 1;
+
     padding: var(--space-30);
     border: 1px solid var(--jaguar-100);
     border-radius: var(--space-40);
