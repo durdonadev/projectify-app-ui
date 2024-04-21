@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import { Logo } from "../../../design-system/Logo";
 import styled from "styled-components";
 import { Toaster } from "../../../design-system";
+import { SectionSidePadding } from "../../landing-page/components";
 
 type AuthWrapperProps = {
     imageUrl: string;
@@ -14,6 +15,10 @@ const AuthWrapperBase = styled.main`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100vh;
+
+    @media screen and (max-width: 70em) {
+        display: block;
+    }
 `;
 
 const AuthForm = styled.section<{ $switchLayout?: boolean }>`
@@ -24,6 +29,8 @@ const AuthForm = styled.section<{ $switchLayout?: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    ${SectionSidePadding}
 `;
 
 const AuthContent = styled.div`
@@ -38,6 +45,11 @@ const AuthImageWrapper = styled.section<{ $switchLayout?: boolean }>`
     grid-row: 1 / 2;
     grid-column: ${(props) => (props.$switchLayout ? "1 / 2" : "2 / 3")};
     padding: var(--space-50);
+
+    @media screen and (max-width: 70em) {
+        height: 60rem;
+    }
+    ${SectionSidePadding}
 `;
 
 const AuthImage = styled.img.attrs({

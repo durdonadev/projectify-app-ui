@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import { Toaster, Typography } from "../../../design-system";
 import styled from "styled-components";
+import { SectionSidePadding } from "../../landing-page/components";
 
 type PasswordWrapperProps = {
     pageTitle: string;
@@ -18,6 +19,8 @@ const PasswordWrapperBase = styled.main`
 
 const PasswordForm = styled.section`
     padding: var(--space-50);
+
+    ${SectionSidePadding}
 `;
 
 const PasswordContent = styled.div`
@@ -29,6 +32,8 @@ const PasswordContent = styled.div`
 
 const PasswordImageWrapper = styled.div`
     padding: var(--space-50);
+
+    ${SectionSidePadding}
 `;
 
 const PasswordImage = styled.img.attrs({

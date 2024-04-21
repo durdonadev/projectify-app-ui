@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 export const SectionSidePadding = css`
     @media screen and (max-width: 70em) {
-        padding-right: var(--space-80);
-        padding-left: var(--space-80);
+        padding-right: var(--space-50);
+        padding-left: var(--space-50);
     }
 
     @media screen and (max-width: 60em) {
