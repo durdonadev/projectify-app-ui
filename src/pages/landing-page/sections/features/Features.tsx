@@ -3,6 +3,30 @@ import { Button, Typography } from "../../../../design-system";
 import { FeaturesCard } from "./FeaturesCard";
 import { features } from "./FeaturesCard/data";
 import { Container, SectionBase } from "../../components";
+import bgImage from "../../../../assets/images/features/bg-effect-features.png";
+
+const FeaturesSectionBase = styled(SectionBase)`
+    background: url(${bgImage}) no-repeat bottom center;
+    background-size: cover;
+
+    padding-top: var(--space-100);
+    padding-bottom: var(--space-200);
+
+    @media screen and (max-width: 70em) {
+        padding-top: var(--space-80);
+        padding-bottom: var(--space-160);
+    }
+
+    @media screen and (max-width: 60em) {
+        padding-top: var(--space-64);
+        padding-bottom: var(--space-128);
+    }
+
+    @media screen and (max-width: 50em) {
+        padding-top: var(--space-48);
+        padding-bottom: var(--space-96);
+    }
+`;
 
 const FeaturesContainer = styled(Container)`
     display: flex;
@@ -47,7 +71,7 @@ const StyledButton = styled(Button)`
 
 const Features = () => {
     return (
-        <SectionBase id="about">
+        <FeaturesSectionBase id="about">
             <FeaturesContainer>
                 <Title variant="h5" weight="bold">
                     Get the best for your team
@@ -84,7 +108,7 @@ const Features = () => {
                     Try a Demo
                 </StyledButton>
             </FeaturesContainer>
-        </SectionBase>
+        </FeaturesSectionBase>
     );
 };
 
