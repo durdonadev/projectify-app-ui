@@ -2,9 +2,31 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Icon, Typography } from "../../../../design-system";
 import { testimonials } from "./data";
+import bgImage from "../../../../assets/images/testimonials/bg-effect-testimonials.png";
 import { Container, SectionBase } from "../../components";
 
-const TestimonialsSection = styled(SectionBase)``;
+const TestimonialsSection = styled(SectionBase)`
+    background: url(${bgImage}) no-repeat top center;
+    background-size: cover;
+
+    padding-top: var(--space-120);
+    padding-bottom: var(--space-100);
+
+    @media screen and (max-width: 70em) {
+        padding-top: var(--space-100);
+        padding-bottom: var(--space-80);
+    }
+
+    @media screen and (max-width: 60em) {
+        padding-top: var(--space-84);
+        padding-bottom: var(--space-64);
+    }
+
+    @media screen and (max-width: 50em) {
+        padding-top: var(--space-68);
+        padding-bottom: var(--space-48);
+    }
+`;
 
 const TestimonialsSectionContainer = styled(Container)`
     text-align: center;
