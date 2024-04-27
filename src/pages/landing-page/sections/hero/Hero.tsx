@@ -69,7 +69,7 @@ const StyledButton = styled(Button)`
 
 const HeroImgWrapper = styled.div`
     position: relative;
-    z-index: -1;
+    z-index: 2;
 `;
 
 const HeroImg = styled.img`

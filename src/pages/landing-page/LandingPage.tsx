@@ -7,12 +7,16 @@ import { RequestDemo } from "./sections/request-demo/RequestDemo";
 import { Contact } from "./sections/contact/Contact";
 import { Footer } from "./sections/footer/Footer";
 import Testimonials from "./sections/testimonials/Testimonials";
+import { Header } from "./components/Header";
 
 const LandingPage = () => {
     return (
         <>
-            <TopNavigation />
-            <Hero />
+            <Header>
+                <TopNavigation />
+                <Hero />
+            </Header>
+
             <Brands />
             <Features />
             <PricePlans />
