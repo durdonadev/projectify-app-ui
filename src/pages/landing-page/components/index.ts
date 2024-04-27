@@ -1,3 +1,4 @@
 export * from "./SectionBase";
-export * from "./HeroHeaderBase";
+export * from "./Header";
 export * from "./Container";
+export * from "./SignInModal";

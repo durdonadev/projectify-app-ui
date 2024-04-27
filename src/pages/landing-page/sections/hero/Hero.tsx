@@ -8,7 +8,20 @@ import { Container, SectionBase } from "../../components";
 import { Typography, Button } from "../../../../design-system";
 
 const HeroSectionBase = styled(SectionBase)`
+    padding-top: var(--space-100);
     padding-bottom: 0;
+
+    @media screen and (max-width: 70em) {
+        padding-top: var(--space-80);
+    }
+
+    @media screen and (max-width: 60em) {
+        padding-top: var(--space-64);
+    }
+
+    @media screen and (max-width: 50em) {
+        padding-top: var(--space-48);
+    }
 `;
 
 const HeroContainer = styled(Container)`

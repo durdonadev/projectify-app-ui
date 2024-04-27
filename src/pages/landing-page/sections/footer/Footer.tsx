@@ -3,6 +3,8 @@ import { Typography } from "../../../../design-system";
 import { Container, SectionSidePadding } from "../../components";
 
 const FooterSection = styled.footer`
+    background-color: var(--white);
+
     padding: var(--space-20) var(--space-100);
     border-top: 1px solid var(--jaguar-200);
 

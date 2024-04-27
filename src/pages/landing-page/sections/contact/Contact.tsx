@@ -3,7 +3,9 @@ import { Icon, Logo, Typography } from "../../../../design-system";
 import { Container, SectionBase } from "../../components";
 import { useEffect } from "react";
 
-const ContactSection = styled(SectionBase)``;
+const ContactSection = styled(SectionBase)`
+    background-color: var(--white);
+`;
 
 const ContactSectionContainer = styled(Container)`
     display: grid;
