@@ -5,7 +5,24 @@ import { PricePlanCard } from "./PricePlanCard";
 import { useState } from "react";
 import { Container, SectionBase } from "../../components";
 
-const PricePlanSection = styled(SectionBase)``;
+const PricePlanSection = styled(SectionBase)`
+    background-color: var(--jaguar-25);
+
+    padding-top: 0;
+    padding-bottom: var(--space-80);
+
+    @media screen and (max-width: 70em) {
+        padding-bottom: var(--space-60);
+    }
+
+    @media screen and (max-width: 60em) {
+        padding-bottom: var(--space-44);
+    }
+
+    @media screen and (max-width: 50em) {
+        padding-bottom: var(--space-28);
+    }
+`;
 
 const PricePlanSectionContainer = styled(Container)``;
 
