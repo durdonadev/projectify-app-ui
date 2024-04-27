@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgImage from "../../assets/images/bg-effect.png";
+import bgImage from "../../../assets/images/bg-effect.png";
 
 const Header = styled.header`
     background: url(${bgImage}) center/cover,

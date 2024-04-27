@@ -4,6 +4,7 @@ import paperPlane from "../../../../assets/images/request-demo/paper-plane.svg";
 import userIcon from "../../../../assets/images/request-demo/user.svg";
 import emailIcon from "../../../../assets/images/request-demo/email.svg";
 import companyIcon from "../../../../assets/images/request-demo/building.svg";
+import bgImage from "../../../../assets/images/request-demo/bg-effect-demo.png";
 import { Container, SectionBase } from "../../components";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,7 +12,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const RequestDemoSection = styled(SectionBase)`
-    background: linear-gradient(to right, #6826f7, #bb9cfb);
+    background: url(${bgImage}) center/cover,
+        linear-gradient(to right, #6826f7, #bb9cfb);
 `;
 
 const RequestDemoContainer = styled(Container)`

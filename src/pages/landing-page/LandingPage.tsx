@@ -16,7 +16,6 @@ const LandingPage = () => {
                 <TopNavigation />
                 <Hero />
             </Header>
-
             <Brands />
             <Features />
             <PricePlans />
