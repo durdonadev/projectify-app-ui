@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Option, Select } from "../../../design-system";
 import React, { useState, useEffect } from "react";
 import { PageFilters } from "../../components/PageFilters";
-import { projectService } from "../../../api"; // Import the projectService from your API file
-import { ProjectWithContributors } from "../../../types"; // Import the necessary types
+import { projectService } from "../../../api";
+import { ProjectWithContributors } from "../../../types";
 
 type StoryFiltersProps = {
     selectedProject: string;
@@ -16,6 +16,8 @@ const Filters = styled(PageFilters)`
         justify-content: space-between;
     }
 `;
+
+export const ProjectOptions = styled(Select)``;
 
 const StoryFilters: React.FC<StoryFiltersProps> = ({
     selectedProject,
@@ -45,11 +47,9 @@ const StoryFilters: React.FC<StoryFiltersProps> = ({
         fetchProjects();
     }, []);
 
-    if (isProjectsFetching) return null;
-
     return (
         <Filters>
-            <Select
+            <ProjectOptions
                 value={selectedProject}
                 onSelect={setSelectedProject}
                 options={projectOptions}
