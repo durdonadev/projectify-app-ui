@@ -4,7 +4,9 @@
 }
 
 /* Header */
+
 .btn-secondary.select__header {
+    white-space: nowrap;
     background-color: var(--white);
     justify-content: space-between;
     padding: 0 var(--space-8) 0 var(--space-16);
@@ -37,6 +39,10 @@
 
 /* Body */
 .select__body {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     position: absolute;
     top: calc(100% + var(--space-4));
     list-style-type: none;
