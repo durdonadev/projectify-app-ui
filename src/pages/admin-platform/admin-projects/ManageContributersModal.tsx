@@ -55,6 +55,7 @@ const ManageContributorsModal: React.FC<Props> = ({
     const assignedContributors = Object.values(
         state.projects[projectId].contributors.assignedContributors
     );
+
     return (
         <Modal show={show} position="right">
             {showNotAssignedContributors ? (
