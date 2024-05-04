@@ -121,9 +121,34 @@ export interface ProjectWithContributors extends Project {
     };
 }
 
+export interface ProjectWithStories extends Project {
+    stories: Story[];
+}
+
 export interface ProjectUpdate {
     name?: string;
     description?: string;
     startDate?: string;
     endDate?: string;
+}
+
+export type StoryStatus = "TODO" | "INPROGRESS" | "DONE" | "ONHOLD";
+export interface SubTasks {
+    id: string;
+    title: string;
+    description?: string;
+    due: string;
+    status: TaskStatus;
+}
+
+export interface Story {
+    id: string;
+    projectId: string;
+    title: string;
+    description?: string;
+    status: StoryStatus;
+    point?: string;
+    due?: string;
+    assigneeId?: string;
+    subTasks: SubTasks;
 }

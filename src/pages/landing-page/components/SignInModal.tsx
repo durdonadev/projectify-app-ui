@@ -7,7 +7,9 @@ type CreateTaskModalProps = {
     closeModal: () => void;
 };
 
-const StyledModal = styled(Modal)``;
+const StyledModal = styled(Modal)`
+    z-index: 5;
+`;
 
 const ModalTitle = styled(Typography)`
     text-align: center;
