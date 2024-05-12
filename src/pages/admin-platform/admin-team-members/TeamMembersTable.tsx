@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import format from "date-fns/format";
 import {
     Badge,
     BadgeColors,

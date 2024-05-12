@@ -10,12 +10,20 @@ import {
     Option
 } from "../../../design-system";
 import { useEffect, useState } from "react";
-import { projectService, storyService } from "../../../api";
+import { projectService, storyService, teamMemberService } from "../../../api";
 import toast from "react-hot-toast";
 import { toIso8601 } from "../../../utils";
-import { Actions, AddStoryAction } from "../../../store";
+import {
+    Actions,
+    AddStoryAction,
+    AdminPopulateProjectContributorsAction,
+    AdminPopulateTeamMembersAction
+} from "../../../store";
 import { useStore } from "../../../hooks";
-import { ProjectWithContributors } from "../../../types";
+import {
+    ProjectContributorBase,
+    ProjectWithContributors
+} from "../../../types";
 
 type CreateStoryModalProps = {
     show: boolean;
@@ -42,25 +50,38 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
     show,
     closeModal
 }) => {
+    const {
+        dispatch,
+        state: { projects }
+    } = useStore();
+
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [point, setPoint] = useState<string>("");
+    const [point, setPoint] = useState<number | null>(null);
     const [due, setDue] = useState<Date | null>();
-    const [projectId, setProjectId] = useState<string>("");
-    const [assigneeId, setAssigneeId] = useState<string>("");
+    // const [projectId, setProjectId] = useState<string>("");
+    // const [assigneeId, setAssigneeId] = useState<string>("");
 
     type OptionValue = string | number;
 
-    const [selectedProject, setSelectedProject] = useState<
-        OptionValue | undefined
-    >(undefined);
     const [projectOptions, setProjectOptions] = useState<Option[]>([]);
     const [isProjectsFetching, setIsProjectsFetching] = useState(true);
 
+    const [selectedProject, setSelectedProject] = useState<OptionValue>("");
+    const [selectedContributor, setSelectedContributor] =
+        useState<OptionValue>("");
+
+    const [isTeamMembersFetching, setIsTeamMembersFetching] = useState(true);
+    const [teamMemberOptions, setTeamMemberOptions] = useState<Option[]>([]);
+    const [selectedTeamMember, setSelectedTeamMember] = useState<
+        OptionValue | undefined
+    >(undefined);
+
+    const [isContributorsFetching, setIsContributorsFetching] = useState(true);
+    const [contributorOptions, setContributorOptions] = useState<Option[]>([]);
+
     const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
-
-    const { dispatch } = useStore();
 
     const handleOnChangeTitle = (value: string) => {
         setTitle(value);
@@ -71,7 +92,10 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
     };
 
     const handleOnChangePoint = (value: string) => {
-        setPoint(value);
+        const parsedValue = parseInt(value);
+        if (!isNaN(parsedValue)) {
+            setPoint(parsedValue);
+        }
     };
 
     const isFormSubmittable = title && description && point && due;
@@ -79,10 +103,10 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
     const clearFields = () => {
         setTitle("");
         setDescription("");
-        setPoint("");
+        setPoint(null);
         setDue(null);
-        setProjectId("");
-        setAssigneeId("");
+        setSelectedProject("");
+        setSelectedContributor("");
     };
 
     const cancel = () => {
@@ -91,13 +115,17 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
     };
 
     const createStory = () => {
+        const assigneeIdString: string = selectedContributor
+            ? selectedContributor.toString()
+            : "";
+
         const input = {
             title,
             description,
             point,
             due: toIso8601(due!),
-            projectId,
-            assigneeId
+            projectId: selectedProject.toString(),
+            assigneeId: assigneeIdString
         };
         try {
             storyService
@@ -140,6 +168,50 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
         fetchProjects();
     }, []);
 
+    // useEffect(() => {
+    //     const fetchContributors = async () => {
+    //         try {
+    //             const response = await projectService.getContributors(
+    //                 projectId
+    //             );
+    //             const assignedContributors = response.data.assignedContributors;
+
+    //             const options = assignedContributors.map((contributor) => ({
+    //                 label: `${contributor.firstName} ${contributor.lastName}`,
+    //                 value: contributor.id
+    //             }));
+    //             setContributorOptions(options);
+    //             setIsProjectsFetching(false);
+    //         } catch (error) {
+    //             console.error("Error fetching contributors:", error);
+    //             setIsProjectsFetching(false);
+    //         }
+    //     };
+
+    //     fetchContributors();
+    // }, [projectId]);
+
+    useEffect(() => {
+        teamMemberService
+            .getAll()
+            .then((data) => {
+                const options = data.data.map(
+                    (teamMember: ProjectContributorBase) => ({
+                        label: `${teamMember.firstName} ${teamMember.lastName}`,
+                        value: teamMember.id
+                    })
+                );
+
+                setTeamMemberOptions(options);
+                setIsTeamMembersFetching(false);
+            })
+            .catch((e) => {
+                const err = e as Error;
+                setIsTeamMembersFetching(false);
+                toast.error(err.message);
+            });
+    }, []);
+
     return (
         <Modal show={show} position="center">
             <ModalTitle variant="paragraphLG" weight="medium">
@@ -173,7 +245,7 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
                 <Input
                     type="text"
                     placeholder="Story Point"
-                    value={point}
+                    value={point !== null ? point.toString() : ""}
                     onChange={handleOnChangePoint}
                     shape="rounded"
                     size="lg"
@@ -184,6 +256,22 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
                     placeholder="Start Date"
                     selected={due}
                     onChange={(date) => setDue(date)}
+                />
+                {/* <Select
+                    value={selectedContributor}
+                    onSelect={(option) => setSelectedContributor(option?.value)}
+                    options={contributorOptions}
+                    shape="rounded"
+                    size="md"
+                    headerPlaceholder="Assigneed Active Contributors"
+                /> */}
+                <Select
+                    value={selectedTeamMember}
+                    onSelect={(option) => setSelectedTeamMember(option?.value)}
+                    options={teamMemberOptions}
+                    shape="rounded"
+                    size="md"
+                    headerPlaceholder="Assignee"
                 />
             </Inputs>
             <Buttons>

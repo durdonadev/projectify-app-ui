@@ -147,7 +147,7 @@ export interface Story {
     title: string;
     description?: string;
     status: StoryStatus;
-    point?: string;
+    point?: number | null;
     due?: string;
     assigneeId?: string;
     subTasks: SubTasks;

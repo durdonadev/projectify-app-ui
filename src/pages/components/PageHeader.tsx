@@ -3,8 +3,8 @@ import { Button, Typography } from "../../design-system";
 
 type PageHeaderProps = {
     pageTitle: string;
-    actionButtonText: string;
-    actionButtonOnClick: () => void;
+    actionButtonText?: string;
+    actionButtonOnClick?: () => void;
 };
 const PageHeaderBase = styled.header`
     display: flex;
@@ -23,15 +23,17 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             <Typography variant="h6" weight="medium">
                 {pageTitle}
             </Typography>
-            <Button
-                variant="contained"
-                color="primary"
-                size="md"
-                shape="rounded"
-                onClick={actionButtonOnClick}
-            >
-                {actionButtonText}
-            </Button>
+            {actionButtonText && actionButtonOnClick && (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="md"
+                    shape="rounded"
+                    onClick={actionButtonOnClick}
+                >
+                    {actionButtonText}
+                </Button>
+            )}
         </PageHeaderBase>
     );
 };
