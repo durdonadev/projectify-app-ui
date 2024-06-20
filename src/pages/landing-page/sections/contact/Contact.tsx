@@ -106,14 +106,14 @@ const SocialIcon = styled(Icon)`
     height: 3.2rem;
 `;
 
-const MapWrapper = styled.div`
+const MapWrapper = styled.iframe`
     grid-area: map;
     grid-column: 3 / 4;
     grid-row: 1;
     width: 100%;
     height: auto;
     border-radius: var(--border-radius-32);
-    border: 0;
+    border: none;
 
     @media screen and (max-width: 55em) {
         grid-row: 2;
@@ -126,27 +126,6 @@ const MapWrapper = styled.div`
 `;
 
 const Contact = () => {
-    useEffect(() => {
-        const center = { lat: 40.722894994446584, lng: -73.98909137283559 };
-        const zoomLevel = 8;
-
-        const mapContainer = document.getElementById("map");
-
-        if (mapContainer) {
-            const map = new window.google.maps.Map(mapContainer, {
-                center: center,
-                zoom: zoomLevel
-            });
-
-            new window.google.maps.Marker({
-                position: center,
-                map: map
-            });
-        } else {
-            console.error("Map container element not found.");
-        }
-    }, []);
-
     return (
         <ContactSection id="contact">
             <ContactSectionContainer>
@@ -202,7 +181,7 @@ const Contact = () => {
                     </SocialMediaWrapper>
                 </ContactInfoWrapper>
 
-                <MapWrapper id="map"></MapWrapper>
+                <MapWrapper src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.7848423222636!2d-73.99165022450106!3d40.722752736958086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598474c10bcf%3A0xd62d514f22a03f04!2s205%20Allen%20St%2C%20New%20York%2C%20NY%2010002!5e0!3m2!1sru!2sus!4v1718859025091!5m2!1sru!2sus"></MapWrapper>
             </ContactSectionContainer>
         </ContactSection>
     );
